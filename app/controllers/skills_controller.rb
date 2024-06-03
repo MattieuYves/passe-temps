@@ -45,7 +45,7 @@ class SkillsController < ApplicationController
 # ajouter photo dans les params permit au moment de passer à Cloudinary
 
   def skill_params
-    params.require(:skill).permit(:name, :goal, :experience_year, :category)
+    params.require(:skill).permit(:name, :goal, :experience_year, :category, :photo)
   end
 
 end
