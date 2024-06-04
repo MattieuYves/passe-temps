@@ -1,0 +1,24 @@
+.sidebar{
+
+  margin: 20px;
+  padding: 20px;
+  background-color: orange;
+  width: fit-content;
+  border-radius: 18px;
+  border: solid 1px darkorange;
+  .side-item{
+    display: flex;
+    list-style-type: none;
+    height: 40px;
+  }
+  // .side-item-name{
+  //   display: none;
+  // }
+
+}
+
+// .sidebar:hover{
+//   .side-item-name{
+
+//   }
+// }
