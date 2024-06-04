@@ -1,0 +1,12 @@
+
+  <h1>Let's book</h1>
+
+  <%= simple_form_for [@skill, @booking] do |f| %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.submit "Create booking" %>
+  <% end %>
+  <%=  %>
+
+
+  <%= link_to 'Back to home', root_path, class: "back-link" %>
