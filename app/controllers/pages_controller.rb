@@ -22,6 +22,9 @@ class PagesController < ApplicationController
     @reviews = current_user.reviews.all
   end
 
+  def dashboard
+  end
+
   private
 
   def session_params
