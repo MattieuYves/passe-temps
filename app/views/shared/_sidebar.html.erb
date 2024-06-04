@@ -2,70 +2,39 @@
   <ul class="side-items">
     <li class="side-item">
       <i class="fa-solid fa-bars"></i>
-      <p class="side-item-name">
-        Menu
-      </p>
+      <%= link_to "Menu", dashboard_path, :class=>'side-item-name'%>
     </li>
     <li class="side-item">
       <i class="fa-regular fa-id-card"></i>
-      <p class="side-item-name">
-        Mon Espace
-      </p>
+      <%= link_to "Mon Espace", dashboard_path, :class=>'side-item-name'%>
     </li>
     <li class="side-item">
       <i class="fa-regular fa-calendar-check"></i>
-      <p class="side-item-name">
-        Mes Sessions
-      </p>
+      <%= link_to "Mes Sessions", dashboard_path, :class=>'side-item-name'%>
     </li>
     <li class="side-item">
       <i class="fa-regular fa-calendar-check"></i>
-      <p class="side-item-name">
-        Mon Profil
-      </p>
+      <%= link_to "Mon Profil", dashboard_path, :class=>'side-item-name'%>
     </li>
     <li class="side-item">
       <i class="fa-regular fa-calendar-check"></i>
-      <p class="side-item-name">
-        Mes Compétences
-      </p>
+      <%= link_to "Mes Compétences", dashboard_path, :class=>'side-item-name'%>
     </li>
     <li class="side-item">
       <i class="fa-solid fa-comment"></i>
-      <p class="side-item-name">
-        Mes Avis
-      </p>
+      <%= link_to "Mes Avis", dashboard_path, :class=>'side-item-name'%>
     </li>
     <li class="side-item">
       <i class="fa-solid fa-user"></i>
-      <p class="side-item-name">
-        Mon Compte
-      </p>
+      <%= link_to "Mon Compte", dashboard_path, :class=>'side-item-name'%>
     </li>
     <li class="side-item">
       <i class="fa-solid fa-gear"></i>
-      <p class="side-item-name">
-        Paramètres
-      </p>
+      <%= link_to "Paramètres", dashboard_path, :class=>'side-item-name'%>
     </li>
     <li class="side-item">
       <i class="fa-solid fa-right-from-bracket"></i>
-      <p class="side-item-name">
-        Se Déconnecter
-      </p>
+      <%= link_to "Se Déconnecter", destroy_user_session_path, :class=>'side-item-name'%>
     </li>
   </ul>
 </div>
-
-
-
- <%# <%= link_to "Menu", dashboard_path %>
-  <%# <%= link_to "Menu", dashboard_path %>
-  <%# <%= link_to "Mon Espace", dashboard_path %>
-  <%# <%= link_to "Mes Sessions", dashboard_path %>
-  <%# <%= link_to "Mon Profil", dashboard_path %>
-  <%# <%= link_to "Mes Compétences", dashboard_path %>
-  <%# <%= link_to "Mes Avis", dashboard_path %>
-  <%# <%= link_to "Mon Compte", dashboard_path %>
-  <%# <%= link_to "Paramètres", dashboard_path %>
-  <%# <%= link_to "Se Déconnecter", dashboard_path %>

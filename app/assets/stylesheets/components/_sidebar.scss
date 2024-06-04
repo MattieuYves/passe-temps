@@ -1,5 +1,4 @@
 .sidebar{
-  text-decoration: none;
   margin: 20px;
   padding: 20px 10px;
   color : white;
@@ -8,6 +7,8 @@
   border-radius: 18px;
   border: solid 1px #051f25;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  z-index: 100;
+  opacity: 0.9;
 
 
   .side-items {
@@ -26,12 +27,14 @@
     vertical-align: baseline;
   }
   .side-item-name {
+    text-decoration: none;
     text-align: left;
     overflow: hidden;
     width: 0px;
     transition: all ease 0.5s;
     margin-top: -4px;
     white-space: nowrap;
+    color: white;
   }
 
   &:hover {
