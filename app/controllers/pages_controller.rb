@@ -14,7 +14,7 @@ class PagesController < ApplicationController
     @sessions = current_user.sessions.all
   end
 
-  def update_session
+  def update_booking
     @booking = Booking.find(params[:id])
     @booking.update(booking_params)
   end

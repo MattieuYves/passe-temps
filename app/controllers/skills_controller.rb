@@ -1,6 +1,6 @@
 class SkillsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_goat, only: [:show]
+  before_action :set_skill, only: [:show, :edit, :destroy]
 
   def index
     @skills = Skill.all
@@ -11,28 +11,43 @@ class SkillsController < ApplicationController
   end
 
   def show
-    @review = Review.new
-    @booking = Booking.new
-    @bookings = @skill.bookings
+    # @review = Review.new
+    # @booking = Booking.new
+    # @bookings = @skill.bookings
   end
 
   def new
     @skill = Skill.new
   end
 
+
   def create
     @skill = Skill.new(skill_params)
     @skill.user = current_user
     if @skill.save
-      redirect_to skill_path(@skill), notice: "Congrats! Your new skill is online and bookable."
+      redirect_to dashboard_path, notice: "Congrats! Your new skill is online and bookable."
     else
       redirect_to new_offer_path, alert: "Failed. Fill in all fields"
     end
   end
 
+  def edit
+  end
+
+  def update
+    @skill = Skill.find(params[:id])
+    if @skill.update(skill_params)
+      redirect_to dashboard_path, notice: "Congrats! Edited"
+    else
+      render 'pages/dashboard', status: :unprocessable_entity
+    end
+  end
+
+
+
   def destroy
     @skill.destroy
-    redirect_to root_path, status: :see_other
+    redirect_to dashboard_path, status: :see_other
   end
 
   private
