@@ -48,6 +48,7 @@ ActiveRecord::Base.transaction do
       area: rand(1..10),
       token: rand(1..5)
     )
+    
   end
 
   # Create 10 Skills
