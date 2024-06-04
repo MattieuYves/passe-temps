@@ -1,26 +1,57 @@
 .card {
     width: 300px;
+    height: 500px;
     border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
+    border-radius: 30px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    font-family: Arial, sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
-.card img {
-    width: 100%;
-    height: auto;
+
+.card:hover {
+    background-color: #f5f5f5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
 }
-.card .name {
-    padding: 16px;
-    font-size: 24px;
+
+.bottom-part {
+    padding: 13px;
+    // background-color: white;
+    border-top: 1px solid #ccc;
+}
+
+.card-name h3 {
+    color: #212121;
+    font-size: 26px;
     font-weight: bold;
     text-align: center;
+    margin: 10px 0;
 }
+
 .card .details {
-    padding: 16px;
-    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
 }
-.card .details h4 {
-    margin: 8px 0;
+
+.card .details p {
+    color: black;
     font-size: 18px;
+    margin: 5px 0;
+}
+
+.fa-star::before {
+    color: yellow;
+}
+
+.fa-business-time {
+    color: red;
+}
+
+.top-part {
+    background-image: url("https://images.unsplash.com/photo-1610429419519-8cdee5a8e615?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHBpYW5pc3RlfGVufDB8fDB8fHww");
+    height: 50vh;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 30px 30px 0 0;
 }
