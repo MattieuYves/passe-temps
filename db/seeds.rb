@@ -16,7 +16,7 @@ require 'faker'
 ActiveRecord::Base.transaction do
   User.destroy_all
   Skill.destroy_all
-  Session.destroy_all
+  Booking.destroy_all
   Chatroom.destroy_all
   Message.destroy_all
   Review.destroy_all
@@ -33,10 +33,21 @@ ActiveRecord::Base.transaction do
     area: 1,
     token: 1000
   )
+  goal = ["découverte", "passion", "reconversion"]
+  name = ["poterie", "menuiserie", "dessin", "guitare", "running", "chinois"]
+
+  Skill.create!(
+    name: name.sample,
+    goal: goal.sample,
+    experience_year: rand(1..20),
+    category: Skill::CATEGORY.sample,
+    user: test_user
+  )
+
 
   # Create 10 Users
   users = 5.times.map do
-    User.create!(
+    user = User.create!(
       email: Faker::Internet.unique.email,
       password: 'password',
       first_name: Faker::Name.first_name,
@@ -48,36 +59,30 @@ ActiveRecord::Base.transaction do
       area: rand(1..10),
       token: rand(1..5)
     )
-    
-  end
 
-  # Create 10 Skills
-  goal = ["découverte", "passion", "reconversion"]
-  name = ["poterie", "menuiserie", "dessin", "guitare", "running", "chinois"]
-  category = ['Art', 'Langue', 'Musique', 'Bricolage']
-
-  skills = 10.times.map do
     Skill.create!(
       name: name.sample,
       goal: goal.sample,
       experience_year: rand(1..20),
-      user: users.sample,
-      category: category.sample
+      category: Skill::CATEGORY.sample,
+      user: user
     )
+
   end
 
-  # Create 10 Sessions
-  sessions = 10.times.map do
-    Session.create!(
+
+  # Create 10 Bookings
+  bookings = 10.times.map do
+    Booking.create!(
       duration: rand(1..4),
       token_cost: 1,
       session_format: ['Distance', 'Physique'].sample,
-      skill: skills.sample,
-      user: users.sample,
+      skill: Skill.all.sample,
+      user: User.all.sample,
       start_date: Faker::Date.between(from: 1.year.ago, to: Date.today),
       end_date: Faker::Date.between(from: Date.today, to: 1.year.from_now),
       content: Faker::Lorem.paragraph,
-      status: ['Pending', 'Accepted', 'Refused'].sample
+      status: %w[pending confirmed rejected].sample
     )
   end
 
@@ -85,7 +90,7 @@ ActiveRecord::Base.transaction do
   chatrooms = 10.times.map do
     Chatroom.create!(
       name: Faker::Lorem.word,
-      session: sessions.sample
+      booking: bookings.sample
     )
   end
 
@@ -93,7 +98,7 @@ ActiveRecord::Base.transaction do
   10.times do
     Message.create!(
       content: Faker::Lorem.sentence,
-      user: users.sample,
+      user: User.all.sample,
       chatroom: chatrooms.sample
     )
   end
@@ -101,11 +106,11 @@ ActiveRecord::Base.transaction do
   # Create 10 Reviews
   10.times do
     Review.create!(
-      rating: rand(1..5).to_f,
+      rating: rand(1..5),
       comment: Faker::Lorem.paragraph,
       title: Faker::Lorem.sentence,
-      session: sessions.sample,
-      user: users.sample
+      booking: bookings.sample,
+      user: User.all.sample
     )
   end
 end

@@ -1,4 +1,5 @@
 class Skill < ApplicationRecord
+  has_many :sessions, dependent: :destroy
   belongs_to :user
   has_one_attached :photo
 
