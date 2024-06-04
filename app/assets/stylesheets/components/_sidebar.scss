@@ -1,36 +1,49 @@
 .sidebar{
   text-decoration: none;
   margin: 20px;
-  padding: 20px;
-  background-color: orange;
+  padding: 20px 10px;
+  color : white;
+  background-color: #093943;
   width: fit-content;
   border-radius: 18px;
-  border: solid 1px darkorange;
-  .side-items{
+  border: solid 1px #051f25;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+
+  .side-items {
     margin: 0 auto;
+    text-align: center;
+    padding-left: 0px;
+    i {
+      padding: 0px 10px;
+    }
   }
 
   .side-item{
     display: flex;
     list-style-type: none;
     height: 40px;
-    i {
-      text-align: center;
-    }
+    vertical-align: baseline;
   }
   .side-item-name {
-    display: none;
+    text-align: left;
+    overflow: hidden;
+    width: 0px;
+    transition: all ease 0.5s;
+    margin-top: -4px;
+    white-space: nowrap;
   }
 
   &:hover {
     .side-item-name {
-      display: block;
+      width: 180px;
     }
+
   }
 
   &:not(:hover) {
     .side-item > i:hover + .side-item-name {
-      display: none;
+      width: 0px;
     }
   }
 }
