@@ -1,24 +1,36 @@
 .sidebar{
-
+  text-decoration: none;
   margin: 20px;
   padding: 20px;
   background-color: orange;
   width: fit-content;
   border-radius: 18px;
   border: solid 1px darkorange;
+  .side-items{
+    margin: 0 auto;
+  }
+
   .side-item{
     display: flex;
     list-style-type: none;
     height: 40px;
+    i {
+      text-align: center;
+    }
   }
-  // .side-item-name{
-  //   display: none;
-  // }
+  .side-item-name {
+    display: none;
+  }
 
+  &:hover {
+    .side-item-name {
+      display: block;
+    }
+  }
+
+  &:not(:hover) {
+    .side-item > i:hover + .side-item-name {
+      display: none;
+    }
+  }
 }
-
-// .sidebar:hover{
-//   .side-item-name{
-
-//   }
-// }
