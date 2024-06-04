@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @users = User.all
+    @skills = Skill.all
   end
 
   def index_chatrooms
@@ -14,8 +15,8 @@ class PagesController < ApplicationController
   end
 
   def update_session
-    @session = Session.find(params[:id])
-    @session.update(session_params)
+    @booking = Booking.find(params[:id])
+    @booking.update(booking_params)
   end
 
   def index_reviews
@@ -27,8 +28,8 @@ class PagesController < ApplicationController
 
   private
 
-  def session_params
-    params.require(:session).permit(:start_date, :end_date)
+  def booking_params
+    params.require(:booking).permit(:start_date, :end_date)
   end
 
 end

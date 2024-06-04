@@ -1,5 +1,17 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+<%= link_to "Becoming a teacher", new_skill_path %>
+
+<% @users.each do |user| %>
+  <% if user.skills.count > 0 %>
+    <p><%= user.first_name %></p>
+    <% user.skills.each do |skill| %>
+      <p><%= skill.name %></p>
+    <% end %>
+  <% end %>
+<% end %>
+
 <div class="cards">
   <% @users.each do |user| %>
     <%= render "shared/card", user: user  %>

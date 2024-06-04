@@ -1,4 +1,4 @@
-class Session < ApplicationRecord
+class Booking < ApplicationRecord
   belongs_to :skill
   belongs_to :user
   has_many :reviews, dependent: :destroy
