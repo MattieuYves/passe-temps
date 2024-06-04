@@ -42,12 +42,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_150425) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "chatrooms", force: :cascade do |t|
-    t.string "name"
-    t.bigint "session_id", null: false
+  create_table "bookings", force: :cascade do |t|
+    t.integer "duration"
+    t.integer "token_cost"
+    t.string "session_format"
+    t.bigint "skill_id", null: false
+    t.bigint "user_id", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.text "content"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["session_id"], name: "index_chatrooms_on_session_id"
+    t.index ["skill_id"], name: "index_bookings_on_skill_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.bigint "booking_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_chatrooms_on_booking_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -64,28 +80,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_150425) do
     t.float "rating"
     t.text "comment"
     t.string "title"
-    t.bigint "session_id", null: false
+    t.bigint "booking_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["session_id"], name: "index_reviews_on_session_id"
+    t.index ["booking_id"], name: "index_reviews_on_booking_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
-  end
-
-  create_table "sessions", force: :cascade do |t|
-    t.integer "duration"
-    t.integer "token_cost"
-    t.string "session_format"
-    t.bigint "skill_id", null: false
-    t.bigint "user_id", null: false
-    t.date "start_date"
-    t.date "end_date"
-    t.text "content"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["skill_id"], name: "index_sessions_on_skill_id"
-    t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -121,12 +121,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_150425) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "chatrooms", "sessions"
+  add_foreign_key "bookings", "skills"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "chatrooms", "bookings"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "reviews", "sessions"
+  add_foreign_key "reviews", "bookings"
   add_foreign_key "reviews", "users"
-  add_foreign_key "sessions", "skills"
-  add_foreign_key "sessions", "users"
   add_foreign_key "skills", "users"
 end
