@@ -15,6 +15,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:session).permit(:start_date, :end_date)
+    params.require(:review).permit(:title, :comment, :rating)
   end
 end

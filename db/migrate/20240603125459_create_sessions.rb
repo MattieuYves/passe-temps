@@ -1,6 +1,6 @@
 class CreateSessions < ActiveRecord::Migration[7.1]
   def change
-    create_table :sessions do |t|
+    create_table :bookings do |t|
       t.integer :duration
       t.integer :token_cost
       t.string :session_format

@@ -1,5 +1,5 @@
 class Chatroom < ApplicationRecord
-  belongs_to :session
+  belongs_to :booking
 
   has_many :messages, dependent: :destroy
 
