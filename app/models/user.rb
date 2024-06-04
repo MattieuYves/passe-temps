@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
 
   has_many :skills, dependent: :destroy
+  has_many :bookings_as_teacher, through: :skills, source: :bookings
   has_many :bookings, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :messages, dependent: :destroy
