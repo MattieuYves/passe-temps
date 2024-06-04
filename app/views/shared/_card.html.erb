@@ -1,20 +1,17 @@
 
-    <div class="card">
-      <div class="top-part">
-        <img src="https://images.unsplash.com/photo-1610429419519-8cdee5a8e615?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHBpYW5pc3RlfGVufDB8fDB8fHww" alt="<%= user.first_name %>">
-      </div>
+<div class="card">
+    <div class="top-part"></div>
 
-      <div class="bottom-part">
-        <div class="card-name">
-            <h3><%=user.first_name %> <%=user.last_name %></h3> 
-        </div>
+    <div class="card-name">
+        <h3><%=user.first_name %> <%=user.last_name %></h3> 
+    </div>
+    <div class="bottom-part">
         <% user.skills.each do |skill| %>
             <div class="details">
-                <p><%= skill&.name %></p>
-                <p><%= skill&.experience_year  %></p>
-                <p><%= rand(1..3)%>h par session </p>
-                <p><%= rand(1..5).to_f%></p>
+                <p><i class="fa-solid fa-certificate"></i> <%= skill&.name.capitalize %></p>
+                <p><i class="fa-solid fa-business-time"></i> <%= skill&.experience_year  %> ans d'expérience</p>
+                <p><i class="fa-solid fa-star"></i> <%= rand(1..5).to_f %>/5</p>
             </div>
         <% end %>
-      </div>
-  </div>
+    </div>
+</div>
