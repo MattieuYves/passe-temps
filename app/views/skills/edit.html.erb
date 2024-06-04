@@ -1,0 +1,13 @@
+
+  <h1>Edit your skill</h1>
+
+  <%= simple_form_for @skill do |f| %>
+    <%= f.input :name%>
+    <%= f.input :goal %>
+    <%= f.input :experience_year%>
+    <%= f.input :category, collection: Skill::CATEGORY %>
+    <%= f.submit "Edit Skill" %>
+  <% end %>
+
+
+  <%= link_to 'Back to dashboard', dashboard_path %>
