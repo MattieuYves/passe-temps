@@ -1,0 +1,4 @@
+<% if current_user.id == @skill.user_id %>
+<% else %>
+  <%= link_to "Book me!", new_skill_booking_path(@skill) %>
+<% end %>

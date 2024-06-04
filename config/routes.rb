@@ -1,15 +1,13 @@
 Rails.application.routes.draw do
-
   devise_for :users
   root to: "pages#home"
   get "/dashboard", to: "pages#dashboard", as: :dashboard
-
 
   get "up" => "rails/health#show", as: :rails_health_check
 
 
   resources :skills, only: [:index, :show, :new, :edit, :update, :create] do
-    resources :bookings, only: [:new, :create]
+    resources :bookings, only: [:new, :create, :update]
   end
 
   resources :bookings, only: [] do

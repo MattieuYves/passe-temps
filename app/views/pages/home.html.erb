@@ -8,6 +8,7 @@
     <p><%= user.first_name %></p>
     <% user.skills.each do |skill| %>
       <p><%= skill.name %></p>
+      <%= link_to "Voir les skills", skill_path(skill) %>
     <% end %>
   <% end %>
 <% end %>

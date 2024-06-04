@@ -1,5 +1,32 @@
+<h2>Skills</h2>
 <% if current_user.skills.count > 0 %>
     <% current_user.skills.each do |skill| %>
       <li><%= skill.name %> | <%= skill.category %> || <%= link_to "Edit", edit_skill_path(skill) %> / <%= link_to "Delete", destroy_skill_path(skill), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></li>
     <% end %>
   <% end %>
+
+<h2>Bookings i need to verify</h2>
+<% @my_bookings.each do |booking| %>
+  <% if booking.status == "pending" && booking.skill.user_id == current_user.id %>
+
+  <li><%= booking.skill.name %> | <%= booking.user.email %> | <%= booking.start_date %> | <%= booking.end_date %> | <%= booking.status %> | <%= link_to "Delete", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></li>
+
+
+    <% simple_form_for [booking.skill, booking] do |f| %>
+    <%= f.input :status, as: :hidden, input_html: { value: 'confirmed'} %>
+    <%= f.submit 'Accept', class: 'btn btn-primary', data: { turbo_method: :patch, turbo_confirm: "Do you want to accept this booking?" }, notice: "Congrats! You just accepted a new booking! 🤑" %>
+  <% end %>
+
+  <% simple_form_for booking do |f| %>
+    <%= f.input :status, as: :hidden, input_html: { value: 'canceled'} %>
+    <%= f.submit 'Reject', class: 'btn btn-info', data: { turbo_method: :patch, turbo_confirm: "Do you want to refuse this booking?" }, notice: "The booking request has been rejected 😩" %>
+  <% end %>
+
+ <% end %>
+
+
+
+<% end %>
+
+    <%#= link_to "Accept", booking_path(booking, status: "accepted"), data: {turbo_method: :patch} %>
+    <%#= link_to "Reject", status_update_path(booking, status: "rejected"), data: {turbo_method: :patch} %>
