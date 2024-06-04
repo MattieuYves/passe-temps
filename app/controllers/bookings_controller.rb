@@ -32,15 +32,15 @@ class BookingsController < ApplicationController
     redirect_to dashboard_path, status: :see_other
   end
 
-  def status_update
-    @booking = Booking.find(params[:id])
-    if @booking.status == "pending"
-      @booking.update(status: "confirmed")
-    else
-      @booking.update(status: "rejected")
-    end
-    redirect_to dashboard_path
-  end
+  # def status_update
+  #   @booking = Booking.find(params[:id])
+  #   if @booking.status == "pending"
+  #     @booking.update(status: "confirmed")
+  #   else
+  #     @booking.update(status: "rejected")
+  #   end
+  #   redirect_to dashboard_path
+  # end
 
   # def status_update
   #   @booking = Booking.find(params[:id])
@@ -57,6 +57,28 @@ class BookingsController < ApplicationController
   #     render 'pages/dashboard', status: :unprocessable_entity
   #   end
   # end
+
+  def update
+    @booking = Booking.find(params[:id])
+    
+  
+    if @booking.update(booking_params)
+      case @booking.status
+      when "confirmed"
+        redirect_to dashboard_path, notice: "Congrats! You just accepted a new booking! 🤑"
+      when "rejected"
+        redirect_to dashboard_path, notice: "The booking request has been rejected 😩"
+      else
+        redirect_to dashboard_path, alert: "Invalid status update attempted."
+      end
+    else
+      flash.now[:alert] = @booking.errors.full_messages.to_sentence
+      @skills = current_user.skills
+      @my_bookings = Booking.where(skill: @skills)
+      @bookings = current_user.bookings
+      render 'pages/dashboard', status: :unprocessable_entity
+    end
+  end
 
   # def reject
   #   booking = Booking.find(params[:id])
