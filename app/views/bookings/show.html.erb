@@ -8,7 +8,7 @@
 
 <div class="container border border-light bg-warning rounded-5">
     <div class="review">
-      <% if Date.today <= @booking.end_date && @booking.status == "confirmed" %>
+      <% if Time.zone.at(Date.current.to_time).to_datetime <= @booking.end_date && @booking.status == "confirmed" %>
         <h5>
         Please leave a review regarding the session you had with <%= @booking.skill.user.first_name %>
         </h5>
