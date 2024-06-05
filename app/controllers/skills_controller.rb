@@ -8,10 +8,11 @@ class SkillsController < ApplicationController
       sql_subquery = "name ILIKE :query OR category ILIKE :query"
       @skills = @skills.where(sql_subquery, query: "%#{params[:query]}%")
     end
+    @users = User.skilled_users
   end
 
   def show
-    # @reviews = @skills.reviews
+    @review = Review.new
     @booking = Booking.new
     @bookings = @skill.bookings
   end
