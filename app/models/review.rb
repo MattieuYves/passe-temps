@@ -4,6 +4,6 @@ class Review < ApplicationRecord
 
   AUTHORIZED_RATINGS = (1..5)
 
-  validates :comment, :title, presence: true
+  validates :title, presence: true
   validates :rating, inclusion: { in: AUTHORIZED_RATINGS }
 end

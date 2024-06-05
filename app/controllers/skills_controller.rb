@@ -14,6 +14,8 @@ class SkillsController < ApplicationController
     # @reviews = @skills.reviews
     @booking = Booking.new
     @bookings = @skill.bookings
+    @reviews = @skill.reviews
+    @average_rating =@reviews.average(:rating)
   end
 
   def new
