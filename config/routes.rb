@@ -5,12 +5,13 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", as: :rails_health_check
 
-
   resources :skills, only: [:index, :show, :new, :edit, :update, :create] do
     resources :bookings, only: [:new, :create, :update]
   end
 
-  resources :bookings, only: [:show] do
+  resources :chatrooms, only: [:index, :show]  # This allows for index and show without a booking_id
+
+  resources :bookings, only: [] do
     resources :reviews, only: [:create]
     resources :chatrooms, only: :show do
       resources :messages, only: :create
@@ -24,3 +25,4 @@ Rails.application.routes.draw do
   patch "/booking/:id", to: "booking#status_update", as: :status_update
 
 end
+

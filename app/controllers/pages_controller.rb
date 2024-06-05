@@ -4,6 +4,8 @@ class PagesController < ApplicationController
   def home
     @users = User.all
     @skills = Skill.all
+    @chatroom = Chatroom.all
+    @booking = Booking.all
   end
 
   def index_chatrooms
