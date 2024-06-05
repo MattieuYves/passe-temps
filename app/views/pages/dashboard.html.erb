@@ -1,3 +1,16 @@
+
+<ul class="nav nav-pills nav-fill">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Student</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Teachers</a>
+  </li>
+</ul>
+
+
+
+
 <h2>Skills</h2>
 <% if current_user.skills.any? %>
   <% current_user.skills.each do |skill| %>
@@ -6,7 +19,7 @@
 <% end %>
 
 <h2>Bookings as student</h2>
-<% current_user.bookings.each do |booking| %>
+<% current_user.bookings.reverse.each do |booking| %>
   <%= link_to booking_path(booking), class:"text-decoration-none text-reset" do %>
     <li>
       <%= booking.id %>

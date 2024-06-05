@@ -12,4 +12,11 @@
     <% end %>
   <% end %>
 <% end %>
+<%= link_to 'View All Chatrooms', chatrooms_path, class: 'btn btn-primary' %>
+<div class="cards">
+  <% @users.each do |user| %>
+    <%= render "shared/card", user: user  %>
 
+
+  <% end %>
+</div>

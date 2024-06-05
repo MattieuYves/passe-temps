@@ -13,13 +13,13 @@
 require 'faker'
 
 # Clear existing data
-ActiveRecord::Base.transaction do
   User.destroy_all
   Skill.destroy_all
   Booking.destroy_all
   Chatroom.destroy_all
   Message.destroy_all
   Review.destroy_all
+
 
   test_user = User.create!(
     email: 'test@example.com',
@@ -72,8 +72,8 @@ ActiveRecord::Base.transaction do
 
 
   # Create 10 Bookings
-  bookings = 10.times.map do
-    Booking.create!(
+  10.times.map do
+    booking = Booking.create!(
       duration: rand(1..4),
       token_cost: 1,
       session_format: ['Distance', 'Physique'].sample,
@@ -84,16 +84,14 @@ ActiveRecord::Base.transaction do
       content: Faker::Lorem.paragraph,
       status: %w[pending confirmed rejected].sample
     )
-  end
 
-  # Create 10 Chatrooms
-  chatrooms = 10.times.map do
     Chatroom.create!(
       name: Faker::Lorem.word,
-      booking: bookings.sample
+      booking: booking
     )
   end
 
+chatrooms = Chatroom.all
   # Create 10 Messages
   10.times do
     Message.create!(
@@ -104,7 +102,8 @@ ActiveRecord::Base.transaction do
   end
 
   # Create 10 Reviews
-  10.times do
+  bookings = Booking.all
+  30.times do
     Review.create!(
       rating: rand(1..5),
       comment: Faker::Lorem.paragraph,
@@ -113,4 +112,3 @@ ActiveRecord::Base.transaction do
       user: User.all.sample
     )
   end
-end
