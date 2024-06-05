@@ -12,7 +12,7 @@ class SkillsController < ApplicationController
   end
 
   def show
-    # @reviews = @skills.reviews
+    @review = Review.new
     @booking = Booking.new
     @bookings = @skill.bookings
     @reviews = @skill.reviews
