@@ -13,9 +13,12 @@
 
   <body><%= render "shared/navbar" %>
 <%= render "shared/flashes" %>
-<%= render "shared/sidebar"  %>
-
-    <%= yield %>
+  <div class="d-flex">
+    <%= render "shared/sidebar"  %>
+    <div class="card-display-content">
+      <%= yield %>
+    </div>
+  </div>
 
   </body>
 </html>
