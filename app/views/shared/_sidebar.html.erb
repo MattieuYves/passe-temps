@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar position-relative">
   <% if current_user == nil  %>
     <div class="center-avatar d-none">
       <%= image_tag "avatar.png", class: "img_avatar" %>
@@ -8,31 +8,36 @@
       <%= image_tag "avatar.png", class: "img_avatar" %>
     </div>
   <% end %>
-  <ul class="side-items">
-    <li class="side-item">
-      <i class="fa-regular fa-id-card"></i>
-      <%= link_to "Mon Espace", dashboard_path, :class=>'side-item-name'%>
-    </li>
-    <li class="side-item">
-      <i class="fa-solid fa-comment"></i>
-      <%= link_to "Messagerie", dashboard_path, :class=>'side-item-name'%>
-    </li>
-    <li class="side-item">
-      <i class="fa-solid fa-user"></i>
-      <%= link_to "Mon Compte", dashboard_path, :class=>'side-item-name'%>
-    </li>
-    <li class="side-item">
-      <i class="fa-solid fa-gear"></i>
-      <%= link_to "Paramètres", dashboard_path, :class=>'side-item-name'%>
-    </li>
-    <li class="side-item">
-      <% if current_user == nil  %>
-        <i class="fa-solid fa-right-to-bracket"></i>
-        <%= link_to "Se Connecter", new_user_session_path, :class=>'side-item-name'%>
-      <% else %>
-        <i class="fa-solid fa-right-from-bracket"></i>
-        <%= link_to "Se Déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, :class=>'side-item-name'%>
-      <% end %>
-    </li>
-  </ul>
+
+  <%= link_to dashboard_path, class: "wrapper-sidebar-item" do %>
+    <i class="fa-regular fa-id-card"></i>
+    <p class="side-item-name">Mon Espace</p>
+  <% end %>
+
+  <%= link_to dashboard_path, class: "wrapper-sidebar-item" do %>
+    <i class="fa-solid fa-comment"></i>
+    <p class="side-item-name">Messagerie</p>
+  <% end %>
+
+  <%= link_to dashboard_path, class: "wrapper-sidebar-item" do %>
+    <i class="fa-solid fa-user"></i>
+    <p class="side-item-name">Mon Compte</p>
+  <% end %>
+
+  <%= link_to dashboard_path, class: "wrapper-sidebar-item" do %>
+    <i class="fa-solid fa-gear"></i>
+    <p class="side-item-name">Paramètres</p>
+  <% end %>
+
+  <% if current_user == nil  %>
+    <%= link_to new_user_session_path, class: 'wrapper-sidebar-item mt-auto' do %>
+      <i class="fa-solid fa-right-to-bracket"></i>
+      <p class="side-item-name">Se Connecter</p>
+    <% end %>
+  <% else %>
+    <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: 'wrapper-sidebar-item mt-auto' do %>
+      <i class="fa-solid fa-right-to-bracket"></i>
+      <p class="side-item-name">Se Déconnecter</p>
+    <% end %>
+  <% end %>
 </div>

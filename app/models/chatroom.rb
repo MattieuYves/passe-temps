@@ -3,6 +3,6 @@ class Chatroom < ApplicationRecord
 
   has_many :messages, dependent: :destroy
   validates :booking_id, uniqueness: true
-  validates :name, presence: true
+  # validates :name, presence: true
 end
 
