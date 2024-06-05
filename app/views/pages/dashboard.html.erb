@@ -57,8 +57,11 @@
       <% Review::AUTHORIZED_RATINGS.each do |number| %>
         <i class="fa<%= (number > review.rating) ? 'r' : 's' %> fa-star"></i>
       <% end %>
-      <%= review.comment %>
+      <br>
+      <p><strong><%= review.title %></strong></p>
+      <p class="border-bottom border-dark"><%= review.comment %></p>
     </p>
+
   <% end %>
 </div>
 
