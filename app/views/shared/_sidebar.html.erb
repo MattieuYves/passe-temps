@@ -2,6 +2,7 @@
   <% if current_user == nil  %>
     <div class="center-avatar d-none">
       <%= image_tag "avatar.png", class: "img_avatar" %>
+      <i class="fa-solid fa-gem"></i>
     </div>
   <% else %>
     <div class="center-avatar">
@@ -9,12 +10,17 @@
     </div>
   <% end %>
 
+  <%= link_to root_path, class: "wrapper-sidebar-item" do %>
+    <i class="fa-solid fa-house"></i>
+    <p class="side-item-name">Accueil</p>
+  <% end %>
+
   <%= link_to dashboard_path, class: "wrapper-sidebar-item" do %>
     <i class="fa-regular fa-id-card"></i>
     <p class="side-item-name">Mon Espace</p>
   <% end %>
 
-  <%= link_to dashboard_path, class: "wrapper-sidebar-item" do %>
+  <%= link_to chatrooms_path, class: "wrapper-sidebar-item" do %>
     <i class="fa-solid fa-comment"></i>
     <p class="side-item-name">Messagerie</p>
   <% end %>

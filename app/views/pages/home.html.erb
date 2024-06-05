@@ -1,5 +1,6 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Passe Temps</h1>
+<p>Trouver votre nouvelle passion</p>
+<%= render "shared/searchbar" %>
 
 <%= link_to "Becoming a teacher", new_skill_path %>
 
@@ -13,10 +14,4 @@
   <% end %>
 <% end %>
 <%= link_to 'View All Chatrooms', chatrooms_path, class: 'btn btn-primary' %>
-<div class="cards">
-  <% @users.each do |user| %>
-    <%= render "shared/card", user: user  %>
 
-
-  <% end %>
-</div>
