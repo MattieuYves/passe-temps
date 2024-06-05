@@ -10,6 +10,15 @@
   z-index: 100;
   opacity: 0.9;
 
+  .center-avatar{
+    margin: 0 auto;
+    width: fit-content;
+  }
+
+  .img_avatar{
+    width: 40px;
+    margin-bottom: 15px;
+  }
 
   .side-items {
     margin: 0 auto;
@@ -40,6 +49,9 @@
   &:hover {
     .side-item-name {
       width: 180px;
+    }
+    .img_avatar{
+      width: 80px;
     }
 
   }
