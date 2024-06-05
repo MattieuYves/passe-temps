@@ -1,0 +1,16 @@
+<% if current_user.skills.count > 0 %>
+  <h3>My reviews as a teacher</h3>
+  <div class="reviews">
+
+  <% current_user.reviews_as_a_teacher.each do |review| %>
+    <p>
+      <% Review::AUTHORIZED_RATINGS.each do |number| %>
+        <i class="fa<%= (number > review.rating) ? 'r' : 's' %> fa-star"></i>
+      <% end %>
+      <br>
+      <p><strong><%= review.title %></strong></p>
+      <p class="border-bottom border-dark"><%= review.comment %></p>
+    </p>
+
+  <% end %>
+</div>

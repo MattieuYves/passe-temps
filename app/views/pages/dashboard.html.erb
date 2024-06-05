@@ -1,68 +1,9 @@
 
-<ul class="nav nav-pills nav-fill">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Student</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Teachers</a>
-  </li>
-</ul>
-
-
-
-
-<h2>Skills</h2>
-<% if current_user.skills.any? %>
-  <% current_user.skills.each do |skill| %>
-    <li><%= skill.name %> | <%= skill.category %> || <%= link_to "Edit", edit_skill_path(skill) %> / <%= link_to "Delete", destroy_skill_path(skill), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></li>
-  <% end %>
-<% end %>
-
-<h2>Bookings as student</h2>
-<% current_user.bookings.reverse.each do |booking| %>
-  <%= link_to booking_path(booking), class:"text-decoration-none text-reset" do %>
-    <li>
-      <%= booking.id %>
-      <%= booking.skill.name %> | <%= booking.user.email %> | <%= booking.start_date %> | <%= booking.end_date %> | <%= booking.status %> |
-      <%= link_to "Delete", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-    </li>
-  <% end %>
-<% end %>
-
-<h2>Bookings as teacher</h2>
-<% current_user.bookings_as_teacher.each do |booking| %>
-  <li>
-    <%= booking.id %>
-    <%= booking.skill.name %> | <%= booking.user.email %> | <%= booking.start_date %> | <%= booking.end_date %> | <%= booking.status %> |
-    <%= link_to "Delete", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-    <% if booking.status == "pending" %>
-      <%= simple_form_for [booking.skill, booking], method: :patch do |f| %>
-        <%= f.input :status, as: :hidden, input_html: { value: 'confirmed' } %>
-        <%= f.button :submit, 'Accept', class: 'btn btn-primary', data: { turbo_confirm: "Do you want to accept this booking?" } %>
-      <% end %>
-      <%= simple_form_for [booking.skill, booking], method: :patch do |f| %>
-        <%= f.input :status, as: :hidden, input_html: { value: 'rejected' } %>
-        <%= f.button :submit, 'Reject', class: 'btn btn-info', data: { turbo_confirm: "Do you want to refuse this booking?" } %>
-      <% end %>
-    <% end %>
-  </li>
-<% end %>
-
-<% if current_user.skills.count > 0 %>
-  <h3>My reviews as a teacher</h3>
-  <div class="reviews">
-
-  <% current_user.reviews_as_a_teacher.each do |review| %>
-    <p>
-      <% Review::AUTHORIZED_RATINGS.each do |number| %>
-        <i class="fa<%= (number > review.rating) ? 'r' : 's' %> fa-star"></i>
-      <% end %>
-      <br>
-      <p><strong><%= review.title %></strong></p>
-      <p class="border-bottom border-dark"><%= review.comment %></p>
-    </p>
-
-  <% end %>
+<div>
+  <div>
+    Student
+  </div>
+  <div>
+    Teachers
+  </div>
 </div>
-
-<% end %>
