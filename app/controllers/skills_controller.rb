@@ -11,7 +11,7 @@ class SkillsController < ApplicationController
   end
 
   def show
-    @review = Review.new
+    @reviews = @skills.reviews
     @booking = Booking.new
     @bookings = @skill.bookings
   end
