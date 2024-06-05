@@ -3,6 +3,17 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
   end
 
+  def create
+    @booking = Booking.find(params[:booking_id])
+    @review = Review.new(review_params)
+    @review.booking = @booking
+    if @review.save
+      redirect_to booking_path(@booking)
+    else
+      render dashboard_path
+    end
+  end
+
   def edit
     @review = Review.find(params[:id])
   end

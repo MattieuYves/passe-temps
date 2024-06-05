@@ -2,6 +2,8 @@ class Review < ApplicationRecord
   belongs_to :booking
   belongs_to :user
 
+  AUTHORIZED_RATINGS = (1..5)
+
   validates :comment, :title, presence: true
-  validates :rating, numericality: { only_integer: true }
+  validates :rating, inclusion: { in: AUTHORIZED_RATINGS }
 end
