@@ -1,4 +1,4 @@
-<h1>My booking from <%= @booking.start_date %> to <%= @booking.end_date %> with <%= @booking.skill.user.first_name %></h1>
+<h1>My booking on <%= @booking.start_date.strftime("%d/%m/%Y") %> with <%= @booking.skill.user.first_name %>, at <%= @booking.start_date.strftime("%I:%M%p") %></h1>
 
 <h4> Your booking request is: <%= @booking.status %></h4>
 
@@ -6,9 +6,21 @@
   <p>Content of your session with <%= @booking.skill.user.first_name %></p>
 </div>
 
-<% if Date.today >= @booking.end_date%>
-  <h5>
-    Please leave a review regarding the session you had with <%= @booking.skill.user.first_name %>
-  </h5>
-  <p>How was it?</p>
-<% end %>
+<div class="container border border-light bg-warning rounded-5">
+    <div class="review">
+      <% if Date.today <= @booking.end_date && @booking.status == "confirmed" %>
+        <h5>
+        Please leave a review regarding the session you had with <%= @booking.skill.user.first_name %>
+        </h5>
+        <p>How was it?</p>
+        <%= simple_form_for [@booking, @review] do |f| %>
+          <%= f.input :title %>
+          <%= f.input :comment %>
+          <%= f.input :rating, collection: Review::AUTHORIZED_RATINGS,
+                            include_blank: false %>
+          <%= f.submit class: "btn btn-primary", value: "Valider" %>
+        <% end %>
+      <% end %>
+  </div>
+
+</div>

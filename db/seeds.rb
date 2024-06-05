@@ -21,6 +21,8 @@ require 'faker'
   Review.destroy_all
 
 
+puts "creating test user"
+
   test_user = User.create!(
     email: 'test@example.com',
     password: 'password',
@@ -33,6 +35,9 @@ require 'faker'
     area: 1,
     token: 1000
   )
+
+puts "test user created"
+
   goal = ["découverte", "passion", "reconversion"]
   name = ["poterie", "menuiserie", "dessin", "guitare", "running", "chinois"]
 
@@ -46,7 +51,7 @@ require 'faker'
 
 
   # Create 10 Users
-  users = 5.times.map do
+  5.times.map do
     user = User.create!(
       email: Faker::Internet.unique.email,
       password: 'password',
@@ -72,8 +77,8 @@ require 'faker'
 
 
   # Create 10 Bookings
-  10.times.map do
-    booking = Booking.create!(
+  bookings = 30.times.map do
+    Booking.create!(
       duration: rand(1..4),
       token_cost: 1,
       session_format: ['Distance', 'Physique'].sample,
