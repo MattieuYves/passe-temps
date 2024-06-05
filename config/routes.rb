@@ -25,3 +25,4 @@ Rails.application.routes.draw do
   patch "/booking/:id", to: "booking#status_update", as: :status_update
 
 end
+

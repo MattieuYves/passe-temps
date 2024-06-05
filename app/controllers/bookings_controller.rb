@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
     @chatroom = @booking.chatroom
+    @review = Review.new
   end
 
   def create
@@ -15,7 +16,7 @@ class BookingsController < ApplicationController
     @booking.content = "This is a test"
     @booking.status = "pending"
     @booking.session_format = "video"
-  
+
     if @booking.save
       redirect_to dashboard_path, notice: "Congrats! Your booking request has been sent to the teacher."
     else
@@ -38,8 +39,8 @@ class BookingsController < ApplicationController
 
   def update
     @booking = Booking.find(params[:id])
-    
-  
+
+
     if @booking.update(booking_params)
       case @booking.status
       when "confirmed"
@@ -67,4 +68,3 @@ class BookingsController < ApplicationController
   end
 
 end
-

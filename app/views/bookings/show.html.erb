@@ -1,0 +1,14 @@
+<h1>My booking from <%= @booking.start_date %> to <%= @booking.end_date %> with <%= @booking.skill.user.first_name %></h1>
+
+<h4> Your booking request is: <%= @booking.status %></h4>
+
+<div>
+  <p>Content of your session with <%= @booking.skill.user.first_name %></p>
+</div>
+
+<% if Date.today >= @booking.end_date%>
+  <h5>
+    Please leave a review regarding the session you had with <%= @booking.skill.user.first_name %>
+  </h5>
+  <p>How was it?</p>
+<% end %>
