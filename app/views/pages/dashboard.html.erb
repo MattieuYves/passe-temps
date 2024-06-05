@@ -19,7 +19,7 @@
 <% end %>
 
 <h2>Bookings as student</h2>
-<% current_user.bookings.each do |booking| %>
+<% current_user.bookings.reverse.each do |booking| %>
   <%= link_to booking_path(booking), class:"text-decoration-none text-reset" do %>
     <li>
       <%= booking.id %>

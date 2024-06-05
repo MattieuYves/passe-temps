@@ -2,17 +2,3 @@
 <% else %>
   <%= link_to "Book me!", new_skill_booking_path(@skill) %>
 <% end %>
-
-<p>
-  Moyenne : <%= @average_rating %>
-</p>
-<div class="reviews">
-  <% @reviews.each do |review| %>
-    <p>
-      <% Review::AUTHORIZED_RATINGS.each do |number| %>
-        <i class="fa<%= (number > review.rating) ? 'r' : 's' %> fa-star"></i>
-      <% end %>
-      <%= review.comment %>
-    </p>
-  <% end %>
-</div>
