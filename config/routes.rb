@@ -5,10 +5,11 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", as: :rails_health_check
 
-
   resources :skills, only: [:index, :show, :new, :edit, :update, :create] do
     resources :bookings, only: [:new, :create, :update]
   end
+
+  resources :chatrooms, only: [:index, :show]  # This allows for index and show without a booking_id
 
   resources :bookings, only: [] do
     resources :reviews, only: [:create]
