@@ -1,0 +1,6 @@
+<h2>Skills</h2>
+<% if current_user.skills.any? %>
+  <% current_user.skills.each do |skill| %>
+    <li><%= skill.name %> | <%= skill.category %> || <%= link_to "Edit", edit_skill_path(skill) %> / <%= link_to "Delete", destroy_skill_path(skill), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></li>
+  <% end %>
+<% end %>
