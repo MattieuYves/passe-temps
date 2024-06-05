@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to booking_path(@booking)
     else
-      render dashboard_path
+      render "bookings/show"
     end
   end
 
