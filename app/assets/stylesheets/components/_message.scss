@@ -1,0 +1,37 @@
+// To style the wrapping div
+.message-row {
+    margin-bottom: 10px;
+    padding: 8px;
+  }
+  
+  // To style the message itself
+  .sender-style, .receiver-style {
+    width: 70%;
+    max-width: 400px;
+    border-radius: 4px;
+    padding: 8px;
+    min-height: 80px;
+  }
+  
+  .sender-style {
+    background-color: lightcoral;
+  }
+  
+  .receiver-style {
+    background-color: lightblue;
+  }
+
+  .message-avatar {
+    float: left; /* ou autre disposition selon votre design */
+    margin-right: 10px;
+  }
+
+  .avatar-image {
+    width: 40px; /* ou la taille que vous préférez */
+    height: 40px;
+    border-radius: 50%; /* pour rendre l'image circulaire */
+  }
+
+  .message-info {
+    display: inline-block;
+  }
