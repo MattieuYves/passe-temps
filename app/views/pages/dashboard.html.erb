@@ -1,9 +1,23 @@
-
-<div>
-  <div>
-    Student
+<div data-controller="dashboard">
+  <div class="d-flex">
+    <div class="dashboard-nav" data-action="click->dashboard#displayStudent">
+      Student
+    </div>
+    <div class="dashboard-nav" data-action="click->dashboard#displayTeacher">
+      Teachers
+    </div>
   </div>
-  <div>
-    Teachers
+
+  <div data-dashboard-target="student">
+    <%= render "shared/bookings_student" %>
+  </div>
+
+  <div data-dashboard-target="teacher" class="d-none">
+
+      <%= link_to "Add a Skill", new_skill_path%>
+    
+    <% if current_user.skills.count > 0 %>
+      <%= render "shared/bookings_teacher" %>
+    <%end%>
   </div>
 </div>
