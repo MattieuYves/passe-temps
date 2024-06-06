@@ -87,11 +87,6 @@ User.destroy_all
       content: Faker::Lorem.paragraph,
       status: %w[pending confirmed rejected].sample
     )
-
-    Chatroom.create!(
-      name: Faker::Lorem.word,
-      booking: booking
-    )
 end
 
 chatrooms = Chatroom.all
