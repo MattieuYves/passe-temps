@@ -1,9 +1,9 @@
-<div class="inbox-wrapper" id="inbox-wrapper" data-controller="chat" data-chat-chatroom-value="<%= @chatrooms.to_json %>">
-  <div class="inbox-links" >
+<div class="inbox-wrapper" id="inbox-wrapper">
+  <div class="inbox-links" data-controller="chat">
     <p>Inbox</p>
 
     <% @chatrooms.each do |chatroom| %>
-      <div  data-action="click->chat#reveal" class="inbox-link <%= chatroom.id %>" data-chat-target="id" >
+      <div  data-action="click->chat#reveal" class="inbox-link" data-chat-id=" <%= chatroom.id %>" >
      
         <div class="inbox-avatar">
           <%= image_tag "avatar.png", class: "img_avatar" %>
@@ -18,37 +18,7 @@
   </div>
 
     <% chatroom1 = @chatrooms.first%>
-    <div class="inbox-chat" id="test" >
-      <div class="inbox-header">
-        <p><%= chatroom1.booking.user.first_name.capitalize %> <%= chatroom1.booking.user.last_name.capitalize %></p>
-        <div class="inbox-options">
-          <i class="fa-solid fa-minimize"></i>
-          <i class="fa-solid fa-xmark"></i>
-        </div>
-      </div>
-      <div class="chatroom"
-           data-controller="chatroom-subscription"
-           data-chatroom-subscription-chatroom-id-value="<%= chatroom1.id %>"
-           data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
-        <div class="messages" data-chatroom-subscription-target="messages">
-          <% chatroom1.messages.each do |message| %>
-            <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
-              <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
-                <%= render "messages/message", message: message %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-        <%= simple_form_for [chatroom1, @message], html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f| %>
-          <%= f.input :content,
-                      label: false,
-                      placeholder: "Message ##{chatroom1.name}",
-                      wrapper_html: {class: "flex-grow-1"} %>
-          <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-        <% end %>
-      </div>
+    <div class="inbox-chat" id="test" data-controller="chat-container" data-close-icon-target="inboxChat">
+      
     </div>
-  <%# @chatrooms.each do |chatroom| %>
-  <%# end %>
-
 </div>
