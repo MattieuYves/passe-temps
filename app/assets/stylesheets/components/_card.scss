@@ -1,6 +1,7 @@
+
 .card {
-    width: 250px;
-    height: 400px;
+    width: 230px;
+    height: 380px;
     border: 1px solid #ccc;
     border-radius: 30px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -39,13 +40,18 @@
     margin: 5px 0;
 }
 
-.fa-star::before {
-    color: yellow;
+.fa-certificate {
+    color: #093943;
 }
 
 .fa-business-time {
-    color: red;
+    color: #093943;
 }
+
+.fa-star::before {
+    color: #093943;
+}
+
 
 .top-part {
     background-image: url("https://images.unsplash.com/photo-1610429419519-8cdee5a8e615?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHBpYW5pc3RlfGVufDB8fDB8fHww");

@@ -18,8 +18,8 @@ class SkillsController < ApplicationController
     @review = Review.new
     @booking = Booking.new
     @bookings = @skill.bookings
-    @reviews = @skill.reviews
-    @average_rating =@reviews.average(:rating)
+    # @reviews = @skill.reviews
+    # @average_rating =@reviews.average(:rating)
   end
 
 

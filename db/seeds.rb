@@ -13,12 +13,12 @@
 require 'faker'
 
 # Clear existing data
-  User.destroy_all
-  Skill.destroy_all
-  Booking.destroy_all
-  Chatroom.destroy_all
-  Message.destroy_all
-  Review.destroy_all
+Message.destroy_all
+Chatroom.destroy_all
+Review.destroy_all
+Booking.destroy_all
+Skill.destroy_all
+User.destroy_all
 
 
   test_user = User.create!(
@@ -46,7 +46,7 @@ require 'faker'
 
 
   # Create 10 Users
-  users = 5.times.map do
+  user = 5.times.map do
     user = User.create!(
       email: Faker::Internet.unique.email,
       password: 'password',
@@ -71,25 +71,23 @@ require 'faker'
   end
 
 
-  # Create 10 Bookings
-  10.times.map do
+# Create 10 Bookings
+30.times.map do
+  begin
+    skill = Skill.all.sample
+    user = User.all.sample
     booking = Booking.create!(
       duration: rand(1..4),
       token_cost: 1,
       session_format: ['Distance', 'Physique'].sample,
-      skill: Skill.all.sample,
-      user: User.all.sample,
+      skill: skill,
+      user: user,
       start_date: Faker::Date.between(from: 1.year.ago, to: Date.today),
       end_date: Faker::Date.between(from: Date.today, to: 1.year.from_now),
       content: Faker::Lorem.paragraph,
       status: %w[pending confirmed rejected].sample
     )
-
-    Chatroom.create!(
-      name: Faker::Lorem.word,
-      booking: booking
-    )
-  end
+end
 
 chatrooms = Chatroom.all
   # Create 10 Messages
@@ -112,3 +110,4 @@ chatrooms = Chatroom.all
       user: User.all.sample
     )
   end
+end
