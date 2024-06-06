@@ -15,7 +15,7 @@
 <%= render "shared/flashes" %>
   <div class="d-flex">
     <%= render "shared/sidebar"  %>
-    <div class="card-display-content">
+    <div class="<%= params[:controller] == "skills" && params[:action] == "index" ? "" : "card-display-content"%>">
       <%= yield %>
     </div>
   </div>
