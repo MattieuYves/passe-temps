@@ -13,12 +13,12 @@
 require 'faker'
 
 # Clear existing data
-  User.destroy_all
-  Skill.destroy_all
-  Booking.destroy_all
-  Chatroom.destroy_all
-  Message.destroy_all
-  Review.destroy_all
+Message.destroy_all
+Chatroom.destroy_all
+Review.destroy_all
+Booking.destroy_all
+Skill.destroy_all
+User.destroy_all
 
 
   test_user = User.create!(
@@ -72,7 +72,7 @@ require 'faker'
 
 
   # Create 10 Bookings
-  10.times.map do
+  30.times.map do
     booking = Booking.create!(
       duration: rand(1..4),
       token_cost: 1,
@@ -88,6 +88,14 @@ require 'faker'
     Chatroom.create!(
       name: Faker::Lorem.word,
       booking: booking
+    )
+
+    Review.create!(
+      rating: rand(1..5),
+      comment:["Top teacher, je recommande vivement", "Très bonne pédagogie le boss", "Moyen mais sympa", "Je ne recommande pas"].sample,
+      title: ["top", "nice", "very nice", "claqué"].sample,
+      booking: booking,
+      user: User.all.sample
     )
   end
 

@@ -14,4 +14,9 @@ class Booking < ApplicationRecord
   def create_chatroom
     Chatroom.create(booking: self)
   end
+
+  def past?
+    end_date < Time.zone.now
+  end
+
 end
