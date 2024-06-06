@@ -19,15 +19,31 @@ export default class extends Controller {
   }
 
   reveal(event) {
-    console.log(event.currentTarget.dataset.chatId)
-    fetch(`/chatrooms/${event.currentTarget.dataset.chatId}`, {
+    const chatId = event.currentTarget.dataset.chatId;
+    console.log(chatId);
+    fetch(`/chatrooms/${chatId}`, {
       headers: {
         'Accept': 'application/json'
       }
     })
       .then(response => response.json())
       .then(data => {
-        this.chatContainerController.refresh(data.html)
-    })
+        this.chatContainerController.refresh(data.html);
+        this.markMessagesAsRead(chatId);
+      });
+  }
+
+  markMessagesAsRead(chatId) {
+    fetch(`/chatrooms/${chatId}/mark_as_read`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+      }
+    }).then(response => {
+      if (response.ok) {
+        document.querySelector(`[data-chat-id="${chatId}"] .unread-indicator`).style.display = 'none';
+      }
+    });
   }
 }

@@ -23,7 +23,9 @@
   align-items: center;
   justify-content: flex-start;
   color: white;
-  transition: all 0.5s ease;  
+  transition: all 0.5s ease;
+  max-height: 70vh; /* Limite la hauteur à 60vh */
+  overflow-y: auto; /* Ajoute une barre de défilement verticale si nécessaire */
   > p {
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
@@ -41,6 +43,22 @@
   box-sizing: border-box;
   text-decoration: none;
   color: white;
+  position: relative;
+}
+
+.unread-indicator {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
 }
 
 .inbox-avatar {
@@ -150,16 +168,15 @@
 
   .messages {
     height: 50vh;
-    overflow: scroll;
-    padding: 1rem;
+    overflow-y: scroll;
   }
 
   #new_message {
     border-top: 1px solid $gray-200;
-    padding: 1rem;
 
     .form-group {
       margin-bottom: 0;
     }
   }
 }
+

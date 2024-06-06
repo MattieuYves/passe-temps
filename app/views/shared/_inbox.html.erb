@@ -3,8 +3,7 @@
     <p>Inbox</p>
 
     <% @chatrooms.each do |chatroom| %>
-      <div  data-action="click->chat#reveal" class="inbox-link" data-chat-id=" <%= chatroom.id %>" >
-     
+      <div data-action="click->chat#reveal" class="inbox-link" data-chat-id="<%= chatroom.id %>">
         <div class="inbox-avatar">
           <%= image_tag "avatar.png", class: "img_avatar" %>
         </div>
@@ -12,12 +11,16 @@
           <p class="inbox-user-name"><%= chatroom.booking.user.first_name.capitalize %></p>
           <p class="inbox-user-skill"><%= chatroom.booking.skill.name.downcase %></p>
         </div>
-    
+        <% unread_count = chatroom.unread_messages_count_for(current_user) %>
+        <% if unread_count > 0 %>
+          <div class="unread-indicator">
+            <%= unread_count %>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>
 
-    <% chatroom1 = @chatrooms.first%>
     <div class="inbox-chat" id="test" data-controller="chat-container" data-close-icon-target="inboxChat">
       
     </div>
