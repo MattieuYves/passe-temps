@@ -15,5 +15,3 @@ class Booking < ApplicationRecord
     Chatroom.create(booking: self)
   end
 end
-
-
