@@ -1,7 +1,6 @@
 class BookingsController < ApplicationController
 
   def show
-    raise
     @booking = Booking.find(params[:id])
     @chatroom = @booking.chatroom
     @review = Review.new

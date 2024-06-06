@@ -28,6 +28,7 @@ class PagesController < ApplicationController
   def dashboard
   end
 
+
   private
 
   def booking_params
