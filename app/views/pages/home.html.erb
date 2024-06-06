@@ -1,17 +1,22 @@
-<h1>Passe Temps</h1>
-<p>Trouver votre nouvelle passion</p>
-<%= render "shared/searchbar" %>
 
-<%= link_to "Becoming a teacher", new_skill_path %>
+<div class="home-top-part text-center">
+  <div class="profile-avatar-pic position-absolute">
+    <%= render "shared/avatar_image" %>
+  </div>
+  <div class="research">
+    <h1>Passe Temps</h1>
+    <p>Trouver votre nouvelle passion</p>
+    <%= render "shared/searchbar" %>
+  </div>
+</div>
 
-<% @users.each do |user| %>
-  <% if user.skills.count > 0 %>
-    <p><%= user.first_name %></p>
-    <% user.skills.each do |skill| %>
-      <p><%= skill.name %></p>
-      <%= link_to "Voir les skills", skill_path(skill) %>
-    <% end %>
-  <% end %>
-<% end %>
-<%= link_to 'View All Chatrooms', chatrooms_path, class: 'btn btn-primary' %>
-
+<div class="row mx-0 my-5">
+  <div class="col-6 mx-auto text-align-justify">
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+    Recusandae iusto necessitatibus consectetur quis similique corrupti amet praesentium in qui natus tempora,
+    asperiores veniam eveniet dignissimos vel quos quam aliquid eligendi?
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Aperiam error laboriosam iure, id autem beatae explicabo impedit, eaque saepe consequuntur
+    tempore, distinctio eius exercitationem sunt sequi. Ipsa ducimus cumque consequatur!
+  </div>
+</div>
