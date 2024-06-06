@@ -25,3 +25,11 @@
 //     });
 // });
 
+export default class extends Controller {
+    static targets = ["inboxChat"];
+  
+    close() {
+      this.inboxChatTarget.classList.add("d-none");
+    }
+  }
+

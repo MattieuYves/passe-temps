@@ -11,8 +11,23 @@ export default class extends Controller {
   connect() {
   }
 
+  get chatContainerController() {
+    const element = document.querySelector('[data-controller="chat-container"]')
+    if (!element) return;
+
+    return element.controller;
+  }
+
   reveal(event) {
-    console.log(this.chatroomValue);
-    console.log(this.idTargets)
+    console.log(event.currentTarget.dataset.chatId)
+    fetch(`/chatrooms/${event.currentTarget.dataset.chatId}`, {
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.chatContainerController.refresh(data.html)
+    })
   }
 }
