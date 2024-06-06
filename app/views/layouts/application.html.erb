@@ -11,14 +11,18 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
-  <div class="d-flex">
-    <%= render "shared/sidebar"  %>
-    <div class="<%= params[:controller] == "skills" && params[:action] == "index" ? "" : "card-display-content"%>">
+  <body>
+    <% if current_page?(root_path) %>
       <%= yield %>
+    <%else%>
+      <%= render "shared/navbar" %>
+      <%= render "shared/flashes" %>
+      <div class="d-flex">
+        <%= render "shared/sidebar"  %>
+        <div class="<%= params[:controller] == "skills" && params[:action] == "index" ? "" : "card-display-content"%>">
+          <%= yield %>
+    <%end%>
+      </div>
     </div>
-  </div>
-
   </body>
 </html>
