@@ -23,6 +23,10 @@ Rails.application.routes.draw do
 
   patch "/booking/:id", to: "booking#status_update", as: :status_update
 
-  resources :chatrooms, only: [:index, :show]  # This allows for index and show without a booking_id
+  resources :chatrooms, only: [:index, :show] do
+    member do
+      patch :mark_as_read, to: 'chatrooms#mark_as_read'
+    end
+  end
 
 end
