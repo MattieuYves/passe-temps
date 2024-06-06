@@ -1,11 +1,13 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
 
+
   def home
     @users = User.all
     @skills = Skill.all
-    @chatroom = Chatroom.all
+    @chatrooms = Chatroom.all
     @booking = Booking.all
+    @message = Message.new
   end
 
   def index_chatrooms
