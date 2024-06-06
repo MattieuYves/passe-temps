@@ -1,4 +1,4 @@
-<h3 class="pt-4">My Incoming Bookings</h3>
+<h3 class="pt-4">📆 My Incoming Courses</h3>
 
 <% if current_user.bookings.where('start_date > ?', Time.now.to_datetime).count == 0 %>
   <p>You don't have any session with a teacher in the future. Find a teacher to book!</p>
