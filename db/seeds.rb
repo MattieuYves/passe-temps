@@ -46,7 +46,7 @@ User.destroy_all
 
 
   # Create 10 Users
-  users = 5.times.map do
+  user = 5.times.map do
     user = User.create!(
       email: Faker::Internet.unique.email,
       password: 'password',
@@ -71,14 +71,17 @@ User.destroy_all
   end
 
 
-  # Create 10 Bookings
-  30.times.map do
+# Create 10 Bookings
+30.times.map do
+  begin
+    skill = Skill.all.sample
+    user = User.all.sample
     booking = Booking.create!(
       duration: rand(1..4),
       token_cost: 1,
       session_format: ['Distance', 'Physique'].sample,
-      skill: Skill.all.sample,
-      user: User.all.sample,
+      skill: skill,
+      user: user,
       start_date: Faker::Date.between(from: 1.year.ago, to: Date.today),
       end_date: Faker::Date.between(from: Date.today, to: 1.year.from_now),
       content: Faker::Lorem.paragraph,
@@ -89,15 +92,7 @@ User.destroy_all
       name: Faker::Lorem.word,
       booking: booking
     )
-
-    Review.create!(
-      rating: rand(1..5),
-      comment:["Top teacher, je recommande vivement", "Très bonne pédagogie le boss", "Moyen mais sympa", "Je ne recommande pas"].sample,
-      title: ["top", "nice", "very nice", "claqué"].sample,
-      booking: booking,
-      user: User.all.sample
-    )
-  end
+end
 
 chatrooms = Chatroom.all
   # Create 10 Messages
@@ -120,3 +115,4 @@ chatrooms = Chatroom.all
       user: User.all.sample
     )
   end
+end

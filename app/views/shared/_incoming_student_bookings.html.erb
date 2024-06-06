@@ -1,6 +1,6 @@
 <h3>My Incoming Bookings</h3>
 
-<% if current_user.bookings.where('start_date > ?', Time.now).count == 0 %>
+<% if current_user.bookings.where('start_date > ?', Time.now.to_datetime).count == 0 %>
   <p>You don't have any session with a teacher in the future. Find a teacher to book!</p>
   <%= link_to "Find your teacher!", skills_path %>
 <% else %>
