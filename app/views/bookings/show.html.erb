@@ -6,6 +6,27 @@
   <p>Content of your session with <%= @booking.skill.user.first_name %></p>
 </div>
 
+ <!--REJECT OR ACCEPT PENDING BOOKING-->
+
+<div>
+<% if @booking.status == "pending" %>
+
+  <%= simple_form_for [@booking.skill, @booking], method: :patch do |f| %>
+    <%= f.input :status, as: :hidden, input_html: { value: 'confirmed' } %>
+    <%= f.button :submit, 'Accept', class: "btn btn-primary rounded-5", data: { turbo_confirm: "Do you want to accept this booking?" } %>
+  <% end %>
+
+  <%= simple_form_for [@booking.skill, @booking], method: :patch do |f| %>
+    <%= f.input :status, as: :hidden, input_html: { value: 'rejected' } %>
+    <%= f.button :submit, 'Reject', class: 'btn btn-warning rounded-5 text-light', data: { turbo_confirm: "Do you want to refuse this booking?" } %>
+  <% end %>
+<% end %>
+
+</div>
+
+
+<!--REVIEW IS COURSE HAS BEEN TAUGHT-->
+
 <div class="container border border-light bg-warning rounded-5">
     <div class="review">
       <% if Time.zone.at(Date.current.to_time).to_datetime <= @booking.end_date && @booking.status == "confirmed" %>

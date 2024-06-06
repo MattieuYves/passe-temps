@@ -14,7 +14,6 @@
 
   <div data-dashboard-target="teacher" class="d-none">
 
-      <%= link_to "Add a Skill", new_skill_path%>
 
     <% if current_user.skills.count > 0 %>
       <%= render "shared/bookings_teacher" %>
