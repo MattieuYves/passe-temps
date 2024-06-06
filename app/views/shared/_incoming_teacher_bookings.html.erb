@@ -1,0 +1,124 @@
+<h3 class="pt-4">✅ Courses I will deliver  </h3>
+
+
+<%# if current_user.bookings_as_teacher.where('start_date > ?', Time.now.to_datetime).count == 0 %>
+<!--  <p>You don't have any booked courses with student right now.</p>-->
+<%# else %>
+
+  <table class="table table-hover bg-transparent">
+    <thead>
+      <tr>
+        <th scope="col", class="bg-transparent">#</th>
+        <th scope="col", class="bg-transparent">Skill</th>
+        <th scope="col", class="bg-transparent">Student's name</th>
+        <th scope="col", class="bg-transparent">Date</th>
+        <th scope="col", class="bg-transparent">Starting time</th>
+        <th scope="col", class="bg-transparent">Booking status</th>
+        <th scope="col", class="bg-transparent"></th>
+        <th scope="col", class="bg-transparent"></th>
+      </tr>
+    </thead>
+    <tbody>
+  <% current_user.bookings_as_teacher.reverse.each_with_index do |booking, index| %>
+    <% if Time.zone.now.to_datetime > booking.start_date.to_datetime && booking.status == "confirmed" %>
+        <div>
+          <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
+            <th scope="row", class="bg-transparent"><%= index + 1 %></th>
+            <td class="bg-transparent"><%= booking.skill.name %></td>
+            <td class="bg-transparent"><%= booking.skill.user.first_name %></td>
+            <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
+            <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
+            <td class="bg-transparent"><%= booking.status %></td>
+            <td class="bg-transparent"><%= link_to "Show details", booking_path(booking), class:"text-decoration-none badge rounded-pill text-bg-secondary" %></td>
+            <td class="bg-transparent"><%= link_to "Delete", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-decoration-none" %></td>
+          </tr>
+        </div>
+    <% end %>
+  <% end %>
+    </tbody>
+  </table>
+
+
+<h3 class="pt-4">❕ Courses' requests I need to treat</h3>
+
+<table class="table table-hover bg-transparent">
+    <thead>
+      <tr>
+        <th scope="col", class="bg-transparent">#</th>
+        <th scope="col", class="bg-transparent">Skill</th>
+        <th scope="col", class="bg-transparent">Student's name</th>
+        <th scope="col", class="bg-transparent">Date</th>
+        <th scope="col", class="bg-transparent">Starting time</th>
+        <th scope="col", class="bg-transparent">Booking status</th>
+        <th scope="col", class="bg-transparent"></th>
+        <th scope="col", class="bg-transparent"></th>
+        <th scope="col", class="bg-transparent"></th>
+      </tr>
+    </thead>
+    <tbody>
+  <% current_user.bookings_as_teacher.reverse.each_with_index do |booking, index| %>
+    <% if Time.zone.now.to_datetime > booking.start_date.to_datetime && booking.status == "pending" %>
+        <div>
+          <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
+            <th scope="row", class="bg-transparent"><%= index + 1 %></th>
+            <td class="bg-transparent"><%= booking.skill.name %></td>
+            <td class="bg-transparent"><%= booking.skill.user.first_name %></td>
+            <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
+            <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
+            <td class="bg-transparent"><%= booking.status %></td>
+            <td class="bg-transparent"><%= link_to "Show details", booking_path(booking), class:"text-decoration-none badge rounded-pill text-bg-secondary" %></td>
+            <td class="bg-transparent">
+              <%= simple_form_for [booking.skill, booking], method: :patch do |f| %>
+                <%= f.input :status, as: :hidden, input_html: { value: 'confirmed' } %>
+                <%= f.button :submit, 'Accept', class: "btn btn-primary rounded-5", data: { turbo_confirm: "Do you want to accept this booking?" } %>
+              <% end %>
+            </td>
+            <td class="bg-transparent">
+              <%= simple_form_for [booking.skill, booking], method: :patch do |f| %>
+                <%= f.input :status, as: :hidden, input_html: { value: 'rejected' } %>
+                <%= f.button :submit, 'Reject', class: 'btn btn-warning rounded-5 text-light', data: { turbo_confirm: "Do you want to refuse this booking?" } %>
+              <% end %>
+            </td>
+          </tr>
+        </div>
+    <% end %>
+  <% end %>
+    </tbody>
+  </table>
+
+
+
+<h3 class="pt-4">❌ Taught courses / Untreated course requests</h3>
+
+<table class="table table-hover bg-transparent">
+    <thead>
+      <tr>
+        <th scope="col", class="bg-transparent">#</th>
+        <th scope="col", class="bg-transparent">Skill</th>
+        <th scope="col", class="bg-transparent">Student's name</th>
+        <th scope="col", class="bg-transparent">Date</th>
+        <th scope="col", class="bg-transparent">Starting time</th>
+        <th scope="col", class="bg-transparent">Booking status</th>
+        <th scope="col", class="bg-transparent"></th>
+        <th scope="col", class="bg-transparent"></th>
+      </tr>
+    </thead>
+    <tbody>
+  <% current_user.bookings_as_teacher.reverse.each_with_index do |booking, index| %>
+    <% if Time.zone.now.to_datetime > booking.start_date.to_datetime && (booking.status == "rejected" || booking.status == "confirmed") %>
+        <div>
+          <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
+            <th scope="row", class="bg-transparent"><%= index + 1 %></th>
+            <td class="bg-transparent"><%= booking.skill.name %></td>
+            <td class="bg-transparent"><%= booking.skill.user.first_name %></td>
+            <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
+            <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
+            <td class="bg-transparent"><%= booking.status %></td>
+            <td class="bg-transparent"><%= link_to "Show details", booking_path(booking), class:"text-decoration-none badge rounded-pill text-bg-secondary" %></td>
+            <td class="bg-transparent"><%= link_to "Delete", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-decoration-none" %></td>
+          </tr>
+        </div>
+    <% end %>
+  <% end %>
+    </tbody>
+  </table>
