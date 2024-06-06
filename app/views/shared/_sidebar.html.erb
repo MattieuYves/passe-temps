@@ -1,12 +1,12 @@
 <div class="sidebar position-relative">
   <% if current_user == nil  %>
-    <div class="center-avatar d-none">
-      <%render "shared/avatar_image", class: "img_avatar" %>
+    <div class="center-avatar d-none img_avatar">
+      <%=render "shared/avatar_image" %>
       <i class="fa-solid fa-gem"></i>
     </div>
   <% else %>
-    <div class="center-avatar">
-      <%render "shared/avatar_image", class: "img_avatar" %>
+    <div class="center-avatar img_avatar">
+      <%=render "shared/avatar_image" %>
       <div class="user-infos">
         <%= current_user.first_name.capitalize %>
         <%= current_user.last_name.capitalize %>
