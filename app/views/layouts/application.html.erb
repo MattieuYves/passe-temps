@@ -21,8 +21,8 @@
         <%= render "shared/sidebar"  %>
         <div class="<%= params[:controller] == "skills" && params[:action] == "index" ? "" : "card-display-content"%>">
           <%= yield %>
-    <%end%>
+        </div>
       </div>
-    </div>
+    <%end%>
   </body>
 </html>
