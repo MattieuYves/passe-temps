@@ -1,0 +1,36 @@
+.container-wrap{
+    display: flex;
+}
+
+.maps{
+    background-color: lightseagreen;
+    width: 600px;
+    height: 90vh;
+    margin: 20px;
+    border-radius: 18px;   
+}
+
+.index-card{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    justify-content: space-evenly;
+    gap: 2em;
+    row-gap: 3em;
+}
+
+.card-display-content{
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.width-60 {
+    width: 70%;
+}
+
+.width-40 {
+    width: 30%;
+}

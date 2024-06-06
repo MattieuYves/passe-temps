@@ -1,31 +1,3 @@
 // Import page-specific CSS files here.
 @import "home";
-
-.container-wrap{
-    display: flex;
-}
-
-.maps{
-    background-color: lightseagreen;
-    width: 600px;
-    height: 80vh;
-    margin: 20px;
-    
-}
-
-.index-card{
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    justify-content: space-evenly;
-    gap: 2em;
-    row-gap: 6em;
-}
-
-.card-display-content{
-    overflow: hidden;
-    overflow-y: scroll;
-}
+@import "index_skills";
