@@ -30,6 +30,8 @@ export default class extends Controller {
       .then(data => {
         this.chatContainerController.refresh(data.html);
         this.markMessagesAsRead(chatId);
+        this.scrollToBottom();
+        this.hideUnreadCount();
       });
   }
 
@@ -45,5 +47,19 @@ export default class extends Controller {
         document.querySelector(`[data-chat-id="${chatId}"] .unread-indicator`).style.display = 'none';
       }
     });
+  }
+
+  scrollToBottom() {
+    const messagesContainer = document.querySelector('[data-chatroom-subscription-target="messages"]');
+    if (messagesContainer) {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+  }
+
+  hideUnreadCount() {
+    const unreadCountElement = document.querySelector('[data-close-icon-target="unreadCount"]');
+    if (unreadCountElement) {
+      unreadCountElement.style.display = "none";
+    }
   }
 }

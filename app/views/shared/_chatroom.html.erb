@@ -1,6 +1,14 @@
 <div class="inbox-chat" data-controller="close-icon" data-close-icon-target="inboxChat">
   <div class="inbox-header" data-action="click->close-icon#toggle">
-    <p><%= chatroom.booking.user.first_name.capitalize %> <%= chatroom.booking.user.last_name.capitalize %></p>
+    <p>
+      <%= chatroom.booking.user.first_name.capitalize %> <%= chatroom.booking.user.last_name.capitalize %>
+      <% unread_count = chatroom.unread_messages_count_for(current_user) %>
+      <% if unread_count > 0 %>
+        <div class="unread-indicator" data-close-icon-target="unreadCount">
+          <%= unread_count %>
+        </div>
+      <% end %>
+    </p>
     <div class="inbox-options" data-action="click->close-icon#close">
       <i class="fa-solid fa-xmark"></i>
     </div>

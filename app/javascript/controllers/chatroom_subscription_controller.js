@@ -11,6 +11,27 @@ export default class extends Controller {
       { received: data => this.#insertMessageAndScrollDown(data) }
     );
     console.log(`Subscribed to the chatroom with the id ${this.chatroomIdValue}.`);
+    this.scrollToBottom();
+    this.markMessagesAsRead();
+  }
+
+  markMessagesAsRead() {
+    this.messagesTarget.querySelectorAll('.message-row').forEach((message) => {
+      if (!message.dataset.read) {
+        fetch(`/messages/${message.dataset.id}/read`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+          }
+        }).then(response => {
+          if (response.ok) {
+            message.dataset.read = true;
+            message.classList.remove("unread");
+          }
+        });
+      }
+    });
   }
 
   resetForm(event) {
@@ -22,14 +43,19 @@ export default class extends Controller {
     const messageElement = this.#buildMessageElement(currentUserIsSender, data.message);
 
     this.messagesTarget.insertAdjacentHTML("beforeend", messageElement);
-    this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight);
+    this.scrollToBottom();
+
+    // Show unread count if chatroom is minimized
+    if (this.chatroomTarget.style.display === "none") {
+      this.showUnreadCount();
+    }
   }
 
   #buildMessageElement(currentUserIsSender, message) {
     return `
-      <div class="message-row d-flex ${this.#justifyClass(currentUserIsSender)}">
+      <div class="message-row d-flex ${this.#justifyClass(currentUserIsSender)}" data-id="${message.id}" data-read="${message.read}">
         <div class="${this.#userStyleClass(currentUserIsSender)}">
-          ${message}
+          ${message.content}
         </div>
       </div>
     `;
@@ -46,5 +72,16 @@ export default class extends Controller {
 
   #userStyleClass(currentUserIsSender) {
     return currentUserIsSender ? "sender-style" : "receiver-style";
+  }
+
+  scrollToBottom() {
+    this.messagesTarget.scrollTop = this.messagesTarget.scrollHeight;
+  }
+
+  showUnreadCount() {
+    const unreadCountElement = document.querySelector('[data-close-icon-target="unreadCount"]');
+    if (unreadCountElement) {
+      unreadCountElement.style.display = "flex";
+    }
   }
 }
