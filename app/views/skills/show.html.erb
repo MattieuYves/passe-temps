@@ -1,4 +1,13 @@
 <% if current_user.id == @skill.user_id %>
+  <p><strong>You cannot reserve your own course</strong></p>
 <% else %>
-  <%= link_to "Book me!", new_skill_booking_path(@skill) %>
+
+  <h1><%= @skill.name %></h1>
+  <p><%= @skill.category %></p>
+  <p>Ideal for: <%= @skill.goal %></p>
+
+  <div class="reviews">
+  </div>
+
+  <%= link_to "Book me", new_skill_booking_path(@skill), class:"btn btn-secondary rounded-5" %>
 <% end %>

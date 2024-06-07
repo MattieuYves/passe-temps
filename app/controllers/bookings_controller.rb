@@ -17,12 +17,19 @@ class BookingsController < ApplicationController
     @booking.status = "pending"
     @booking.session_format = "video"
 
-    if @booking.save
-      redirect_to dashboard_path, notice: "Congrats! Your booking request has been sent to the teacher."
+    if current_user.token == 0
+      redirect to_dashboard_path, notice: "You don't have enough token to book this course!"
     else
-      flash.now[:alert] = "Oops, something went wrong."
-      render 'skills/show', status: :unprocessable_entity
+      if @booking.save
+        current_user.update(token: current_user.token - 1)
+        redirect_to dashboard_path, notice: "Congrats! Your booking request has been sent to the teacher."
+      else
+        flash.now[:alert] = "Oops, something went wrong."
+        render 'skills/show', status: :unprocessable_entity
+      end
     end
+
+
   end
 
   def new
@@ -58,7 +65,6 @@ class BookingsController < ApplicationController
       render 'pages/dashboard', status: :unprocessable_entity
     end
   end
-
 
 
   private

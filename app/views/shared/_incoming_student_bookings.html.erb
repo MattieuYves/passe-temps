@@ -1,8 +1,8 @@
 <h3 class="pt-4">📆 My Incoming Courses</h3>
 
-<% if current_user.bookings.where('start_date > ?', Time.now.to_datetime).count == 0 %>
+<% if current_user.bookings.where('start_date >= ?', Date.today).count == 0 %>
   <p>You don't have any session with a teacher in the future. Find a teacher to book!</p>
-  <%= link_to "Find your teacher!", skills_path %>
+  <%= link_to "Find your teacher!", skills_path, class:"btn btn-secondary rounded-5" %>
 <% else %>
 
   <table class="table table-hover bg-transparent">
@@ -20,7 +20,7 @@
     </thead>
     <tbody>
   <% current_user.bookings.reverse.each_with_index do |booking, index| %>
-    <% if Time.zone.now.to_datetime < booking.start_date.to_datetime %>
+    <% if Date.today > booking.start_date && booking.status == "confirmed" %>
         <div>
           <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
             <th scope="row", class="bg-transparent"><%= index + 1 %></th>

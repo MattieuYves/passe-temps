@@ -1,7 +1,11 @@
 
 <div class="home-top-part text-center">
-  <div class="profile-avatar-pic position-absolute">
-    <%= render "shared/avatar_image" %>
+  <div class=" position-absolute">
+    <% if current_user %>
+      <%= render "shared/sidebar"%>
+
+    <% end %>
+    <%# <%= render "shared/avatar_image" %>
   </div>
   <div class="research">
     <h1>Passe Temps</h1>

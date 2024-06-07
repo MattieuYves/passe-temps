@@ -21,4 +21,5 @@ class User < ApplicationRecord
       .or(Chatroom.joins(:booking).where(booking: bookings_as_teacher))
       .order("bookings.start_date DESC")
   end
+
 end

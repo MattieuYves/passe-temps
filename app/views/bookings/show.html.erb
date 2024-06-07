@@ -1,15 +1,16 @@
 <h1>My booking on <%= @booking.start_date.strftime("%d/%m/%Y") %> with <%= @booking.skill.user.first_name %>, at <%= @booking.start_date.strftime("%I:%M%p") %></h1>
 
-<h4> Your booking request is: <%= @booking.status %></h4>
+<h4> Your booking request is: <strong><%= @booking.status %></strong></h4>
 
 <div>
-  <p>Content of your session with <%= @booking.skill.user.first_name %></p>
+  <p class="fs-4">Content of your session with <%= @booking.skill.user.first_name %>:</p>
+  <p><%= @booking.content %></p>
 </div>
 
  <!--REJECT OR ACCEPT PENDING BOOKING-->
 
 <div>
-<% if @booking.status == "pending" %>
+<% if @booking.status == "pending" && @booking.skill.user == current_user  %>
 
   <%= simple_form_for [@booking.skill, @booking], method: :patch do |f| %>
     <%= f.input :status, as: :hidden, input_html: { value: 'confirmed' } %>
@@ -29,7 +30,7 @@
 
 <div class="container border border-light bg-warning rounded-5">
     <div class="review">
-      <% if Time.zone.at(Date.current.to_time).to_datetime <= @booking.end_date && @booking.status == "confirmed" %>
+      <% if Time.zone.at(Date.current.to_time).to_datetime <= @booking.end_date && @booking.status == "confirmed" && @booking.user == current_user %>
         <h5>
         Please leave a review regarding the session you had with <%= @booking.skill.user.first_name %>
         </h5>
