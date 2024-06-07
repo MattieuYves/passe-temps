@@ -8,7 +8,7 @@
           <%= image_tag "avatar.png", class: "img_avatar" %>
         </div>
         <div class="inbox-user-info">
-          <% other_user = chatroom.booking.user == current_user ? chatroom.booking.skill.user : chatroom.booking.user %>
+          <% other_user = chatroom.booking.other_user(current_user) %>
           <p class="inbox-user-name"><%= other_user.first_name.capitalize %></p>
           <p class="inbox-user-skill"><%= chatroom.booking.skill.name.downcase %> - <%= chatroom.booking.start_date.strftime("%d/%m/%Y") %></p>
         </div>
