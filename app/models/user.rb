@@ -17,4 +17,10 @@ class User < ApplicationRecord
 
   scope :skilled_users, -> { joins(:skills).distinct }
 
+  def chatrooms
+    Chatroom.joins(:booking).where(booking: bookings)
+      .or(Chatroom.joins(:booking).where(booking: bookings_as_teacher))
+      .order("bookings.start_date DESC")
+  end
+
 end
