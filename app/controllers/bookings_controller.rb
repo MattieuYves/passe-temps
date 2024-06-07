@@ -21,7 +21,7 @@ class BookingsController < ApplicationController
       redirect to_dashboard_path, notice: "You don't have enough token to book this course!"
     else
       if @booking.save
-        current_user.token = current_user.token - 1
+        current_user.update(token: current_user.token - 1)
         redirect_to dashboard_path, notice: "Congrats! Your booking request has been sent to the teacher."
       else
         flash.now[:alert] = "Oops, something went wrong."
