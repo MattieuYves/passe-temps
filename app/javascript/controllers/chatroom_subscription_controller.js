@@ -41,12 +41,11 @@ export default class extends Controller {
   #insertMessageAndScrollDown(data) {
     const currentUserIsSender = this.currentUserIdValue === data.sender_id;
     const messageElement = this.#buildMessageElement(currentUserIsSender, data.message);
-
     this.messagesTarget.insertAdjacentHTML("beforeend", messageElement);
     this.scrollToBottom();
 
     // Show unread count if chatroom is minimized
-    if (this.chatroomTarget.style.display === "none") {
+    if (this.chatroomTarget && this.chatroomTarget.style.display === "none") {
       this.showUnreadCount();
     }
   }
@@ -55,7 +54,7 @@ export default class extends Controller {
     return `
       <div class="message-row d-flex ${this.#justifyClass(currentUserIsSender)}" data-id="${message.id}" data-read="${message.read}">
         <div class="${this.#userStyleClass(currentUserIsSender)}">
-          ${message.content}
+          ${message}
         </div>
       </div>
     `;

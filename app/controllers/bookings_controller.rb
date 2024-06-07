@@ -52,8 +52,10 @@ class BookingsController < ApplicationController
       case @booking.status
       when "confirmed"
         redirect_to dashboard_path, notice: "Congrats! You just accepted a new booking! 🤑"
+        current_user.update(token: current_user.token + 1)
       when "rejected"
         redirect_to dashboard_path, notice: "The booking request has been rejected 😩"
+        booking.user.update(token: booking.user.token - 1)
       else
         redirect_to dashboard_path, alert: "Invalid status update attempted."
       end
