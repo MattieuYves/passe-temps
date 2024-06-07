@@ -82,8 +82,8 @@ User.destroy_all
       session_format: ['Distance', 'Physique'].sample,
       skill: skill,
       user: user,
-      start_date: Faker::Date.between(from: 1.year.ago, to: 1.year.from_now),
-      end_date: Faker::Date.between(from: 1.year.ago, to: 1.year.from_now),
+      start_date: Faker::Date.between(from: 1.year.ago, to: Date.today),
+      end_date: Faker::Date.between(from: Date.today, to: 1.year.from_now),
       content: Faker::Lorem.paragraph,
       status: %w[pending confirmed rejected].sample
     )
