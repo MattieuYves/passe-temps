@@ -20,7 +20,7 @@
     </thead>
     <tbody>
   <% current_user.bookings.reverse.each_with_index do |booking, index| %>
-    <% if Time.zone.now.to_datetime > booking.start_date.to_datetime %>
+    <% if Time.now.to_datetime > booking.start_date.to_datetime %>
         <div>
           <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
             <th scope="row", class="bg-transparent"><%= index + 1 %></th>
