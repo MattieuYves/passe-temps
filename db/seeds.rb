@@ -23,14 +23,14 @@ puts "Creating user test"
 test_user = User.create!(
   email: 'test@example.com',
   password: 'password',
-  first_name: 'Test',
-  last_name: 'User',
+  first_name: 'Mattieu',
+  last_name: 'Le Boss',
   age: 30,
   genre: 'Other',
-  bio: 'This is a test user.',
-  city: 'Test City',
+  bio: 'I want to learn the piano',
+  city: 'St Ger la team',
   area: 1,
-  token: 1000
+  token: 5
 )
 
 goal = ["découverte", "passion", "reconversion"]
