@@ -1,15 +1,15 @@
 <div class="sidebar position-relative">
-  <% if current_user == nil  %>
+  <% if current_user.nil? %>
     <div class="center-avatar d-none img_avatar">
-      <%=render "shared/avatar_image" %>
+      <%= render "shared/avatar_image" %>
       <i class="fa-solid fa-gem"></i>
     </div>
   <% else %>
     <div class="center-avatar img_avatar">
-      <%=render "shared/avatar_image" %>
+      <%= render "shared/avatar_image" %>
       <div class="user-infos">
-        <%=# current_user.first_name.capitalize %>
-        <%=# current_user.last_name.capitalize %>
+        <%= current_user.first_name.capitalize %>
+        <%= current_user.last_name.capitalize %>
       </div>
       <div class="user-infos">
         <i class="fa-solid fa-gem"></i>
@@ -48,16 +48,15 @@
     <p class="side-item-name">Paramètres</p>
   <% end %>
 
-  <% if current_user == nil  %>
+  <% if current_user.nil? %>
     <%= link_to new_user_session_path, class: 'wrapper-sidebar-item mt-auto' do %>
       <i class="fa-solid fa-right-to-bracket"></i>
       <p class="side-item-name">Se Connecter</p>
     <% end %>
   <% else %>
-    <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: 'wrapper-sidebar-item mt-auto' do %>
+    <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: 'wrapper-sidebar-item mt-auto' do %>
       <i class="fa-solid fa-right-to-bracket"></i>
       <p class="side-item-name">Se Déconnecter</p>
     <% end %>
   <% end %>
 </div>
-
