@@ -9,7 +9,7 @@
  <!--REJECT OR ACCEPT PENDING BOOKING-->
 
 <div>
-<% if @booking.status == "pending" %>
+<% if @booking.status == "pending" && @booking.skill.user == current_user  %>
 
   <%= simple_form_for [@booking.skill, @booking], method: :patch do |f| %>
     <%= f.input :status, as: :hidden, input_html: { value: 'confirmed' } %>
@@ -29,7 +29,7 @@
 
 <div class="container border border-light bg-warning rounded-5">
     <div class="review">
-      <% if Time.zone.at(Date.current.to_time).to_datetime <= @booking.end_date && @booking.status == "confirmed" %>
+      <% if Time.zone.at(Date.current.to_time).to_datetime <= @booking.end_date && @booking.status == "confirmed" && @booking.user == current_user %>
         <h5>
         Please leave a review regarding the session you had with <%= @booking.skill.user.first_name %>
         </h5>
