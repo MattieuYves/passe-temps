@@ -34,7 +34,7 @@ class SkillsController < ApplicationController
     if @skill.save
       redirect_to dashboard_path, notice: "Congrats! Your new skill is online and bookable."
     else
-      redirect_to new_offer_path, alert: "Failed. Fill in all fields"
+      redirect_to new_skill_path, alert: "Failed. Fill in all fields"
     end
   end
 
