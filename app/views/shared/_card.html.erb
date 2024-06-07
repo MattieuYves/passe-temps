@@ -1,16 +1,20 @@
-<div class="card">
-    <div class="top-part"></div>
+<%= link_to skill_path(user.skills.first), class:"text-decoration-none text-reset" do %>
 
-    <div class="card-name">
-        <h3><%=user.first_name %> <%=user.last_name %></h3> 
-    </div>
-    <div class="bottom-part">
-        <% user.skills.each do |skill| %>
-            <div class="details">
-                <p><i class="fa-solid fa-certificate"></i> <%= skill&.name.capitalize %></p>
-                <p><i class="fa-solid fa-business-time"></i> <%= skill&.experience_year  %> ans d'expérience</p>
-                <p><i class="fa-solid fa-star"></i> <%= rand(2..5).to_f %>/5</p>
-            </div>
-        <% end %>
-    </div>
-</div>
+  <div class="card">
+      <div class="top-part"></div>
+
+      <div class="card-name">
+          <h3><%=user.first_name %> <%=user.last_name %></h3>
+      </div>
+      <div class="bottom-part">
+          <% user.skills.each do |skill| %>
+              <div class="details">
+                  <p>💪</i> <%= skill&.name.capitalize %></p>
+                  <p>💼</i> <%= skill&.experience_year  %> ans d'expérience</p>
+                  <p>⭐</i> <%= rand(2..5).to_f %>/5</p>
+              </div>
+          <% end %>
+      </div>
+  </div>
+
+<% end %>
