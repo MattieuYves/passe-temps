@@ -1,4 +1,5 @@
 // Specific CSS for your home-page
+
 .home-top-part{
   height: 80vh;
   width: 100%;
@@ -8,6 +9,20 @@
   .research{
     padding-top: 30vh;
   }
+
+
+    .chevron-down {
+      fill: #FFF;
+      margin: auto;
+      width: 5em;
+      height: 5em;
+      animation: hover-me .5s infinite ease-in-out alternate;
+    }
+
+    @keyframes hover-me {
+      100% { transform: translate3d(0, 25px, 0); }
+    }
+
 
   .sidebar{
     top: 10px;
@@ -39,7 +54,42 @@
         margin-bottom: 15px;
         transition: all ease 0.5s;
       }
+      &:active{
 
+          .wrapper-sidebar-item {
+            text-decoration: none;
+            display: flex;
+            align-items: start;
+            color: white;
+            i {
+              padding: 0px 10px;
+            }
+          }
+
+          .side-item-name {
+            text-decoration: none;
+            text-align: left;
+            overflow: hidden;
+            width: 0px;
+            transition: all ease 0.5s;
+            margin-top: -4px;
+            white-space: nowrap;
+            color: white;
+          }
+          .side-item-name {
+            width: 180px;
+          }
+          .img_avatar{
+            img{
+              width: 40px;
+            }
+          }
+          .user-infos{
+            display: none;
+          }
+
+
+      }
     }
     .user-infos{
       transition: all ease 0.5s;
@@ -67,45 +117,14 @@
       color: white;
     }
 
-    &:hover {
-      .wrapper-sidebar-item {
-        text-decoration: none;
-        display: flex;
-        align-items: start;
-        color: white;
-        i {
-          padding: 0px 10px;
-        }
-      }
 
-      .side-item-name {
-        text-decoration: none;
-        text-align: left;
-        overflow: hidden;
-        width: 0px;
-        transition: all ease 0.5s;
-        margin-top: -4px;
-        white-space: nowrap;
-        color: white;
-      }
-      .side-item-name {
-        width: 180px;
-      }
-      .img_avatar{
-        img{
-          width: 40px;
-        }
-      }
-      .user-infos{
-        display: none;
-      }
-    }
   }
 
 
 }
 .home-bottom-part{
   .presentation{
-    margin: 0 auto;
+
+    margin-top: 40px;
   }
 }

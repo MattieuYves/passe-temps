@@ -12,15 +12,37 @@
     <p>Trouver votre nouvelle passion</p>
     <%= render "shared/searchbar" %>
   </div>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="chevron-down">
+    <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/>
+  </svg>
 </div>
 
-<div class="row mx-0 my-5">
-  <div class="col-6 mx-auto text-align-justify">
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-    Recusandae iusto necessitatibus consectetur quis similique corrupti amet praesentium in qui natus tempora,
-    asperiores veniam eveniet dignissimos vel quos quam aliquid eligendi?
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-    Aperiam error laboriosam iure, id autem beatae explicabo impedit, eaque saepe consequuntur
-    tempore, distinctio eius exercitationem sunt sequi. Ipsa ducimus cumque consequatur!
+<%= render "shared/inbox" %>
+
+<div class="home-bottom-part">
+  <%# <div class="row mx-0 my-5"> %>
+    <div class="col-6 mx-auto text-align-justify">
+      <h2>
+        Problèmes :
+      </h2>
+      <div>
+        Le E-learning ne vous convient pas, plus ou pas complètement ?
+        Vous en avez marre d’apprendre depuis votre lit/bureau/table à manger ?
+        Payer n’est pas une option ?
+        Passe-Temps c’est LA solution !
+        Vous êtes Étudiant sur les compétences que vous souhaitez acquérir
+        Vous êtes Prof sur les compétences que vous maitrisez
+      </div>
+    </div>
+
+    <div class="col-6 mx-auto text-align-justify">
+      <h2>
+        Présentation
+      </h2>
+      <div>
+        Passe-Temps est une association qui vous permet d’apprendre tout ce que vous souhaitez avec un humain en face, le tout gratuitement !*
+
+      *Oui l’hébergement, la maintenance et l’animation de la communauté ont un coût incompressible on vous demande donc une cotisation, plus d’info ici
+      </div>
+    <%# </div> %>
   </div>
-</div>
