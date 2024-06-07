@@ -46,30 +46,45 @@ Skill.create!(
   user: test_user
 )
 
-# Create 10 Users
-puts "creating users"
-5.times.map do
-  user = User.create!(
-    email: Faker::Internet.unique.email,
-    password: 'password',
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    age: rand(18..65),
-    genre: ['Male', 'Female', 'Other'].sample,
-    bio: Faker::Lorem.sentence,
-    city: Faker::Address.city,
-    area: rand(1..10),
-    token: rand(1..5)
-  )
 
-  Skill.create!(
-    name: name.sample,
-    goal: goal.sample,
-    experience_year: rand(1..20),
-    category: Skill::CATEGORY.sample,
-    user: user
-  )
-end
+  user_img= %w[
+    https://images.unsplash.com/photo-1528892952291-009c663ce843?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fHBvcnRyYWl0fGVufDB8fDB8fHww
+    https://images.unsplash.com/photo-1521119989659-a83eee488004?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBvcnRyYWl0fGVufDB8fDB8fHww
+    https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njd8fHBvcnRyYWl0fGVufDB8fDB8fHww
+    https://images.unsplash.com/photo-1542327897-d73f4005b533?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzJ8fHBvcnRyYWl0fGVufDB8fDB8fHww
+    https://images.unsplash.com/photo-1548810020-ea2f1da35cff?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTgzfHxwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D
+    https://images.unsplash.com/photo-1592621385645-e41659e8aabe?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTg3fHxwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D
+    https://images.unsplash.com/photo-1502785424245-21e9ffc8f93f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjIzfHxwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D
+  ]
+
+  # Create 10 Users
+  user = 5.times.map do |i|
+    user = User.create!(
+      email: Faker::Internet.unique.email,
+      password: 'password',
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      age: rand(18..65),
+      genre: ['Male', 'Female', 'Other'].sample,
+      bio: Faker::Lorem.sentence,
+      city: Faker::Address.city,
+      area: rand(1..10),
+      token: rand(1..5)
+    )
+
+    file = URI.open(user_img[i])
+    user.photo.attach(io: file, filename: "#{user.first_name}.jpg", content_type: "image/jpeg")
+    user.save!
+
+    Skill.create!(
+      name: name.sample,
+      goal: goal.sample,
+      experience_year: rand(1..20),
+      category: Skill::CATEGORY.sample,
+      user: user
+    )
+
+  end
 
 puts "creating users and their skills"
 

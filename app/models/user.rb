@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   has_many :reviews_as_a_teacher, through: :bookings, source: :reviews #celles qu'on t'as données
   has_many :messages, dependent: :destroy
+  has_one_attached :photo
 
   scope :skilled_users, -> { joins(:skills).distinct }
 
