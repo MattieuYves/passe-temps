@@ -24,3 +24,4 @@ class ChatroomsController < ApplicationController
       head :ok
     end
   end
+  

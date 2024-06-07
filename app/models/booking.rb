@@ -4,6 +4,7 @@ class Booking < ApplicationRecord
 
   belongs_to :skill
   belongs_to :user
+  belongs_to :other_user, class_name: 'User'
   has_many :reviews, dependent: :destroy
 
   validates :token_cost, :session_format, :start_date, :end_date, :content, :status, presence: true
