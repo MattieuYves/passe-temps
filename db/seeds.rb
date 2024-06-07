@@ -8,8 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# db/seeds.rb
-
 require 'faker'
 
 # Clear existing data
@@ -20,60 +18,66 @@ Booking.destroy_all
 Skill.destroy_all
 User.destroy_all
 
+puts "Creating user test"
 
-  test_user = User.create!(
-    email: 'test@example.com',
+test_user = User.create!(
+  email: 'test@example.com',
+  password: 'password',
+  first_name: 'Test',
+  last_name: 'User',
+  age: 30,
+  genre: 'Other',
+  bio: 'This is a test user.',
+  city: 'Test City',
+  area: 1,
+  token: 1000
+)
+
+goal = ["découverte", "passion", "reconversion"]
+name = ["poterie", "menuiserie", "dessin", "guitare", "running", "chinois"]
+
+puts "creating skill for test_user"
+
+Skill.create!(
+  name: name.sample,
+  goal: goal.sample,
+  experience_year: rand(1..20),
+  category: Skill::CATEGORY.sample,
+  user: test_user
+)
+
+# Create 10 Users
+puts "creating users"
+5.times.map do
+  user = User.create!(
+    email: Faker::Internet.unique.email,
     password: 'password',
-    first_name: 'Test',
-    last_name: 'User',
-    age: 30,
-    genre: 'Other',
-    bio: 'This is a test user.',
-    city: 'Test City',
-    area: 1,
-    token: 1000
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    age: rand(18..65),
+    genre: ['Male', 'Female', 'Other'].sample,
+    bio: Faker::Lorem.sentence,
+    city: Faker::Address.city,
+    area: rand(1..10),
+    token: rand(1..5)
   )
-  goal = ["découverte", "passion", "reconversion"]
-  name = ["poterie", "menuiserie", "dessin", "guitare", "running", "chinois"]
 
   Skill.create!(
     name: name.sample,
     goal: goal.sample,
     experience_year: rand(1..20),
     category: Skill::CATEGORY.sample,
-    user: test_user
+    user: user
   )
+end
 
-
-  # Create 10 Users
-  user = 5.times.map do
-    user = User.create!(
-      email: Faker::Internet.unique.email,
-      password: 'password',
-      first_name: Faker::Name.first_name,
-      last_name: Faker::Name.last_name,
-      age: rand(18..65),
-      genre: ['Male', 'Female', 'Other'].sample,
-      bio: Faker::Lorem.sentence,
-      city: Faker::Address.city,
-      area: rand(1..10),
-      token: rand(1..5)
-    )
-
-    Skill.create!(
-      name: name.sample,
-      goal: goal.sample,
-      experience_year: rand(1..20),
-      category: Skill::CATEGORY.sample,
-      user: user
-    )
-
-  end
-
+puts "creating users and their skills"
 
 # Create 10 Bookings
+
+puts "creating bookings (et par extension les chatrooms)"
+
 30.times.map do
-  begin
     skill = Skill.all.sample
     user = User.all.sample
     booking = Booking.create!(
@@ -89,25 +93,27 @@ User.destroy_all
     )
 end
 
-chatrooms = Chatroom.all
-  # Create 10 Messages
-  10.times do
-    Message.create!(
-      content: Faker::Lorem.sentence,
-      user: User.all.sample,
-      chatroom: chatrooms.sample
-    )
-  end
+puts "bookings created, with its chatrooms"
 
-  # Create 10 Reviews
-  bookings = Booking.all
-  30.times do
-    Review.create!(
-      rating: rand(1..5),
-      comment: Faker::Lorem.paragraph,
-      title: Faker::Lorem.sentence,
-      booking: bookings.sample,
-      user: User.all.sample
-    )
-  end
+chatrooms = Chatroom.all
+
+# Create 10 Messages
+10.times do
+  Message.create!(
+    content: Faker::Lorem.sentence,
+    user: User.all.sample,
+    chatroom: chatrooms.sample
+  )
+end
+
+# Create 30 Reviews
+bookings = Booking.all
+30.times do
+  Review.create!(
+    rating: rand(1..5),
+    comment: Faker::Lorem.paragraph,
+    title: Faker::Lorem.sentence,
+    booking: bookings.sample,
+    user: User.all.sample
+  )
 end

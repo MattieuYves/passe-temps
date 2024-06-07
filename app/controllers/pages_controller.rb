@@ -5,7 +5,6 @@ class PagesController < ApplicationController
   def home
     @users = User.all
     @skills = Skill.all
-    @chatrooms = Chatroom.all
     @booking = Booking.all
     @message = Message.new
   end

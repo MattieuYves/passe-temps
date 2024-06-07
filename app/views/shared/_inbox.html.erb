@@ -8,8 +8,9 @@
           <%= image_tag "avatar.png", class: "img_avatar" %>
         </div>
         <div class="inbox-user-info">
-          <p class="inbox-user-name"><%= chatroom.booking.user.first_name.capitalize %></p>
-          <p class="inbox-user-skill"><%= chatroom.booking.skill.name.downcase %></p>
+          <% other_user = chatroom.booking.other_user(current_user) %>
+          <p class="inbox-user-name"><%= other_user.first_name.capitalize %></p>
+          <p class="inbox-user-skill"><%= chatroom.booking.skill.name.downcase %> - <%= chatroom.booking.start_date.strftime("%d/%m/%Y") %></p>
         </div>
         <% unread_count = chatroom.unread_messages_count_for(current_user) %>
         <% if unread_count > 0 %>
@@ -22,6 +23,5 @@
   </div>
 
     <div class="inbox-chat" id="test" data-controller="chat-container" data-close-icon-target="inboxChat">
-      
     </div>
 </div>
