@@ -21,7 +21,7 @@ export default class extends Controller {
 
     }
 
-    displayTeacher() {
+  displayTeacher() {
       this.studentTarget.classList.add("d-none")
       this.teacherTarget.classList.remove("d-none")
       this.btnStudentTarget.style.backgroundColor = ""
@@ -29,5 +29,8 @@ export default class extends Controller {
       this.btnTeacherTarget.classList.remove("border")
       this.btnStudentTarget.classList.add("border")
       this.btnStudentTarget.classList.add("border-light")
+  }
+
+  addSkill() {
   }
 }

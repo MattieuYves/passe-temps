@@ -27,6 +27,10 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    @skill = Skill.new
+  end
+
+  def new_skill
   end
 
 
