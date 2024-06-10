@@ -5,9 +5,35 @@
     <%= skill.name %>
   </div>
   <% end %>
-  <%= link_to new_skill_path, class:"px-3 py-2 rounded-pill  text-reset", style:"background-color:#E4EEED" do %>
-    <i class="fa-solid fa-plus"></i>
-  <% end %>
+
+  <div type="button" class="px-3 py-2 rounded-pill text-reset" data-bs-toggle="modal" data-bs-target="#newSkill", style="background-color:#E4EEED; display:inline-block">
+  <i class="fa-solid fa-plus"></i>
+  </div>
+
+  <%#= link_to new_skill_path, class:"px-3 py-2 rounded-pill  text-reset", style:"background-color:#E4EEED", data_bs_toggle:"modal", data_bs_target:"#newSkill" do %>
+<!--    <i class="fa-solid fa-plus"></i>-->
+  <%# end %>
+
+  <div class="modal fade" id="newSkill" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Enregistre ta nouvelle compétence à enseigner !</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <%= simple_form_for @skill do |f| %>
+            <%= f.input :name, placeholder: "E.g. danse, dessin...", label:"Nom de votre compétence" %>
+            <%= f.input :goal, placeholder: "E.g. assionnés, Initiés, Experts...", label:"Cette compétence est à destination de" %>
+            <%= f.input :experience_year, placeholder: "E.g. 10 ans", label:"Nombre d'années d'expérience" %>
+            <%= f.input :category, collection: Skill::CATEGORY, label:"Votre compétence s'intègre dans", placeholder:"E.g. Art, Sport..." %>
+            <div class="d-flex justify-content-center"><%= f.submit "J'ajoute ma compétence", class:"rounded-pill px-4 py-2 text-light mt-3", style:"background-color:#0bb7bc; border:none", data_action:"click->dashboard#addSkill" %></div>
+          <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 
 <%= render "shared/incoming_teacher_bookings" %>
