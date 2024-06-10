@@ -2,12 +2,69 @@
   <p><strong>You cannot reserve your own course</strong></p>
 <% else %>
 
-  <h1><%= @skill.name %></h1>
-  <p><%= @skill.category %></p>
-  <p>Ideal for: <%= @skill.goal %></p>
+
+<div class="d-flex justify-content-between">
+  <div class="category-pill-show btn btn-light mb-3 rounded-5"><%= @skill.category.capitalize %></div>
+  <div class=""><%= link_to "Book me!", new_skill_booking_path(@skill), class:"btn btn-secondary rounded-5 px-3", style:"" %></div>
+</div>
+
+  <div class="row">
+    <h1 class="title-show fw-bolder col-12">Cours de <%= @skill.name %></h1>
+    <h2 class="title-show fw-bolder col-12 mb-3"><%= @skill.goal %></h2>
+  </div>
+
+
+  <div class="card-product mb-5">
+  <div
+    class="teacher-show col-12" style="margin-left: 8px;height:90%; width: 200px; background-image: url('<%= @skill.user.photo.attached? ? cl_image_path(@skill.user.photo.key) : "https://images.unsplash.com/photo-1610429419519-8cdee5a8e615?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHBpYW5pc3RlfGVufDB8fDB8fHww" %>')">
+  </div>
+  <div class="card-product-infos">
+    <p class="fs-2 col-12"><%= @skill.user.first_name %> <%= @skill.user.last_name %>, <%= @skill.user.age %> ans</p>
+    <p class="col-12"><%= @skill.category %></p>
+    <p class="col-12"><%= @skill.user.bio %></p>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between">
+  <div class="box-show d-flex flex-column justify-content-center">
+    <%= image_tag "trophee-de-la-coupe.png", class:"image-box d-flex justify-content-center" %>
+    <p class="d-flex justify-content-center info-box"><%= @skill.user.bookings.count %> cours dispensés</p>
+  </div>
+  <div class="box-show d-flex flex-column justify-content-center">
+    <%= image_tag "professeur.png", class:"image-box" %>
+    <p  class="d-flex justify-content-center info-box"><%= @skill.experience_year %> année(s) d'expérience</p>
+  </div>
+  <div class="box-show d-flex flex-column justify-content-center">
+    <%= image_tag "cours-en-ligne.png", class:"image-box"  %>
+    <p  class="d-flex justify-content-center info-box">Test</p>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center mt-5">
+  <div class=""><%= link_to "Book my course!", new_skill_booking_path(@skill), class:"btn btn-secondary rounded-5 px-5 fs-2", style:"" %></div>
+</div>
+
+
+
+
+
+
+
+
+
+
 
   <div class="reviews">
   </div>
 
-  <%= link_to "Book me", new_skill_booking_path(@skill), class:"btn btn-secondary rounded-5" %>
+
+
+
+
+
+
+
+
+
+
 <% end %>
