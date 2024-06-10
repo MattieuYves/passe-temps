@@ -1,4 +1,4 @@
-<h3 class="pt-4">✅ Courses I will deliver  </h3>
+<h3 class="pt-5">✅ Mes prochains cours  </h3>
 
 
 <%# if current_user.bookings_as_teacher.where('start_date > ?', Time.now.to_datetime).count == 0 %>
@@ -9,11 +9,11 @@
     <thead>
       <tr>
         <th scope="col", class="bg-transparent">#</th>
-        <th scope="col", class="bg-transparent">Skill</th>
-        <th scope="col", class="bg-transparent">Student's name</th>
+        <th scope="col", class="bg-transparent">Compétence</th>
+        <th scope="col", class="bg-transparent">Nom de l'élève</th>
         <th scope="col", class="bg-transparent">Date</th>
-        <th scope="col", class="bg-transparent">Starting time</th>
-        <th scope="col", class="bg-transparent">Booking status</th>
+        <th scope="col", class="bg-transparent">Horaire de début</th>
+        <th scope="col", class="bg-transparent">Statut de la réservation</th>
         <th scope="col", class="bg-transparent"></th>
         <th scope="col", class="bg-transparent"></th>
       </tr>
@@ -39,18 +39,17 @@
   </table>
 
 
-<h3 class="pt-4">❕ Courses' requests I need to treat</h3>
+<h3 class="pt-4">❕Demandes de cours à traiter</h3>
 
 <table class="table table-hover bg-transparent">
     <thead>
       <tr>
         <th scope="col", class="bg-transparent">#</th>
-        <th scope="col", class="bg-transparent">Skill</th>
-        <th scope="col", class="bg-transparent">Student's name</th>
+        <th scope="col", class="bg-transparent">Compétence</th>
+        <th scope="col", class="bg-transparent">Nom de l'élève</th>
         <th scope="col", class="bg-transparent">Date</th>
-        <th scope="col", class="bg-transparent">Starting time</th>
-        <th scope="col", class="bg-transparent">Booking status</th>
-        <th scope="col", class="bg-transparent"></th>
+        <th scope="col", class="bg-transparent">Horaire de début</th>
+        <th scope="col", class="bg-transparent">Statut de la réservation</th>
         <th scope="col", class="bg-transparent"></th>
         <th scope="col", class="bg-transparent"></th>
       </tr>
@@ -88,17 +87,17 @@
 
 
 
-<h3 class="pt-4">❌ Taught courses / Untreated course requests</h3>
+<h3 class="pt-4">❌ Cours enseignés / Demandes de cours non traitées</h3>
 
 <table class="table table-hover bg-transparent">
     <thead>
       <tr>
         <th scope="col", class="bg-transparent">#</th>
-        <th scope="col", class="bg-transparent">Skill</th>
-        <th scope="col", class="bg-transparent">Student's name</th>
+        <th scope="col", class="bg-transparent">Compétence</th>
+        <th scope="col", class="bg-transparent">Nom de l'élève</th>
         <th scope="col", class="bg-transparent">Date</th>
-        <th scope="col", class="bg-transparent">Starting time</th>
-        <th scope="col", class="bg-transparent">Booking status</th>
+        <th scope="col", class="bg-transparent">Horaire de début</th>
+        <th scope="col", class="bg-transparent">Statut de la réservation</th>
         <th scope="col", class="bg-transparent"></th>
         <th scope="col", class="bg-transparent"></th>
       </tr>

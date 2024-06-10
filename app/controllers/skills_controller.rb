@@ -34,9 +34,9 @@ class SkillsController < ApplicationController
     @skill = Skill.new(skill_params)
     @skill.user = current_user
     if @skill.save
-      redirect_to dashboard_path, notice: "Congrats! Your new skill is online and bookable."
+      redirect_to dashboard_path, notice: "Bravo! Votre nouvelle compétence est en ligne et réservable."
     else
-      redirect_to new_skill_path, alert: "Failed. Fill in all fields"
+      redirect_to new_skill_path, alert: "Échoué. Remplissez tous les champs."
     end
   end
 
@@ -46,7 +46,7 @@ class SkillsController < ApplicationController
   def update
     @skill = Skill.find(params[:id])
     if @skill.update(skill_params)
-      redirect_to dashboard_path, notice: "Congrats! Edited"
+      redirect_to dashboard_path, notice: "Bravo! Modifié."
     else
       render 'pages/dashboard', status: :unprocessable_entity
     end

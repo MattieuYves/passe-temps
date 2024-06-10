@@ -1,5 +1,5 @@
 
-<%= link_to "Becoming a teacher", new_skill_path %>
+<%= link_to "Devenir professeur", new_skill_path %>
 
 <% @users.each do |user| %>
   <% if user.skills.count > 0 %>
@@ -10,4 +10,4 @@
     <% end %>
   <% end %>
 <% end %>
-<%= link_to 'View All Chatrooms', chatrooms_path, class: 'btn btn-primary' %>
+<%= link_to 'Voir les salles de discussion', chatrooms_path, class: 'btn btn-primary' %>
