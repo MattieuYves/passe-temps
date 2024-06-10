@@ -1,4 +1,4 @@
-<h3 class="pt-4">📆 Mes prochains cours </h3>
+<h3 class="pt-5">📆 Mes prochains cours </h3>
 
 <% if current_user.bookings.where('start_date >= ?', Date.today).count == 0 %>
   <p>Vous n'avez pas de réservation pour le moment. Trouvez un professeur à réserver !</p>
