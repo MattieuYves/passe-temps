@@ -1,13 +1,42 @@
-<% if user_signed_in? && current_user.id == @skill.user_id %>
-  <p><strong>You cannot reserve your own course</strong></p>
-<% else %>
+    <% if user_signed_in? && current_user.id == @skill.user_id %>
+      <p><strong>You cannot reserve your own course</strong></p>
+    <% else %>
+      <h1><%= @skill.name %></h1>
+      <p><%= @skill.category %></p>
+      <p>Ideal for: <%= @skill.goal %></p>
 
-  <h1><%= @skill.name %></h1>
-  <p><%= @skill.category %></p>
-  <p>Ideal for: <%= @skill.goal %></p>
+      <div class="reviews">
+      </div>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+      </button>
 
-  <div class="reviews">
-  </div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Selectionnez un créneaux</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex" data-controller="slot" data-slot-id-value="<%= @skill.id %>">
+              <%= simple_form_for [@skill, @booking], html: { class: 'd-flex w-100', data: { controller: 'flatpickr' } } do |f| %>
+                <%= f.input :start_date, as: :string, label: false,  input_html: { class: "d-none", data: { flatpickr_target: 'startDateInput', slot_target: 'date', action: 'change->slot#updateList' } } %>
+              <div class="date-input d-none" data-slot-target="list">
+                <%= render "skills/slots", locals: { slots: @slots} %>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <%= f.submit "Réserver maintenant !", class: "create-booking", data: { bs_dismiss: 'modal' } %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <%= link_to "Book me", new_skill_booking_path(@skill), class:"btn btn-secondary rounded-5" %>
-<% end %>
+    
+           
+                   
+                
+    <% end %>

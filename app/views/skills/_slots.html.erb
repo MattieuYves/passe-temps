@@ -1,0 +1,13 @@
+<% @slots.each do |slot| %>
+    <div class="slot-container">
+        <div class="slot">
+            <% min = slot[:slot].start.to_s.match(/(\d{2})$/)&.captures&.first %>
+            <% hour = slot[:slot].start.to_s.gsub(/(\d{2})$/, "") %>
+            <% time = "#{hour}:#{min}" %>
+            <%= radio_button_tag "#{time.to_sym}", time, label: time, data: { action: "click->slot#fillInput", slot_target: 'radio' }, disabled: !slot[:available], class: 'd-none form-check-input' %>
+            <%= label_tag :hour, "#{time} - #{hour.to_i + 1}:#{min}", data: { slot_target: 'label', action: "click->slot#fillInput"}, class: 'form-check-label', for: "#{time.to_sym}" %>
+        </div>
+    </div>
+    <div class="line-separator"></div>
+<% end %>
+

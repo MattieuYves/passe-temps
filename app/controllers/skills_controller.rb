@@ -18,8 +18,17 @@ class SkillsController < ApplicationController
     @review = Review.new
     @booking = Booking.new
     @bookings = @skill.bookings
-    # @reviews = @skill.reviews
-    # @average_rating =@reviews.average(:rating)
+    if params[:date].present?
+      @slots = ComputeDaySlots.new(bookings: day_bookings(DateTime.parse(params[:date]))).call
+    else
+      @slots = ComputeDaySlots.new(bookings: day_bookings(DateTime.now)).call
+    end
+
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      @list = render_to_string(partial: "skills/slots", locals: {slots: @slots}, formats: [:html])
+      format.json { render json: { list: @list } }
+    end
   end
 
 
@@ -67,6 +76,10 @@ class SkillsController < ApplicationController
 
   def skill_params
     params.require(:skill).permit(:name, :goal, :experience_year, :category, :photo)
+  end
+
+  def day_bookings(day)
+    @skill.bookings.where(start_date: day.beginning_of_day..day.end_of_day)
   end
 
 end
