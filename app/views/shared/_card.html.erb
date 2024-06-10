@@ -8,13 +8,16 @@
           <h3><%=user.first_name %> <%=user.last_name %></h3>
       </div>
       <div class="bottom-part">
-          <% user.skills.each do |skill| %>
               <div class="details">
-                  <p>💪</i> <%= skill&.name.capitalize %></p>
+                <% skill = user.skills.first %>
+                    <ul class="tags">
+                        <% user.skills.each do |skill| %>
+                        <li><%= skill&.name.capitalize %></li>
+                        <% end %>
+                    </ul> 
                   <p>💼</i> <%= skill&.experience_year  %> ans d'expérience</p>
                   <p>⭐</i> <%= rand(2..5).to_f %>/5</p>
-              </div>
-          <% end %>
+              </div> 
       </div>
   </div>
 

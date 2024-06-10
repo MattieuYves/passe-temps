@@ -1,4 +1,4 @@
-<h1>All Chatrooms</h1>
+<h1>Tous les salons de discussion</h1>
 <ul>
   <% @chatrooms.each do |chatroom| %>
     <li><%= link_to chatroom.name, chatroom_path(chatroom) %></li>

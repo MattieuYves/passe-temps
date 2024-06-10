@@ -8,8 +8,17 @@ class SkillsController < ApplicationController
       # sql_subquery = "name ILIKE :query OR category ILIKE :query"
       # @skills = @skills.where(sql_subquery, query: "%#{params[:query]}%")
       @users = User.joins(:skills).where(skills: {name: params[:query]})
+    elsif params[:category].present?
+      @users = User.joins(:skills).where(skills: {category: params[:category]})
     else
       @users = User.skilled_users
+    end
+    # The `geocoded` scope filters only flats with coordinates
+    @markers = @users.geocoded.map do |user|
+      {
+        lat: user.latitude,
+        lng: user.longitude
+      }
     end
     # @skills = Skill.search_by_skills(params[:query])
   end
@@ -41,9 +50,9 @@ class SkillsController < ApplicationController
     @skill = Skill.new(skill_params)
     @skill.user = current_user
     if @skill.save
-      redirect_to dashboard_path, notice: "Congrats! Your new skill is online and bookable."
+      redirect_to dashboard_path, notice: "Bravo! Votre nouvelle compétence est en ligne et réservable."
     else
-      redirect_to new_skill_path, alert: "Failed. Fill in all fields"
+      redirect_to new_skill_path, alert: "Échoué. Remplissez tous les champs."
     end
   end
 
@@ -53,7 +62,7 @@ class SkillsController < ApplicationController
   def update
     @skill = Skill.find(params[:id])
     if @skill.update(skill_params)
-      redirect_to dashboard_path, notice: "Congrats! Edited"
+      redirect_to dashboard_path, notice: "Bravo! Modifié."
     else
       render 'pages/dashboard', status: :unprocessable_entity
     end

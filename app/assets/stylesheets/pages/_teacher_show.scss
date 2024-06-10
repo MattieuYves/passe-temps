@@ -1,0 +1,67 @@
+.teacher-show {
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  height: 90%;
+}
+
+.title-show {
+  font-size: 72px;
+}
+
+.card-product {
+  overflow: hidden;
+  height: 170px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.card-product .teacher-show {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 16px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+}
+
+.card-product .card-product-infos {
+  padding-left: 16px;
+}
+
+.box-show {
+height: 300px;
+width:300px;
+background-color: $light-green;
+border-radius: 8px;
+box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.image-box {
+  height: 180px;
+  width:180px;
+  filter: opacity(0.8);
+  justify-content: center;
+}
+
+.info-box{
+  font-size: 20px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  padding-top: 10px;
+}

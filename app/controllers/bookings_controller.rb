@@ -16,17 +16,17 @@ class BookingsController < ApplicationController
     @booking.token_cost = 1
     @booking.duration = 3600
     @booking.content = "This is a test"
-    @booking.status = "pending"
+    @booking.status = "en attente"
     @booking.session_format = "video"
     @booking.end_date = @booking.start_date + @booking.duration
     if current_user.token == 0
-      redirect to_dashboard_path, notice: "You don't have enough token to book this course!"
+      redirect to_dashboard_path, notice: "Vous n'avez pas assez de crédit pour réserver ce cours !"
     else
       if @booking.save
         current_user.update(token: current_user.token - 1)
-        redirect_to dashboard_path, notice: "Congrats! Your booking request has been sent to the teacher."
+        redirect_to dashboard_path, notice: "Bravo! Votre demande de réservation a été envoyée au professeur."
       else
-        flash.now[:alert] = "Oops, something went wrong."
+        flash.now[:alert] = "Oups, il y eu un souci."
         render 'skills/show', status: :unprocessable_entity
       end
     end
@@ -52,14 +52,14 @@ class BookingsController < ApplicationController
 
     if @booking.update(booking_params)
       case @booking.status
-      when "confirmed"
-        redirect_to dashboard_path, notice: "Congrats! You just accepted a new booking! 🤑"
+      when "confirmée"
+        redirect_to dashboard_path, notice: "Bravo! Vous venez d'accepter une nouvelle réservation ! 🤑"
         current_user.update(token: current_user.token + 1)
-      when "rejected"
-        redirect_to dashboard_path, notice: "The booking request has been rejected 😩"
+      when "refusée"
+        redirect_to dashboard_path, notice: "La demande de réservation a été refusée 😩"
         booking.user.update(token: booking.user.token - 1)
       else
-        redirect_to dashboard_path, alert: "Invalid status update attempted."
+        redirect_to dashboard_path, alert: "Tentative de mise à jour du statut non valide."
       end
     else
       flash.now[:alert] = @booking.errors.full_messages.to_sentence

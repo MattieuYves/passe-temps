@@ -2,16 +2,15 @@
 <p>Trouver votre nouvelle passion</p>
 <%= render "shared/searchbar" %>
 
-<%= link_to "Becoming a teacher", new_skill_path %>
+<%= link_to "Devenir professeur", new_skill_path %>
 
 <% @users.each do |user| %>
   <% if user.skills.count > 0 %>
     <p><%= user.first_name %></p>
     <% user.skills.each do |skill| %>
-      <p><%= skill.name %></p>
+      <p><%= skill.name.capitalize %></p>
       <%= link_to "Voir les skills", skill_path(skill) %>
     <% end %>
   <% end %>
 <% end %>
-<%= link_to 'View All Chatrooms', chatrooms_path, class: 'btn btn-primary' %>
-
+<%= link_to 'Voir les salles de discussion', chatrooms_path, class: 'btn btn-primary' %>

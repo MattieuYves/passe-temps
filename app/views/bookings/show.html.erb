@@ -1,25 +1,25 @@
-<h1>My booking on <%= @booking.start_date.strftime("%d/%m/%Y") %> with <%= @booking.skill.user.first_name %>, at <%= @booking.start_date.strftime("%I:%M%p") %></h1>
+<h1>Ma réservation le <%= @booking.start_date.strftime("%d/%m/%Y") %> avec <%= @booking.skill.user.first_name %>, à <%= @booking.start_date.strftime("%I:%M%p") %></h1>
 
-<h4> Your booking request is: <strong><%= @booking.status %></strong></h4>
+<h4> Votre demande de réservation est: <strong><%= @booking.status %></strong></h4>
 
 <div>
-  <p class="fs-4">Content of your session with <%= @booking.skill.user.first_name %>:</p>
+  <p class="fs-4">Le contenu de votre réservation<%= @booking.skill.user.first_name %>:</p>
   <p><%= @booking.content %></p>
 </div>
 
  <!--REJECT OR ACCEPT PENDING BOOKING-->
 
 <div>
-<% if @booking.status == "pending" && @booking.skill.user == current_user  %>
+<% if @booking.status == "En attente" && @booking.skill.user == current_user  %>
 
   <%= simple_form_for [@booking.skill, @booking], method: :patch do |f| %>
-    <%= f.input :status, as: :hidden, input_html: { value: 'confirmed' } %>
-    <%= f.button :submit, 'Accept', class: "btn btn-primary rounded-5", data: { turbo_confirm: "Do you want to accept this booking?" } %>
+    <%= f.input :status, as: :hidden, input_html: { value: 'confirmée' } %>
+    <%= f.button :submit, 'Accepter', class: "btn btn-primary rounded-5", data: { turbo_confirm: "Voulez-vous accepter cette réservation?" } %>
   <% end %>
 
   <%= simple_form_for [@booking.skill, @booking], method: :patch do |f| %>
-    <%= f.input :status, as: :hidden, input_html: { value: 'rejected' } %>
-    <%= f.button :submit, 'Reject', class: 'btn btn-warning rounded-5 text-light', data: { turbo_confirm: "Do you want to refuse this booking?" } %>
+    <%= f.input :status, as: :hidden, input_html: { value: 'rejectée' } %>
+    <%= f.button :submit, 'Refuser', class: 'btn btn-warning rounded-5 text-light', data: { turbo_confirm: "Voulez-vous refuser cette réservation?" } %>
   <% end %>
 <% end %>
 
@@ -32,9 +32,9 @@
     <div class="review">
       <% if Time.zone.at(Date.current.to_time).to_datetime <= @booking.end_date && @booking.status == "confirmed" && @booking.user == current_user %>
         <h5>
-        Please leave a review regarding the session you had with <%= @booking.skill.user.first_name %>
+        Merci de laisser un commentaire à propos de <%= @booking.skill.user.first_name %>
         </h5>
-        <p>How was it?</p>
+        <p>Comment cela s'est-il passé?</p>
         <%= simple_form_for [@booking, @review] do |f| %>
           <%= f.input :title %>
           <%= f.input :comment %>

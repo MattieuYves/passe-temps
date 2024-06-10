@@ -30,8 +30,14 @@ test_user = User.create!(
   bio: 'I want to learn the piano',
   city: 'St Ger la team',
   area: 1,
-  token: 5
+  token: 5,
+  latitude: 48.7876,
+  longitude: 2.4089
 )
+
+file = URI.open("https://images.unsplash.com/photo-1610429419519-8cdee5a8e615?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHBpYW5pc3RlfGVufDB8fDB8fHww")
+test_user.photo.attach(io: file, filename: "#{test_user.first_name}.jpg", content_type: "image/jpeg")
+test_user.save!
 
 goal = ["découverte", "passion", "reconversion"]
 name = ["poterie", "menuiserie", "dessin", "guitare", "running", "chinois"]
@@ -69,7 +75,8 @@ Skill.create!(
       bio: Faker::Lorem.sentence,
       city: Faker::Address.city,
       area: rand(1..10),
-      token: rand(1..5)
+      token: rand(1..5),
+      address: ['52 Avenue des Champs-Elysees, Paris', '17 Passage Duhesme, Paris', '2 Impasse Delaunay, Paris', '61 Rue Bichat, Paris', '39 Rue de Babylone, Paris', ' 6 Rue Barthélemy, Paris', '1 Rue Curnonsky, Paris'].sample
     )
 
     file = URI.open(user_img[i])

@@ -1,0 +1,18 @@
+.home-navbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  .logo{
+    width: 100px;
+    height: 100px;
+  }
+  .home-navbar-item{
+    position: relative;
+    right: 10px;
+    top : 10px;
+    color : white;
+    width: fit-content;
+  }
+}
