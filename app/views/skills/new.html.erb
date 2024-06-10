@@ -1,12 +1,12 @@
 
-  <h1>Let's add a new skill to your skillset</h1>
+  <h1>Ajoutons une nouvelle compétence à votre profil</h1>
 
   <%= simple_form_for @skill do |f| %>
-    <%= f.input :name, placeholder: "Your skill is about" %>
-    <%= f.input :goal, placeholder: "What is your goal?" %>
-    <%= f.input :experience_year, placeholder: "How many years of experience do you have?" %>
+    <%= f.input :name, placeholder: "Votre compétence" %>
+    <%= f.input :goal, placeholder: "Quel est votre but?" %>
+    <%= f.input :experience_year, placeholder: "Combien d'années d'expérience avez-vous?" %>
     <%= f.input :category, collection: Skill::CATEGORY %>
-    <%= f.submit "Create Skill" %>
+    <%= f.submit "Créer la compétence " %>
   <% end %>
 
 

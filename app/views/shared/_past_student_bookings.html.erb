@@ -1,19 +1,19 @@
 
 <% if current_user.bookings.where('start_date < ?', Date.today).count == 0 %>
-  <h1>No past bookings</h1>
+  <h1>Pas de cours</h1>
 <% else %>
 
-  <h3 class="pt-4">💼 My Past Courses</h3>
+  <h3 class="pt-4">💼 Mes cours terminés</h3>
 
   <table class="table table-hover bg-transparent">
     <thead>
       <tr>
         <th scope="col", class="bg-transparent">#</th>
-        <th scope="col", class="bg-transparent">Skill</th>
-        <th scope="col", class="bg-transparent">Teacher's name</th>
+        <th scope="col", class="bg-transparent">Compétence</th>
+        <th scope="col", class="bg-transparent">Nom du professeur</th>
         <th scope="col", class="bg-transparent">Date</th>
-        <th scope="col", class="bg-transparent">Starting time</th>
-        <th scope="col", class="bg-transparent">Booking status</th>
+        <th scope="col", class="bg-transparent">Horaire de début</th>
+        <th scope="col", class="bg-transparent">Statut de la réservation</th>
         <th scope="col", class="bg-transparent"></th>
         <th scope="col", class="bg-transparent"></th>
       </tr>
@@ -30,8 +30,8 @@
             <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
             <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
             <td class="bg-transparent"><%= booking.status %></td>
-            <td class="bg-transparent"><%= link_to "Show details", booking_path(booking), class:"text-decoration-none" %></td>
-            <td class="bg-transparent"><%= link_to "Delete", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-decoration-none" %></td>
+            <td class="bg-transparent"><%= link_to "Afficher les détails", booking_path(booking), class:"text-decoration-none" %></td>
+            <td class="bg-transparent"><%= link_to "Supprimer", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Êtes vous sûrs?" }, class:"text-decoration-none" %></td>
           </tr>
         </div>
     <% end %>

@@ -1,5 +1,5 @@
 <% if user_signed_in? && current_user.id == @skill.user_id %>
-  <p><strong>You cannot reserve your own course</strong></p>
+  <p><strong>YVous ne pouvez pas réserver votre propre cours</strong></p>
 <% else %>
 
 
@@ -28,7 +28,7 @@
 <div class="d-flex justify-content-between">
   <div class="box-show d-flex flex-column justify-content-center">
     <%= image_tag "trophee-de-la-coupe.png", class:"image-box d-flex justify-content-center" %>
-    <p class="d-flex justify-content-center info-box"><%= @skill.user.bookings.count %> cours dispensés</p>
+    <p class="d-flex justify-content-center info-box"><%= @skill.user.bookings.count %> cours données</p>
   </div>
   <div class="box-show d-flex flex-column justify-content-center">
     <%= image_tag "professeur.png", class:"image-box" %>

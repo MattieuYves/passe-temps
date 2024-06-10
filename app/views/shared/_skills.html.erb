@@ -1,6 +1,6 @@
-<h2>Skills</h2>
+<h2>Compétence</h2>
 <% if current_user.skills.any? %>
   <% current_user.skills.each do |skill| %>
-    <li><%= skill.name.capitalize %> | <%= skill.category %> || <%= link_to "Edit", edit_skill_path(skill) %> / <%= link_to "Delete", destroy_skill_path(skill), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></li>
+    <li><%= skill.name.capitalize %> | <%= skill.category %> || <%= link_to "Modifer", edit_skill_path(skill) %> / <%= link_to "Supprimer", destroy_skill_path(skill), data: { turbo_method: :delete, turbo_confirm: "Êtes vous sûrs?" } %></li>
   <% end %>
 <% end %>

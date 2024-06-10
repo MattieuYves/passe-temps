@@ -1,4 +1,4 @@
-<h3 class="pt-4">✅ Courses I will deliver  </h3>
+<h3 class="pt-4">✅ Mes prochains cours  </h3>
 
 
 <%# if current_user.bookings_as_teacher.where('start_date > ?', Time.now.to_datetime).count == 0 %>
@@ -9,11 +9,11 @@
     <thead>
       <tr>
         <th scope="col", class="bg-transparent">#</th>
-        <th scope="col", class="bg-transparent">Skill</th>
-        <th scope="col", class="bg-transparent">Student's name</th>
+        <th scope="col", class="bg-transparent">Compétence</th>
+        <th scope="col", class="bg-transparent">Nom de l'élève</th>
         <th scope="col", class="bg-transparent">Date</th>
-        <th scope="col", class="bg-transparent">Starting time</th>
-        <th scope="col", class="bg-transparent">Booking status</th>
+        <th scope="col", class="bg-transparent">Horaire de début</th>
+        <th scope="col", class="bg-transparent">Statut de la réservation</th>
         <th scope="col", class="bg-transparent"></th>
         <th scope="col", class="bg-transparent"></th>
       </tr>
@@ -30,7 +30,7 @@
             <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
             <td class="bg-transparent"><%= booking.status %></td>
             <td class="bg-transparent"><%= link_to "Show details", booking_path(booking), class:"text-decoration-none badge rounded-pill text-bg-secondary" %></td>
-            <td class="bg-transparent"><%= link_to "Delete", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-decoration-none" %></td>
+            <td class="bg-transparent"><%= link_to "Delete", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Êtes vous sûrs" }, class:"text-decoration-none" %></td>
           </tr>
         </div>
     <% end %>
@@ -39,18 +39,17 @@
   </table>
 
 
-<h3 class="pt-4">❕ Courses' requests I need to treat</h3>
+<h3 class="pt-4">❕Demandes de cours à traiter</h3>
 
 <table class="table table-hover bg-transparent">
     <thead>
       <tr>
         <th scope="col", class="bg-transparent">#</th>
-        <th scope="col", class="bg-transparent">Skill</th>
-        <th scope="col", class="bg-transparent">Student's name</th>
+        <th scope="col", class="bg-transparent">Compétence</th>
+        <th scope="col", class="bg-transparent">Nom de l'élève</th>
         <th scope="col", class="bg-transparent">Date</th>
-        <th scope="col", class="bg-transparent">Starting time</th>
-        <th scope="col", class="bg-transparent">Booking status</th>
-        <th scope="col", class="bg-transparent"></th>
+        <th scope="col", class="bg-transparent">Horaire de début</th>
+        <th scope="col", class="bg-transparent">Statut de la réservation</th>
         <th scope="col", class="bg-transparent"></th>
         <th scope="col", class="bg-transparent"></th>
       </tr>
@@ -69,14 +68,14 @@
             <td class="bg-transparent"><%= link_to "Show details", booking_path(booking), class:"text-decoration-none badge rounded-pill text-bg-secondary" %></td>
             <td class="bg-transparent">
               <%= simple_form_for [booking.skill, booking], method: :patch do |f| %>
-                <%= f.input :status, as: :hidden, input_html: { value: 'confirmed' } %>
-                <%= f.button :submit, 'Accept', class: "btn btn-primary rounded-5", data: { turbo_confirm: "Do you want to accept this booking?" } %>
+                <%= f.input :status, as: :hidden, input_html: { value: 'accepter' } %>
+                <%= f.button :submit, 'Accept', class: "btn btn-primary rounded-5", data: { turbo_confirm: "Voulez-vous accepter cette réservation?" } %>
               <% end %>
             </td>
             <td class="bg-transparent">
               <%= simple_form_for [booking.skill, booking], method: :patch do |f| %>
-                <%= f.input :status, as: :hidden, input_html: { value: 'rejected' } %>
-                <%= f.button :submit, 'Reject', class: 'btn btn-warning rounded-5 text-light', data: { turbo_confirm: "Do you want to refuse this booking?" } %>
+                <%= f.input :status, as: :hidden, input_html: { value: 'refuser' } %>
+                <%= f.button :submit, 'Reject', class: 'btn btn-warning rounded-5 text-light', data: { turbo_confirm: "Voulez-vous accepter cette réservation?" } %>
               <% end %>
             </td>
           </tr>
@@ -88,17 +87,17 @@
 
 
 
-<h3 class="pt-4">❌ Taught courses / Untreated course requests</h3>
+<h3 class="pt-4">❌ Cours enseignés / Demandes de cours non traitées</h3>
 
 <table class="table table-hover bg-transparent">
     <thead>
       <tr>
         <th scope="col", class="bg-transparent">#</th>
-        <th scope="col", class="bg-transparent">Skill</th>
-        <th scope="col", class="bg-transparent">Student's name</th>
+        <th scope="col", class="bg-transparent">Compétence</th>
+        <th scope="col", class="bg-transparent">Nom de l'élève</th>
         <th scope="col", class="bg-transparent">Date</th>
-        <th scope="col", class="bg-transparent">Starting time</th>
-        <th scope="col", class="bg-transparent">Booking status</th>
+        <th scope="col", class="bg-transparent">Horaire de début</th>
+        <th scope="col", class="bg-transparent">Statut de la réservation</th>
         <th scope="col", class="bg-transparent"></th>
         <th scope="col", class="bg-transparent"></th>
       </tr>
@@ -114,8 +113,8 @@
             <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
             <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
             <td class="bg-transparent"><%= booking.status %></td>
-            <td class="bg-transparent"><%= link_to "Show details", booking_path(booking), class:"text-decoration-none badge rounded-pill text-bg-secondary" %></td>
-            <td class="bg-transparent"><%= link_to "Delete", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-decoration-none" %></td>
+            <td class="bg-transparent"><%= link_to "Afficher les détails", booking_path(booking), class:"text-decoration-none badge rounded-pill text-bg-secondary" %></td>
+            <td class="bg-transparent"><%= link_to "Delete", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Êtes vous sûrs" }, class:"text-decoration-none" %></td>
           </tr>
         </div>
     <% end %>
