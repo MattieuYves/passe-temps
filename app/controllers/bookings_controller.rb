@@ -1,4 +1,6 @@
 class BookingsController < ApplicationController
+  before_action :set_skill, only: [:new, :create]
+
 
   def show
     @booking = Booking.find(params[:id])
@@ -12,11 +14,11 @@ class BookingsController < ApplicationController
     @booking.skill = @skill
     @booking.user = current_user
     @booking.token_cost = 1
-    @booking.duration = 1
+    @booking.duration = 3600
     @booking.content = "This is a test"
     @booking.status = "en attente"
     @booking.session_format = "video"
-
+    @booking.end_date = @booking.start_date + @booking.duration
     if current_user.token == 0
       redirect to_dashboard_path, notice: "Vous n'avez pas assez de crédit pour réserver ce cours !"
     else
@@ -72,7 +74,10 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :content, :status, :session_format, :token_cost, :duration)
+    params.require(:booking).permit(:start_date, :content, :status, :session_format, :token_cost, :duration)
   end
 
+  def set_skill
+    @skill = Skill.find(params[:skill_id])
+  end
 end

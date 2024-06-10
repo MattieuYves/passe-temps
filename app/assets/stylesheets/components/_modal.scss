@@ -1,0 +1,93 @@
+.modal {
+  --bs-modal-width: 650px;
+  .modal-body {
+    height: 320px
+  }
+}
+
+
+.date-input{
+    border-radius: 5px;
+    width: 100%;
+    justify-content: center;
+    overflow-y: auto; /* Add this line */
+}
+
+.create-booking{
+    background-color: #3F4458;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: #EEF8F9;
+    width: 100%;
+
+    &:hover{
+        background-color: #80CBC4;
+        color: #EEF8F9;
+    }
+}
+
+
+.slot-container {
+  height: 31px;
+  border-radius: 15px; /* Set to half of the height */
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  transition: all ease 0.2s;
+  align-items: center;
+  // border-bottom: 1px solid #d1d1d1;
+  .form-check-label {
+    cursor: pointer;
+  }
+  
+  &:hover {
+    background-color: #80CBC4;
+    color: #EEF8F9;
+
+
+  }
+}
+
+.selected {
+  background-color: #80CBC4;
+  color: #EEF8F9;
+  height: 30px;
+  border-radius: 15px; /* Set to half of the height */
+  margin: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+input[type="submit" i] {
+border: none;
+}
+
+.form-check-input[disabled] ~ .form-check-label, .form-check-input:disabled ~ .form-check-label {
+  cursor: default !important;
+  text-decoration: line-through;
+}
+
+
+.slot-container:has(.form-check-input[disabled]) {
+  &:hover {
+    background-color: transparent !important;
+    color: black !important;
+    cursor: default !important;
+  }
+}
+.slot-container:has(.selected) {
+  background-color: #80CBC4;
+  color: #EEF8F9;
+}
+
+.line-separator {
+  width: 70%;
+  height: 0.5px;
+  background-color: #0000002e;
+  margin: -10px auto;
+}
+

@@ -1,4 +1,6 @@
 class Booking < ApplicationRecord
+  # include SlotMachine::Slot
+
   after_create :create_chatroom
   has_one :chatroom, dependent: :destroy
 
