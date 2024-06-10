@@ -29,7 +29,7 @@
             <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
             <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
             <td class="bg-transparent"><%= booking.status %></td>
-            <td class="bg-transparent"><%= link_to "Show details", booking_path(booking), class:"text-decoration-none badge rounded-pill text-bg-secondary" %></td>
+            <td class="bg-transparent"><%= link_to "Show details", booking_path(booking), class:"text-decoration-none" %></td>
             <td class="bg-transparent"><%= link_to "Delete", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-decoration-none" %></td>
           </tr>
         </div>
@@ -66,17 +66,17 @@
             <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
             <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
             <td class="bg-transparent"><%= booking.status %></td>
-            <td class="bg-transparent"><%= link_to "Show details", booking_path(booking), class:"text-decoration-none badge rounded-pill text-bg-secondary" %></td>
+            <td class="bg-transparent"><%= link_to "Show details", booking_path(booking), class:"text-decoration-none" %></td>
             <td class="bg-transparent">
               <%= simple_form_for [booking.skill, booking], method: :patch do |f| %>
-                <%= f.input :status, as: :hidden, input_html: { value: 'confirmed' } %>
-                <%= f.button :submit, 'Accept', class: "btn btn-primary rounded-5", data: { turbo_confirm: "Do you want to accept this booking?" } %>
+                <% f.input :status, as: :hidden, input_html: { value: 'confirmed' } %>
+                <%= f.button :submit, 'Accept', class: "my-0 py-0 rounded-pill", data: { turbo_confirm: "Do you accept this booking?" }, style:"background-color:#0bb7bc" %>
               <% end %>
             </td>
             <td class="bg-transparent">
               <%= simple_form_for [booking.skill, booking], method: :patch do |f| %>
-                <%= f.input :status, as: :hidden, input_html: { value: 'rejected' } %>
-                <%= f.button :submit, 'Reject', class: 'btn btn-warning rounded-5 text-light', data: { turbo_confirm: "Do you want to refuse this booking?" } %>
+                <% f.input :status, as: :hidden, input_html: { value: 'rejected' } %>
+                <%= f.button :submit, 'Reject', class: 'my-0 py-0', data: { turbo_confirm: "Do you want to refuse this booking?" } %>
               <% end %>
             </td>
           </tr>
@@ -114,7 +114,7 @@
             <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
             <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
             <td class="bg-transparent"><%= booking.status %></td>
-            <td class="bg-transparent"><%= link_to "Show details", booking_path(booking), class:"text-decoration-none badge rounded-pill text-bg-secondary" %></td>
+            <td class="bg-transparent"><%= link_to "Show details", booking_path(booking), class:"text-decoration-none" %></td>
             <td class="bg-transparent"><%= link_to "Delete", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-decoration-none" %></td>
           </tr>
         </div>
