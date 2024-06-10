@@ -13,6 +13,13 @@ class SkillsController < ApplicationController
     else
       @users = User.skilled_users
     end
+    # The `geocoded` scope filters only flats with coordinates
+    @markers = @users.geocoded.map do |user|
+      {
+        lat: user.latitude,
+        lng: user.longitude
+      }
+    end
     # @skills = Skill.search_by_skills(params[:query])
   end
 
