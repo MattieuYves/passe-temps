@@ -8,6 +8,7 @@
   flex-direction: row-reverse;
   align-items: flex-end;
   justify-content: flex-end;
+  z-index: 100;
 }
 
 .inbox-links {
@@ -68,6 +69,7 @@
   text-decoration: none;
   color: white;
   position: relative;
+
 }
 
 .unread-indicator {
