@@ -8,6 +8,8 @@ class SkillsController < ApplicationController
       # sql_subquery = "name ILIKE :query OR category ILIKE :query"
       # @skills = @skills.where(sql_subquery, query: "%#{params[:query]}%")
       @users = User.joins(:skills).where(skills: {name: params[:query]})
+    elsif params[:category].present?
+      @users = User.joins(:skills).where(skills: {category: params[:category]})
     else
       @users = User.skilled_users
     end
