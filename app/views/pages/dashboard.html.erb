@@ -1,9 +1,9 @@
 <div data-controller="dashboard">
   <div class="d-flex gap-5 justify-content-evenly">
-    <div class="dashboard-nav px-3 py-2" data-action="click->dashboard#displayStudent">
+    <div class="dashboard-nav-student px-3 py-2 rounded-pill fs-5" data-action="click->dashboard#displayStudent" data-dashboard-target="btnStudent">
       Student
     </div>
-    <div class="dashboard-nav px-3 py-2" data-action="click->dashboard#displayTeacher">
+    <div class="dashboard-nav-teacher px-3 py-2 rounded-pill fs-5" data-action="click->dashboard#displayTeacher" data-dashboard-target="btnTeacher">
       Teachers
     </div>
   </div>
@@ -16,6 +16,9 @@
 
 
     <% if current_user.skills.count > 0 %>
+
+
+
       <%= render "shared/bookings_teacher" %>
     <%end%>
   </div>

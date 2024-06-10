@@ -20,23 +20,23 @@
   </div>
   <div class="card-product-infos">
     <p class="fs-2 col-12"><%= @skill.user.first_name %> <%= @skill.user.last_name %>, <%= @skill.user.age %> ans</p>
-    <p class="col-12"><%= @skill.category %></p>
+    <p class="col-12"><%= @skill.category.capitalize %></p>
     <p class="col-12"><%= @skill.user.bio %></p>
   </div>
 </div>
 
 <div class="d-flex justify-content-between">
   <div class="box-show d-flex flex-column justify-content-center">
-    <%= image_tag "trophee-de-la-coupe.png", class:"image-box d-flex justify-content-center" %>
+    <%= image_tag "trophee-de-la-coupe.png", class:"image-box d-flex position-relative top-0 start-50 translate-middle-x" %>
     <p class="d-flex justify-content-center info-box"><%= @skill.user.bookings.count %> cours dispensés</p>
   </div>
   <div class="box-show d-flex flex-column justify-content-center">
-    <%= image_tag "professeur.png", class:"image-box" %>
-    <p  class="d-flex justify-content-center info-box"><%= @skill.experience_year %> année(s) d'expérience</p>
+    <%= image_tag "professeur.png", class:"image-box d-flex position-relative top-0 start-50 translate-middle-x" %>
+    <p  class="d-flex justify-content-center info-box"><%= @skill.experience_year %> <%= (@skill.experience_year > 1) ? "années" : "année" %> d'expérience</p>
   </div>
   <div class="box-show d-flex flex-column justify-content-center">
-    <%= image_tag "cours-en-ligne.png", class:"image-box"  %>
-    <p  class="d-flex justify-content-center info-box">Test</p>
+    <%= image_tag "cours-en-ligne.png", class:"image-box d-flex position-relative top-0 start-50 translate-middle-x"  %>
+    <p  class="d-flex justify-content-center info-box">Cours en <%= @skill.user.bookings.last.session_format %> !</p>
   </div>
 </div>
 

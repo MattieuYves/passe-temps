@@ -1,5 +1,13 @@
+<h3 class="pt-5">Current skills you are teaching</h3>
 
-<%= link_to "Want to teach another skill? Click me!", new_skill_path, class:"btn btn-light btn-lg rounded-4 my-3 d-flex justify-content-center", style:"background-color:$dark-green"%>
+  <% current_user.skills.each do |skill| %>
+  <div class="px-3 py-2 rounded-pill text-light me-2 mb-3", style="background-color:#70B1B3; display:inline-block;">
+    <%= skill.name %>
+  </div>
+  <% end %>
+  <%= link_to new_skill_path, class:"px-3 py-2 rounded-pill  text-reset", style:"background-color:#E4EEED" do %>
+    <i class="fa-solid fa-plus"></i>
+  <% end %>
 
 
 <%= render "shared/incoming_teacher_bookings" %>
