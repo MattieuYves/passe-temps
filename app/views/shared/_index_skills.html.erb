@@ -5,10 +5,9 @@
   <% if user.skills.count > 0 %>
     <p><%= user.first_name %></p>
     <% user.skills.each do |skill| %>
-      <p><%= skill.name %></p>
+      <p><%= skill.name.capitalize %></p>
       <%= link_to "Voir les skills", skill_path(skill) %>
     <% end %>
   <% end %>
 <% end %>
 <%= link_to 'View All Chatrooms', chatrooms_path, class: 'btn btn-primary' %>
-

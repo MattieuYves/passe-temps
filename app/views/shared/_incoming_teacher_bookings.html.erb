@@ -24,7 +24,7 @@
         <div>
           <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
             <th scope="row", class="bg-transparent"><%= index + 1 %></th>
-            <td class="bg-transparent"><%= booking.skill.name %></td>
+            <td class="bg-transparent"><%= booking.skill.name.capitalize %></td>
             <td class="bg-transparent"><%= booking.skill.user.first_name %></td>
             <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
             <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
@@ -61,7 +61,7 @@
         <div>
           <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
             <th scope="row", class="bg-transparent"><%= index + 1 %></th>
-            <td class="bg-transparent"><%= booking.skill.name %></td>
+            <td class="bg-transparent"><%= booking.skill.name.capitalize %></td>
             <td class="bg-transparent"><%= booking.skill.user.first_name %></td>
             <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
             <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
@@ -109,7 +109,7 @@
         <div>
           <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
             <th scope="row", class="bg-transparent"><%= index + 1 %></th>
-            <td class="bg-transparent"><%= booking.skill.name %></td>
+            <td class="bg-transparent"><%= booking.skill.name.capitalize %></td>
             <td class="bg-transparent"><%= booking.skill.user.first_name %></td>
             <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
             <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
