@@ -33,6 +33,10 @@ test_user = User.create!(
   token: 5
 )
 
+file = URI.open("https://images.unsplash.com/photo-1610429419519-8cdee5a8e615?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHBpYW5pc3RlfGVufDB8fDB8fHww")
+test_user.photo.attach(io: file, filename: "#{test_user.first_name}.jpg", content_type: "image/jpeg")
+test_user.save!
+
 goal = ["découverte", "passion", "reconversion"]
 name = ["poterie", "menuiserie", "dessin", "guitare", "running", "chinois"]
 
