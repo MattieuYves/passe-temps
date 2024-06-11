@@ -20,15 +20,29 @@ User.destroy_all
 
 puts "Creating user test"
 
-test_user = User.create!(
-  email: 'test@example.com',
+mattieu_user = User.create!(
+  email: 'mattieu@example.com',
   password: 'password',
   first_name: 'Mattieu',
-  last_name: 'Le Boss',
-  age: 30,
-  genre: 'Other',
-  bio: 'I want to learn the piano',
-  city: 'St Ger la team',
+  last_name: 'Yves',
+  age: 23,
+  genre: 'Homme',
+  bio: "Salut ! Je m'appelle Mattieu, j'ai appris le travail du bois auprès de mon grand-père et depuis je n'ai plus arrêté. Transmettre cet héritage est mon plus grand plaisir ! Récemment j'ai entendu Mistral Gagnant et j'ai A-DO-RÉ ! J'ai vraiment envie d'apprendre à le jouer au piano.",
+  city: 'Saint-Germain-en-Laye',
+  area: 1,
+  token: 5,
+  latitude: 48.7876,
+  longitude: 2.4089
+)
+jean_user = User.create!(
+  email: 'jean@example.com',
+  password: 'password',
+  first_name: 'Jean',
+  last_name: 'Motte',
+  age: 26,
+  genre: 'Homme',
+  bio: "Bonjour moi c'est Jeanot ! Passioné de piano depuis mon enfance, j'aime transmettre ma passion. Je suis également très curieux et souhaite acquérir des compétences en menuiserie.",
+  city: 'Homme',
   area: 1,
   token: 5,
   latitude: 48.7876,
@@ -36,20 +50,79 @@ test_user = User.create!(
 )
 
 file = URI.open("https://images.unsplash.com/photo-1610429419519-8cdee5a8e615?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHBpYW5pc3RlfGVufDB8fDB8fHww")
-test_user.photo.attach(io: file, filename: "#{test_user.first_name}.jpg", content_type: "image/jpeg")
-test_user.save!
+mattieu_user.photo.attach(io: file, filename: "#{mattieu_user.first_name}.jpg", content_type: "image/jpeg")
+mattieu_user.save!
+
+file = URI.open("https://images.unsplash.com/photo-1610429419519-8cdee5a8e615?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHBpYW5pc3RlfGVufDB8fDB8fHww")
+jean_user.photo.attach(io: file, filename: "#{jean_user.first_name}.jpg", content_type: "image/jpeg")
+jean_user.save!
 
 goal = ["découverte", "passion", "reconversion"]
 name = ["poterie", "menuiserie", "dessin", "guitare", "running", "chinois"]
 
 puts "creating skill for test_user"
 
+activites_avec_icones = {
+  "Sport" => {
+      "icon" => "⚽️",
+      "activities" => ["Football", "Basketball", "Natation", "Course à pied"]
+  },
+  "Cuisine" => {
+      "icon" => "🍽️",
+      "activities" => ["Pâtisserie", "Cuisine italienne", "Grillades", "Cuisine végétarienne"]
+  },
+  "Musique" => {
+      "icon" => "🎵",
+      "activities" => ["Guitare", "Piano", "Chant", "Batterie"]
+  },
+  "Lecture" => {
+      "icon" => "📚",
+      "activities" => ["Romans", "Poésie", "Biographies", "Essais philosophiques"]
+  },
+  "Voyage" => {
+      "icon" => "✈️",
+      "activities" => ["Randonnée", "Visites culturelles", "Camping", "Tourisme gastronomique"]
+  },
+  "Art" => {
+      "icon" => "🎨",
+      "activities" => ["Peinture", "Sculpture", "Photographie", "Dessin"]
+  },
+  "Technologie" => {
+      "icon" => "💻",
+      "activities" => ["Programmation", "Robotique", "Impression 3D", "Réalité virtuelle"]
+  },
+  "Jardinage" => {
+      "icon" => "🌱",
+      "activities" => ["Plantes d'intérieur", "Potager", "Paysagisme", "Jardin biologique"]
+  },
+  "Loisirs créatifs" => {
+      "icon" => "✂️",
+      "activities" => ["Tricot", "Scrapbooking", "Couture", "Origami"]
+  },
+  "Bien-être" => {
+      "icon" => "🧘",
+      "activities" => ["Yoga", "Méditation", "Aromathérapie", "Spa"]
+  }
+}
+
+categorie_aleatoire = activites_avec_icones.keys.sample
+activite_aleatoire = activites_avec_icones[categorie_aleatoire]["activities"].sample
 Skill.create!(
-  name: name.sample,
+  category: categorie_aleatoire,
+  name: activite_aleatoire,
   goal: goal.sample,
   experience_year: rand(1..20),
-  category: Skill::CATEGORY.sample,
-  user: test_user
+  user: mattieu_user
+)
+
+categorie_aleatoire = activites_avec_icones.keys.sample
+activite_aleatoire = activites_avec_icones[categorie_aleatoire]["activities"].sample
+Skill.create!(
+  category: categorie_aleatoire,
+  name: activite_aleatoire,
+  goal: goal.sample,
+  experience_year: rand(1..20),
+  user: jean_user
 )
 
 
@@ -63,34 +136,45 @@ Skill.create!(
     https://images.unsplash.com/photo-1502785424245-21e9ffc8f93f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjIzfHxwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D
   ]
 
+
+
+
   # Create 10 Users
-  user = 5.times.map do |i|
+  user = 30.times.map do |i|
     user = User.create!(
       email: Faker::Internet.unique.email,
       password: 'password',
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
       age: rand(18..65),
-      genre: ['Male', 'Female', 'Other'].sample,
-      bio: Faker::Lorem.sentence,
+      genre: ['Homme', 'Femme', 'Autre'].sample,
+      bio: "test",
       city: Faker::Address.city,
       area: rand(1..10),
       token: rand(1..5),
       address: ['52 Avenue des Champs-Elysees, Paris', '17 Passage Duhesme, Paris', '2 Impasse Delaunay, Paris', '61 Rue Bichat, Paris', '39 Rue de Babylone, Paris', ' 6 Rue Barthélemy, Paris', '1 Rue Curnonsky, Paris'].sample
     )
 
-    file = URI.open(user_img[i])
+    # file = URI.open(user_img[i])
+    if user.genre == 'Femme'
+      file = URI.open("https://xsgames.co/randomusers/avatar.php?g=female")
+    elsif user.genre == 'Homme'
+      file = URI.open("https://xsgames.co/randomusers/avatar.php?g=male")
+    else
+      file = URI.open("https://xsgames.co/randomusers/avatar.php?g=female")
+    end
     user.photo.attach(io: file, filename: "#{user.first_name}.jpg", content_type: "image/jpeg")
     user.save!
 
+    categorie_aleatoire = activites_avec_icones.keys.sample
+    activite_aleatoire = activites_avec_icones[categorie_aleatoire]["activities"].sample
     Skill.create!(
-      name: name.sample,
+      category: categorie_aleatoire,
+      name: activite_aleatoire,
       goal: goal.sample,
       experience_year: rand(1..20),
-      category: Skill::CATEGORY.sample,
       user: user
     )
-
   end
 
 puts "creating users and their skills"
@@ -114,6 +198,16 @@ puts "creating bookings (et par extension les chatrooms)"
       status: %w[pending confirmed rejected].sample
     )
 end
+
+    # Create 10 Messages
+    User.all.each do |user|
+      bio = "Bonjour moi c'est #{user.first_name} ! Passioné.e de #{user.skills.first.name} depuis mon enfance, j'aime transmettre ma passion."
+      booking = user.bookings.last
+      if booking
+        bio += " Je suis également très curieux.se et souhaite acquérir des compétences en #{booking.skill.name}."
+      end
+      user.update!(bio: bio)
+    end
 
 puts "bookings created, with its chatrooms"
 
