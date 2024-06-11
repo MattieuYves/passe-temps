@@ -51,10 +51,20 @@ class SkillsController < ApplicationController
   def create
     @skill = Skill.new(skill_params)
     @skill.user = current_user
-    if @skill.save
-      redirect_to dashboard_path, notice: "Bravo! Votre nouvelle compétence est en ligne et réservable."
-    else
-      redirect_to new_skill_path, alert: "Échoué. Remplissez tous les champs."
+    # if @skill.save
+    #   redirect_to dashboard_path, notice: "Bravo! Votre nouvelle compétence est en ligne et réservable."
+    # else
+    #   redirect_to new_skill_path, alert: "Échoué. Remplissez tous les champs."
+    # end
+    respond_to do |format|
+      if @skill.save
+        format.html { redirect_to skill_path(@skill), notice: "Bravo! Votre nouvelle compétence est en ligne et réservable." }
+        format.json # Follows the classic Rails flow and look for a create.json view
+
+      else
+        format.html { render "pages/dashboard", status: :unprocessable_entity, alert: "Échoué. Remplissez tous les champs." }
+        format.json # Follows the classic Rails flow and look for a create.json view
+      end
     end
   end
 
