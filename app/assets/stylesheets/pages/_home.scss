@@ -147,3 +147,20 @@ body{
     margin-top: 40px;
   }
 }
+
+.img-fluid {
+  max-width: 400px; /* Ajustez cette valeur selon vos besoins */
+  height: auto;
+}
+
+.align-left {
+  justify-content: flex-start;
+  margin-left: 100px;
+  margin-bottom: 100px;
+}
+
+.align-right {
+  justify-content: flex-end;
+  margin-right: 100px;
+  margin-bottom: 100px;
+}
