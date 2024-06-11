@@ -23,7 +23,7 @@
     <p class="side-item-name">Accueil</p>
   <% end %>
 
-  <%= link_to skills_path, class: "wrapper-sidebar-item" do %>
+  <%= link_to skills_path, class: "wrapper-sidebar-item", data: {turbo: false} do %>
     <i class="fa-solid fa-magnifying-glass"></i>
     <p class="side-item-name">Recherche</p>
   <% end %>
