@@ -3,7 +3,10 @@
   <p class="mt-5">Pas d'historique de cours suivis pour le moment</p>
 <% else %>
 
-  <h3 class="pt-4">💼 Mes cours passés</h3>
+  <div class="row align-items-baseline">
+  <%= image_tag "historical.png", style:"object-fit:contain;width:60px", class:"col-6" %>
+  <h3 class="mt-5 col-6">Mes cours passés </h3>
+</div>
 
   <table class="table table-hover bg-transparent">
     <thead>

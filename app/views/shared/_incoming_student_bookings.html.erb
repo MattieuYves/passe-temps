@@ -1,4 +1,8 @@
-<h3 class="pt-5">📆 Mes prochains cours </h3>
+
+<div class="row align-items-baseline">
+  <%= image_tag "calendar-icon-two.png", style:"object-fit:contain;width:60px;", class:"col-6" %>
+  <h3 class="mt-5 col-6">Mes prochains cours </h3>
+</div>
 
 <% if current_user.bookings.where('start_date >= ?', Date.today).count == 0 %>
   <p>Vous n'avez pas de réservation pour le moment. Trouvez un professeur à réserver !</p>
