@@ -5,119 +5,119 @@
 <!--  <p>You don't have any booked courses with student right now.</p>-->
 <%# else %>
 
+  <div data-insert-in-list-target="bookings">
+    <table class="table table-hover bg-transparent">
+      <thead>
+        <tr>
+          <th scope="col", class="bg-transparent">#</th>
+          <th scope="col", class="bg-transparent">Compétence</th>
+          <th scope="col", class="bg-transparent">Nom de l'élève</th>
+          <th scope="col", class="bg-transparent">Date</th>
+          <th scope="col", class="bg-transparent">Horaire de début</th>
+          <th scope="col", class="bg-transparent">Statut de la réservation</th>
+          <th scope="col", class="bg-transparent"></th>
+          <th scope="col", class="bg-transparent"></th>
+        </tr>
+      </thead>
+      <tbody>
+    <% current_user.bookings_as_teacher.reverse.each_with_index do |booking, index| %>
+      <% if Date.today <= booking.start_date && booking.status == "confirmed" %>
+          <div>
+            <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
+              <th scope="row", class="bg-transparent"><%= index + 1 %></th>
+              <td class="bg-transparent"><%= booking.skill.name.capitalize %></td>
+              <td class="bg-transparent"><%= booking.skill.user.first_name %></td>
+              <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
+              <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
+              <td class="bg-transparent"><%= booking.status %></td>
+              <td class="bg-transparent"><%= link_to "Détails", booking_path(booking), class:"text-decoration-none" %></td>
+              <td class="bg-transparent"><%= link_to "Supprimer", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-decoration-none" %></td>
+            </tr>
+          </div>
+      <% end %>
+    <% end %>
+      </tbody>
+    </table>
+
+
+  <h3 class="pt-4">❕Demandes de cours à traiter</h3>
+
   <table class="table table-hover bg-transparent">
-    <thead>
-      <tr>
-        <th scope="col", class="bg-transparent">#</th>
-        <th scope="col", class="bg-transparent">Compétence</th>
-        <th scope="col", class="bg-transparent">Nom de l'élève</th>
-        <th scope="col", class="bg-transparent">Date</th>
-        <th scope="col", class="bg-transparent">Horaire de début</th>
-        <th scope="col", class="bg-transparent">Statut de la réservation</th>
-        <th scope="col", class="bg-transparent"></th>
-        <th scope="col", class="bg-transparent"></th>
-      </tr>
-    </thead>
-    <tbody>
-  <% current_user.bookings_as_teacher.reverse.each_with_index do |booking, index| %>
-    <% if Date.today < booking.start_date && booking.status == "confirmed" %>
-        <div>
-          <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
-            <th scope="row", class="bg-transparent"><%= index + 1 %></th>
-            <td class="bg-transparent"><%= booking.skill.name.capitalize %></td>
-            <td class="bg-transparent"><%= booking.skill.user.first_name %></td>
-            <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
-            <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
-            <td class="bg-transparent"><%= booking.status %></td>
-            <td class="bg-transparent"><%= link_to "Détails", booking_path(booking), class:"text-decoration-none" %></td>
-            <td class="bg-transparent"><%= link_to "Supprimer", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-decoration-none" %></td>
-          </tr>
-        </div>
+      <thead>
+        <tr>
+          <th scope="col", class="bg-transparent">#</th>
+          <th scope="col", class="bg-transparent">Compétence</th>
+          <th scope="col", class="bg-transparent">Nom de l'élève</th>
+          <th scope="col", class="bg-transparent">Date</th>
+          <th scope="col", class="bg-transparent">Horaire de début</th>
+          <th scope="col", class="bg-transparent">Statut de la réservation</th>
+          <th scope="col", class="bg-transparent"></th>
+          <th scope="col", class="bg-transparent"></th>
+        </tr>
+      </thead>
+      <tbody>
+    <% current_user.bookings_as_teacher.reverse.each_with_index do |booking, index| %>
+      <% if booking.status == "pending" %>
+          <div>
+            <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
+              <th scope="row", class="bg-transparent"><%= index + 1 %></th>
+              <td class="bg-transparent"><%= booking.skill.name.capitalize %></td>
+              <td class="bg-transparent"><%= booking.user.first_name %></td>
+              <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
+              <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
+              <td class="bg-transparent"><%= booking.status %></td>
+              <td class="bg-transparent"><%= link_to "Détails", booking_path(booking), class:"text-decoration-none" %></td>
+              <td class="bg-transparent">
+
+              <%= render "bookings/form_accept", booking: booking %>
+
+              </td>
+              <td class="bg-transparent">
+
+              <%= render "bookings/form_refuse", booking: booking %>
+
+              </td>
+            </tr>
+          </div>
+      <% end %>
     <% end %>
-  <% end %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
 
 
-<h3 class="pt-4">❕Demandes de cours à traiter</h3>
 
-<table class="table table-hover bg-transparent">
-    <thead>
-      <tr>
-        <th scope="col", class="bg-transparent">#</th>
-        <th scope="col", class="bg-transparent">Compétence</th>
-        <th scope="col", class="bg-transparent">Nom de l'élève</th>
-        <th scope="col", class="bg-transparent">Date</th>
-        <th scope="col", class="bg-transparent">Horaire de début</th>
-        <th scope="col", class="bg-transparent">Statut de la réservation</th>
-        <th scope="col", class="bg-transparent"></th>
-        <th scope="col", class="bg-transparent"></th>
-      </tr>
-    </thead>
-    <tbody>
-  <% current_user.bookings_as_teacher.reverse.each_with_index do |booking, index| %>
-    <% if booking.status == "pending" %>
-        <div>
-          <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
-            <th scope="row", class="bg-transparent"><%= index + 1 %></th>
-            <td class="bg-transparent"><%= booking.skill.name.capitalize %></td>
-            <td class="bg-transparent"><%= booking.user.first_name %></td>
-            <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
-            <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
-            <td class="bg-transparent"><%= booking.status %></td>
-            <td class="bg-transparent"><%= link_to "Détails", booking_path(booking), class:"text-decoration-none" %></td>
-            <td class="bg-transparent">
-              <%= simple_form_for [booking.skill, booking], method: :patch do |f| %>
-                <%= f.input :status, as: :hidden, input_html: { value: 'confirmed' }, wrapper: :inline_form %>
-                <%= f.button :submit, 'Accept', class: "my-0 py-0 rounded-pill", data: { turbo_confirm: "Do you accept this booking?" }, style:"background-color:#0bb7bc" %>
-              <% end %>
-            </td>
-            <td class="bg-transparent">
-              <%= simple_form_for [booking.skill, booking], method: :patch do |f| %>
-                <%= f.input :status, as: :hidden, input_html: { value: 'rejected' }, wrapper: :inline_form %>
-                <%= f.button :submit, 'Reject', class: 'my-0 py-0', data: { turbo_confirm: "Do you want to refuse this booking?" } %>
-              <% end %>
-            </td>
-          </tr>
-        </div>
+  <h3 class="pt-4">❌ Cours enseignés / Demandes de cours non traitées</h3>
+
+  <table class="table table-hover bg-transparent">
+      <thead>
+        <tr>
+          <th scope="col", class="bg-transparent">#</th>
+          <th scope="col", class="bg-transparent">Compétence</th>
+          <th scope="col", class="bg-transparent">Nom de l'élève</th>
+          <th scope="col", class="bg-transparent">Date</th>
+          <th scope="col", class="bg-transparent">Horaire de début</th>
+          <th scope="col", class="bg-transparent">Statut de la réservation</th>
+          <th scope="col", class="bg-transparent"></th>
+          <th scope="col", class="bg-transparent"></th>
+        </tr>
+      </thead>
+      <tbody>
+    <% current_user.bookings_as_teacher.reverse.each_with_index do |booking, index| %>
+      <% if Date.today > booking.start_date && (booking.status == "rejected" || booking.status == "confirmed") %>
+          <div>
+            <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
+              <th scope="row", class="bg-transparent"><%= index + 1 %></th>
+              <td class="bg-transparent"><%= booking.skill.name.capitalize %></td>
+              <td class="bg-transparent"><%= booking.user.first_name %></td>
+              <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
+              <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
+              <td class="bg-transparent"><%= booking.status %></td>
+              <td class="bg-transparent"><%= link_to "Détails", booking_path(booking), class:"text-decoration-none" %></td>
+              <td class="bg-transparent"><%= link_to "Supprimer", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-decoration-none" %></td>
+            </tr>
+          </div>
+      <% end %>
     <% end %>
-  <% end %>
-    </tbody>
-  </table>
-
-
-
-<h3 class="pt-4">❌ Cours enseignés / Demandes de cours non traitées</h3>
-
-<table class="table table-hover bg-transparent">
-    <thead>
-      <tr>
-        <th scope="col", class="bg-transparent">#</th>
-        <th scope="col", class="bg-transparent">Compétence</th>
-        <th scope="col", class="bg-transparent">Nom de l'élève</th>
-        <th scope="col", class="bg-transparent">Date</th>
-        <th scope="col", class="bg-transparent">Horaire de début</th>
-        <th scope="col", class="bg-transparent">Statut de la réservation</th>
-        <th scope="col", class="bg-transparent"></th>
-        <th scope="col", class="bg-transparent"></th>
-      </tr>
-    </thead>
-    <tbody>
-  <% current_user.bookings_as_teacher.reverse.each_with_index do |booking, index| %>
-    <% if Date.today > booking.start_date && (booking.status == "rejected" || booking.status == "confirmed") %>
-        <div>
-          <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
-            <th scope="row", class="bg-transparent"><%= index + 1 %></th>
-            <td class="bg-transparent"><%= booking.skill.name.capitalize %></td>
-            <td class="bg-transparent"><%= booking.user.first_name %></td>
-            <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
-            <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
-            <td class="bg-transparent"><%= booking.status %></td>
-            <td class="bg-transparent"><%= link_to "Détails", booking_path(booking), class:"text-decoration-none" %></td>
-            <td class="bg-transparent"><%= link_to "Supprimer", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-decoration-none" %></td>
-          </tr>
-        </div>
-    <% end %>
-  <% end %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>

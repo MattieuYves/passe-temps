@@ -28,6 +28,7 @@ class PagesController < ApplicationController
 
   def dashboard
     @skill = Skill.new
+    # @booking = Booking.find(params[:id])
   end
 
   def new_skill

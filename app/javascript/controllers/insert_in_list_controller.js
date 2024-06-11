@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="insert-in-list"
 export default class extends Controller {
-  static targets = ["skills", "form", "close"]
+  static targets = ["skills", "form", "close", "accept", "reject", "bookings", "modal"]
 
   connect() {
   }
@@ -24,7 +24,30 @@ export default class extends Controller {
         //   // beforeend could also be dynamic with Stimulus values
           this.element.innerHTML = data.inserted_item
         }
-        this.formTarget.outerHTML = data.form
+
+        console.log(data.form)
+        this.modalTarget.outerHTML = data.form
+      })
+  }
+
+  updateBooking(event) {
+    console.log("TODO: send request in AJAX")
+    event.preventDefault();
+
+    console.log(event.currentTarget)
+
+    fetch(event.currentTarget.action, {
+      method: "PATCH", // Could be dynamic with Stimulus values
+      headers: { "Accept": "application/json" },
+      body: new FormData(event.currentTarget)
+    })
+      .then(response => response.json())
+      .then((data) => {
+        if (data.inserted_item) {
+          // beforeend could also be dynamic with Stimulus values
+          this.element.innerHTML = data.inserted_item
+        }
+        // this.formTarget.outerHTML = data.form
       })
   }
 }

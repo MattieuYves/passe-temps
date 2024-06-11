@@ -1,0 +1,4 @@
+<%= simple_form_for [booking.skill, booking], method: :patch, data: { insert_in_list_target: "refuse", action: "submit->insert-in-list#updateBooking" } do |f| %>
+                <%= f.input :status, as: :hidden, input_html: { value: 'rejected' }, wrapper: :inline_form %>
+                <%= f.button :submit, 'Reject', class: 'my-0 py-0', data: { turbo_confirm: "Do you want to refuse this booking?" } %>
+              <% end %>

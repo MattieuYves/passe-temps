@@ -1,9 +1,9 @@
 
 <% if current_user.bookings.where('start_date < ?', Date.today).count == 0 %>
-  <h1>Pas de cours</h1>
+  <p class="mt-5">Pas d'historique de cours suivis pour le moment</p>
 <% else %>
 
-  <h3 class="pt-4">💼 Mes cours terminés</h3>
+  <h3 class="pt-4">💼 Mes cours passés</h3>
 
   <table class="table table-hover bg-transparent">
     <thead>
