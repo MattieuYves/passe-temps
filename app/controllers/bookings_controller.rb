@@ -16,11 +16,12 @@ class BookingsController < ApplicationController
     @booking.token_cost = 1
     @booking.duration = 3600
     @booking.content = "This is a test"
-    @booking.status = "en attente"
+    @booking.status = "pending"
     @booking.session_format = "video"
     @booking.end_date = @booking.start_date + @booking.duration
+    # raise
     if current_user.token == 0
-      redirect to_dashboard_path, notice: "Vous n'avez pas assez de crédit pour réserver ce cours !"
+      redirect_to dashboard_path, notice: "Vous n'avez pas assez de crédit pour réserver ce cours !"
     else
       if @booking.save
         current_user.update(token: current_user.token - 1)

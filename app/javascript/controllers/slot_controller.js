@@ -10,15 +10,16 @@ export default class extends Controller {
   }
 
   updateList() {
+    this.date = this.dateTarget.value
     const url = `/skills/${this.idValue}?date=${this.dateTarget.value}`
     fetch(url, {headers: {"Accept": "application/json"}})
-      .then(response => response.json())
-      .then((data) => {
-        this.listTarget.classList.remove("d-none")
-        this.listTarget.innerHTML = data.list
-      })
+    .then(response => response.json())
+    .then((data) => {
+      this.listTarget.classList.remove("d-none")
+      this.listTarget.innerHTML = data.list
+    })
   }
-
+  
   fillInput(event) {
     // this.radio = this.radioTargets.find((el) => {
     //   return el === event.currentTarget
@@ -29,7 +30,7 @@ export default class extends Controller {
     })
     
     this.label.previousElementSibling.checked = true
-    this.dateTarget.value += ` ${this.label.previousElementSibling.value}`
+    this.dateTarget.value = this.date + ` ${this.label.previousElementSibling.value}`
 
     if (this.label.previousElementSibling.checked === true) {
       this.labelTargets.forEach((element) => {

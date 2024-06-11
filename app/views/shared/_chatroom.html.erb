@@ -1,7 +1,8 @@
 <div class="inbox-chat" data-controller="close-icon" data-close-icon-target="inboxChat">
   <div class="inbox-header" data-action="click->close-icon#toggle">
+    <% other_user = chatroom.booking.other_user(current_user) %>
     <p>
-      <%= chatroom.booking.user.first_name.capitalize %> <%= chatroom.booking.user.last_name.capitalize %> - <%= chatroom.booking.start_date.strftime("%d/%m/%Y") %>
+      <%= other_user.first_name.capitalize %> <%= other_user.last_name.capitalize %> - <%= chatroom.booking.start_date.strftime("%d/%m/%Y") %>
       <% unread_count = chatroom.unread_messages_count_for(current_user) %>
       <% if unread_count > 0 %>
         <div class="unread-indicator" data-close-icon-target="unreadCount">
@@ -9,7 +10,7 @@
         </div>
       <% end %>
     </p>
-    <div class="inbox-options" data-action="click->close-icon#close">
+    <div class="inbox-options close-cross" data-action="click->close-icon#close">
       <i class="fa-solid fa-xmark"></i>
     </div>
   </div>
