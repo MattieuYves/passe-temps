@@ -1,0 +1,4 @@
+<%= simple_form_for [booking.skill, booking], method: :patch, data: { insert_in_list_target: "accept", action: "submit->insert-in-list#updateBooking" } do |f| %>
+  <%= f.input :status, as: :hidden, input_html: { value: 'confirmed' }, wrapper: :inline_form %>
+  <%= f.button :submit, 'Accept', class: "my-0 py-0 rounded-pill", data: { turbo_confirm: "Do you accept this booking?" }, style:"background-color:#0bb7bc" %>
+<% end %>

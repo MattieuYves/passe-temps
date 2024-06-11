@@ -20,7 +20,7 @@
     </thead>
     <tbody>
   <% current_user.bookings.reverse.each_with_index do |booking, index| %>
-    <% if Date.today > booking.start_date && (booking.status == "confirmed" || booking.status == "pending") %>
+    <% if (Date.today > booking.start_date && booking.status == "confirmed") || (Date.today > booking.start_date && booking.status == "pending") %>
         <div>
           <tr data-controller="table-links" value="<%= booking_path(booking) %>" data-action="click->table-links#show" data-table-links-target="link">
             <th scope="row", class="bg-transparent"><%= index + 1 %></th>

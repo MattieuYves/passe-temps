@@ -49,24 +49,27 @@ class BookingsController < ApplicationController
   def update
     @booking = Booking.find(params[:id])
 
+    @skill = Skill.new
 
-    if @booking.update(booking_params)
-      case @booking.status
-      when "confirmed"
-        redirect_to dashboard_path, notice: "Bravo! Vous venez d'accepter une nouvelle réservation ! 🤑"
-        current_user.update(token: current_user.token + 1)
-      when "rejected"
-        redirect_to dashboard_path, notice: "La demande de réservation a été refusée 😩"
-        @booking.user.update(token: @booking.user.token - 1)
+    respond_to do |format|
+      if @booking.update(booking_params)
+        if @booking.status == "confirmed"
+          current_user.update(token: current_user.token + 1)
+          format.html { redirect_to booking_path(@booking), notice: "Bravo ! Vous venez d'accepeter un cours et de gagner un token" }
+          format.json # Follows the classic Rails flow and look for a create.json view
+        elsif @booking.status == "rejected"
+          @booking.user.update(token: @booking.user.token + 1)
+          format.html { redirect_to booking_path(@booking), notice: "Vous venez de refuser une demande de cours" }
+          format.json # Follows the classic Rails flow and look for a create.json view
+        end
       else
-        redirect_to dashboard_path, alert: "Tentative de mise à jour du statut non valide."
+        flash.now[:alert] = @booking.errors.full_messages.to_sentence
+        @skills = current_user.skills
+        @my_bookings = Booking.where(skill: @skills)
+        @bookings = current_user.bookings
+        format.html { render "pages/dashboard", status: :unprocessable_entity, alert: "Votre tentative de modification échouée" }
+        format.json # Follows the classic Rails flow and look for a create.json view
       end
-    else
-      flash.now[:alert] = @booking.errors.full_messages.to_sentence
-      @skills = current_user.skills
-      @my_bookings = Booking.where(skill: @skills)
-      @bookings = current_user.bookings
-      render 'pages/dashboard', status: :unprocessable_entity
     end
   end
 
