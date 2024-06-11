@@ -52,12 +52,12 @@ class BookingsController < ApplicationController
 
     if @booking.update(booking_params)
       case @booking.status
-      when "confirmée"
+      when "confirmed"
         redirect_to dashboard_path, notice: "Bravo! Vous venez d'accepter une nouvelle réservation ! 🤑"
         current_user.update(token: current_user.token + 1)
-      when "refusée"
+      when "rejected"
         redirect_to dashboard_path, notice: "La demande de réservation a été refusée 😩"
-        booking.user.update(token: booking.user.token - 1)
+        @booking.user.update(token: @booking.user.token - 1)
       else
         redirect_to dashboard_path, alert: "Tentative de mise à jour du statut non valide."
       end

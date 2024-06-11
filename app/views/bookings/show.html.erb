@@ -10,15 +10,15 @@
  <!--REJECT OR ACCEPT PENDING BOOKING-->
 
 <div>
-<% if @booking.status == "En attente" && @booking.skill.user == current_user  %>
+<% if @booking.status == "pending" && @booking.skill.user == current_user  %>
 
   <%= simple_form_for [@booking.skill, @booking], method: :patch do |f| %>
-    <%= f.input :status, as: :hidden, input_html: { value: 'confirmée' } %>
+    <%= f.input :status, as: :hidden, input_html: { value: 'confirmed' } %>
     <%= f.button :submit, 'Accepter', class: "btn btn-primary rounded-5", data: { turbo_confirm: "Voulez-vous accepter cette réservation?" } %>
   <% end %>
 
   <%= simple_form_for [@booking.skill, @booking], method: :patch do |f| %>
-    <%= f.input :status, as: :hidden, input_html: { value: 'rejectée' } %>
+    <%= f.input :status, as: :hidden, input_html: { value: 'rejected' } %>
     <%= f.button :submit, 'Refuser', class: 'btn btn-warning rounded-5 text-light', data: { turbo_confirm: "Voulez-vous refuser cette réservation?" } %>
   <% end %>
 <% end %>
