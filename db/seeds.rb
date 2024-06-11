@@ -112,7 +112,8 @@ Skill.create!(
   name: activite_aleatoire,
   goal: goal.sample,
   experience_year: rand(1..20),
-  user: mattieu_user
+  user: mattieu_user,
+  icon: activites_avec_icones[categorie_aleatoire]["icon"]
 )
 
 categorie_aleatoire = activites_avec_icones.keys.sample
@@ -122,7 +123,8 @@ Skill.create!(
   name: activite_aleatoire,
   goal: goal.sample,
   experience_year: rand(1..20),
-  user: jean_user
+  user: jean_user,
+  icon: activites_avec_icones[categorie_aleatoire]["icon"]
 )
 
 
@@ -173,7 +175,8 @@ Skill.create!(
       name: activite_aleatoire,
       goal: goal.sample,
       experience_year: rand(1..20),
-      user: user
+      user: user,
+      icon: activites_avec_icones[categorie_aleatoire]["icon"]
     )
   end
 
