@@ -1,27 +1,25 @@
 <% if user_signed_in? && current_user.id == @skill.user_id %>
   <p><strong>You cannot reserve your own course</strong></p>
 <% else %>
-  <h1><%= @skill.name %></h1>
-  <p><%= @skill.category %></p>
-  <p>Ideal for: <%= @skill.goal %></p>
+
 
   <div class="reviews">
   </div>
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button>
 
-  <div class="d-flex justify-content-between">
-    <div class="category-pill-show btn btn-light mb-3 rounded-5"><%= @skill.category.capitalize %></div>
-    <div class=""><%= link_to "Book me!", new_skill_booking_path(@skill), class:"btn btn-secondary rounded-5 px-3", style:"" %></div>
-  </div>
+
 
   <div class="row">
     <h1 class="title-show fw-bolder col-12">Cours de <%= @skill.name %></h1>
     <h2 class="title-show fw-bolder col-12 mb-3"><%= @skill.goal %></h2>
   </div>
 
+  <div class="d-flex justify-content-between">
+    <div class="category-pill-show btn btn-light mb-3 rounded-5"><%= @skill.category.capitalize %></div>
+    <button type="button" class="btn btn-secondary rounded-5 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Réserver maintenant !
+    </button>
+  </div>
   <div class="card-product mb-5">
     <div class="teacher-show col-12" style="margin-left: 8px;height:90%; width: 200px; background-image: url('<%= @skill.user.photo.attached? ? cl_image_path(@skill.user.photo.key) : "https://images.unsplash.com/photo-1610429419519-8cdee5a8e615?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHBpYW5pc3RlfGVufDB8fDB8fHww" %>')">
     </div>
@@ -48,7 +46,9 @@
   </div>
 
   <div class="d-flex justify-content-center mt-5">
-    <div class=""><%= link_to "Book my course!", new_skill_booking_path(@skill), class:"btn btn-secondary rounded-5 px-5 fs-2", style:"" %></div>
+    <button type="button" class="btn btn-secondary rounded-5 px-5 fs-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Réserver maintenant !
+    </button>
   </div>
 
   <!-- Modal -->

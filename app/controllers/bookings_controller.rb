@@ -19,7 +19,6 @@ class BookingsController < ApplicationController
     @booking.status = "pending"
     @booking.session_format = "video"
     @booking.end_date = @booking.start_date + @booking.duration
-    # raise
     if current_user.token == 0
       redirect_to dashboard_path, notice: "Vous n'avez pas assez de crédit pour réserver ce cours !"
     else
