@@ -1,28 +1,22 @@
 <div class="container-wrap">
-    <div class="card-display-content scrollbar-custom width-60">
-        <div class="d-flex force-overflow justify-content-center">
-            <h1>Professeurs</h1>
-        </div>
-        <%= render "shared/searchbar" %>
-        <div class="index-card">
-            <% if @users.any? %>
-                <% @users.each do |user| %>
-                <%= render "shared/card", user: user %>
-            <% end %>
-            <% else %>
-                <p>Aucun professeur trouvé.</p>
-            <% end %>
-        </div>
+  <div class="card-display-content scrollbar-custom width-60">
+    <div class="d-flex force-overflow justify-content-center">
+        <h1>Professeurs</h1>
     </div>
-    <%# <div class="maps width-40"> %>
-      <div class="maps " style="width: 30%; height: 600px;"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-    <%# </div> %>
+    <%= render "shared/searchbar" %>
+    <div class="index-card">
+        <% if @users.any? %>
+            <% @users.each do |user| %>
+            <%= render "shared/card", user: user %>
+        <% end %>
+        <% else %>
+            <p>Aucun professeur trouvé.</p>
+        <% end %>
+    </div>
+  </div>
+  <div class="maps " style="width: 30%; height: 550px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
 </div>
-
-<%# <div class="scrollbar-custom" id="style-2">
-      <div class="force-overflow"></div>
-    </div> %>
