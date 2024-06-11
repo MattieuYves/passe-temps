@@ -31,7 +31,6 @@ export default class extends Controller {
   }
 
   updateBooking(event) {
-    console.log("TODO: send request in AJAX")
     event.preventDefault();
 
     console.log(event.currentTarget)
