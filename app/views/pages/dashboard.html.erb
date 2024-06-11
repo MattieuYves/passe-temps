@@ -17,9 +17,10 @@
 
     <% if current_user.skills.count > 0 %>
 
+      <div data-controller="insert-in-list">
+        <%= render "shared/bookings_teacher" %>
+      </div>
 
-
-      <%= render "shared/bookings_teacher" %>
     <%end%>
   </div>
 </div>
