@@ -6,7 +6,7 @@
   <div class="booking-status rounded-pill px-2 text-light <%= @booking.status == 'pending' ? 'orange' : (@booking.status == 'confirmed' ? 'green' : 'red') %>"">
     <%= @booking.status.capitalize %>
   </div>
-  <h3 class="show-book-h3">Le <%= @booking.start_date.strftime("%d/%m/%Y") %> à <%= @booking.start_date.strftime("%I:%M%p") %></h3>
+  <h3 class="show-book-h3">Le <%= @booking.start_date.strftime("%d/%m/%Y") %> à <%= @booking.start_date.strftime("%R") %></h3>
 
   <div class="show-book-div">
     <h5 class="show-book-h5 ">Le contenu de votre réservation:</h5>
