@@ -1,0 +1,12 @@
+.search-by-category-container{
+  background-color: $light-green;
+  border-radius: 18px;
+  width: fit-content;
+  .search-by-category-item:hover{
+    border-radius: 18px;
+    background-color: $green;
+  }
+}
+.search-by-category-item{
+  font-size: 17px;
+}
