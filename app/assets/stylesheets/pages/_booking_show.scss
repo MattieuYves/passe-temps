@@ -1,0 +1,66 @@
+.img-book {
+  background-size: cover; 
+  background-position: center; 
+  height: 30vh; 
+  width: 100%;
+  margin-bottom: 2%;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+}
+
+.show-book-h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.booking-status{
+  font-size: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.orange {
+  background-color: $orange; 
+}
+
+.green {
+  background-color: $green; 
+}
+
+.red {
+  background-color: $red;
+}
+
+.show-book-h3 {
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.show-book-h5 {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.show-book-div {
+  margin: 20px;
+  padding: 20px;
+  background-color: $ultra-light-green;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+  overflow: hidden; 
+}
+
+  .show-book-p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
