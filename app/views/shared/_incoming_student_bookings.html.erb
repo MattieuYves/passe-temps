@@ -6,7 +6,7 @@
 
 <% if current_user.bookings.where('start_date >= ?', Date.today).count == 0 %>
   <p>Vous n'avez pas de réservation pour le moment. Trouvez un professeur à réserver !</p>
-  <%= link_to "Trouver votre professeur!", skills_path, class:"btn btn-secondary rounded-5" %>
+  <%= link_to "Je trouve mon futur professeur !", skills_path, class:"btn btn-secondary rounded-5" %>
 <% else %>
 
   <table class="table table-hover bg-transparent">

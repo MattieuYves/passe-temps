@@ -41,7 +41,7 @@
     </div>
     <div class="box-show d-flex flex-column justify-content-center">
       <%= image_tag "cours-en-ligne.png", class:"image-box d-flex position-relative top-0 start-50 translate-middle-x" %>
-      <p class="d-flex justify-content-center info-box">Cours en <%= @skill.user.bookings.last.session_format %> !</p>
+      <p class="d-flex justify-content-center info-box">Cours en <%= @skill.user.bookings.last&.session_format %> !</p>
     </div>
   </div>
 
