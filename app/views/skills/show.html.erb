@@ -41,7 +41,7 @@
   </div>
   <div class="box-show d-flex flex-column align-items-center justify-content-center">
     <%= image_tag "cours-en-ligne.png", class:"image-box" %>
-    <p class="info-box px-3 pb-3 text-center">Cours en <%= @skill.user.bookings.last&.session_format %> !</p>
+    <p class="info-box px-3 pb-3 text-center">Cours en <%= @skill.user.bookings.last&.session_format.presence || "Physique" %> !</p>
   </div>
 </div>
 

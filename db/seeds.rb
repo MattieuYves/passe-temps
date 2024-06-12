@@ -28,11 +28,12 @@ mattieu_user = User.create!(
   age: 23,
   genre: 'Homme',
   bio: "Salut ! Je m'appelle Mattieu, j'ai appris le travail du bois auprès de mon grand-père et depuis je n'ai plus arrêté. Transmettre cet héritage est mon plus grand plaisir ! Récemment j'ai entendu Mistral Gagnant et j'ai A-DO-RÉ ! J'ai vraiment envie d'apprendre à le jouer au piano.",
-  city: 'Saint-Germain-en-Laye',
+  address: "2 Rue du Faubourg du Temple, 75010 Paris",
+  city: 'Paris',
   area: 1,
   token: 5,
-  latitude: 48.7876,
-  longitude: 2.4089
+  latitude: 48.867742,
+  longitude: 2.3647827
 )
 jean_user = User.create!(
   email: 'jean@example.com',
@@ -42,11 +43,12 @@ jean_user = User.create!(
   age: 26,
   genre: 'Homme',
   bio: "Bonjour moi c'est Jeanot ! Passioné de piano depuis mon enfance, j'aime transmettre ma passion. Je suis également très curieux et souhaite acquérir des compétences en menuiserie.",
-  city: 'Homme',
+  address: "11-3 Rue Jean-Baptiste Dumay, 75020 Paris",
+  city: 'Paris',
   area: 1,
   token: 5,
-  latitude: 48.7876,
-  longitude: 2.4089
+  latitude: 48.8738989,
+  longitude: 2.3879974
 )
 
 file = URI.open("https://images.unsplash.com/photo-1610429419519-8cdee5a8e615?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHBpYW5pc3RlfGVufDB8fDB8fHww")
@@ -105,26 +107,26 @@ activites_avec_icones = {
   }
 }
 
-categorie_aleatoire = activites_avec_icones.keys.sample
-activite_aleatoire = activites_avec_icones[categorie_aleatoire]["activities"].sample
+# categorie_aleatoire = activites_avec_icones.keys.sample
+# activite_aleatoire = activites_avec_icones[categorie_aleatoire]["activities"].sample
 Skill.create!(
-  category: categorie_aleatoire,
-  name: activite_aleatoire,
+  category: "Art",
+  name: "Photographie",
   goal: goal.sample,
   experience_year: rand(1..20),
   user: mattieu_user,
-  icon: activites_avec_icones[categorie_aleatoire]["icon"]
+  icon: "🎨"
 )
 
-categorie_aleatoire = activites_avec_icones.keys.sample
-activite_aleatoire = activites_avec_icones[categorie_aleatoire]["activities"].sample
+# categorie_aleatoire = activites_avec_icones.keys.sample
+# activite_aleatoire = activites_avec_icones[categorie_aleatoire]["activities"].sample
 Skill.create!(
-  category: categorie_aleatoire,
-  name: activite_aleatoire,
+  category: "Musique",
+  name: "Piano",
   goal: goal.sample,
   experience_year: rand(1..20),
   user: jean_user,
-  icon: activites_avec_icones[categorie_aleatoire]["icon"]
+  icon: "🎵"
 )
 
 
@@ -141,8 +143,20 @@ Skill.create!(
 
 
 
-  # Create 10 Users
+# Create 10 Users
+addresses = [
+  { address: '52 Avenue des Champs-Elysees, Paris', latitude: 48.8706807, longitude: 2.3062104 },
+  { address: '17 Passage Duhesme, Paris', latitude: 48.8959605, longitude: 2.3480738 },
+  { address: '2 Impasse Delaunay, Paris', latitude: 48.8551397, longitude: 2.3860662 },
+  { address: '61 Rue Bichat, Paris', latitude: 48.8732908, longitude: 2.3654808 },
+  { address: '39 Rue de Babylone, Paris', latitude: 48.8516502, longitude: 2.3193309 },
+  { address: '6 Rue Barthélemy, Paris', latitude: 48.8460169, longitude: 2.310151 },
+  { address: '1 Rue Curnonsky, Paris', latitude: 48.8910696, longitude: 2.297456 },
+]
+
   user = 30.times.map do |i|
+    address = addresses.sample
+
     user = User.create!(
       email: Faker::Internet.unique.email,
       password: 'password',
@@ -154,7 +168,9 @@ Skill.create!(
       city: Faker::Address.city,
       area: rand(1..10),
       token: rand(1..5),
-      address: ['52 Avenue des Champs-Elysees, Paris', '17 Passage Duhesme, Paris', '2 Impasse Delaunay, Paris', '61 Rue Bichat, Paris', '39 Rue de Babylone, Paris', ' 6 Rue Barthélemy, Paris', '1 Rue Curnonsky, Paris'].sample
+      address: address[:address],
+      latitude: address[:latitude],
+      longitude: address[:longitude],
     )
 
     # file = URI.open(user_img[i])
@@ -202,15 +218,15 @@ puts "creating bookings (et par extension les chatrooms)"
     )
 end
 
-    # Create 10 Messages
-    User.all.each do |user|
-      bio = "Bonjour moi c'est #{user.first_name} ! Passioné.e de #{user.skills.first.name} depuis mon enfance, j'aime transmettre ma passion."
-      booking = user.bookings.last
-      if booking
-        bio += " Je suis également très curieux.se et souhaite acquérir des compétences en #{booking.skill.name}."
-      end
-      user.update!(bio: bio)
-    end
+# Create 10 Messages
+User.where.not(id: [mattieu_user.id, jean_user.id]).each do |user|
+  bio = "Bonjour moi c'est #{user.first_name} ! Passioné.e de #{user.skills.first.name} depuis mon enfance, j'aime transmettre ma passion."
+  booking = user.bookings.last
+  if booking
+    bio += " Je suis également très curieux.se et souhaite acquérir des compétences en #{booking.skill.name}."
+  end
+  user.update!(bio: bio)
+end
 
 puts "bookings created, with its chatrooms"
 

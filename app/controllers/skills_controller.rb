@@ -5,9 +5,9 @@ class SkillsController < ApplicationController
   def index
     @skills = Skill.all
     if params[:query].present?
-      # sql_subquery = "name ILIKE :query OR category ILIKE :query"
-      # @skills = @skills.where(sql_subquery, query: "%#{params[:query]}%")
-      @users = User.joins(:skills).where(skills: {name: params[:query]})
+      sql_subquery = "skills.name ILIKE :query OR skills.category ILIKE :query"
+      @users = User.joins(:skills).where(sql_subquery, query: "%#{params[:query]}%")
+      # @users = User.joins(:skills).where(skills: {name: params[:query]})
     elsif params[:category].present?
       @users = User.joins(:skills).where(skills: {category: params[:category]})
     else
