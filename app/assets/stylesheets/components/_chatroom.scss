@@ -48,7 +48,7 @@
     border-bottom-left-radius: 8px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    padding: 0;
+    padding-left: 10px;
     margin: 0;
     border: 1px solid #ced4da;
     height: 40px; /* Assure que l'input occupe toute la hauteur */
@@ -56,19 +56,27 @@
 
   .custom-submit {
     margin-left: 0; /* Pas d'espace entre l'input et le bouton */
-    padding: 0.5rem 1rem;
     border: none;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 8px;
-    background-color: #007bff;
+    background-color: #093943;
     color: white;
     cursor: pointer;
     height: 100%; /* Assure que le bouton occupe toute la hauteur */
   }
 
   .custom-submit:hover {
-    background-color: #0056b3;
+    background-color: $ultra-dark-green;
+  }
+}
+
+.fa-xmark {
+  padding: 5px 10px 5px 10px;
+
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.5); // $gray-200 with 50% opacity
+    border-radius: 8px;
   }
 }
