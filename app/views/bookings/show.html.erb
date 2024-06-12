@@ -1,12 +1,18 @@
-<h1>Ma réservation le <%= @booking.start_date.strftime("%d/%m/%Y") %> avec <%= @booking.skill.user.first_name %>, à <%= @booking.start_date.strftime("%I:%M%p") %></h1>
-
-<h4> Votre demande de réservation est: <strong><%= @booking.status %></strong></h4>
-
-<div>
-  <p class="fs-4">Le contenu de votre réservation<%= @booking.skill.user.first_name %>:</p>
-  <p><%= @booking.content %></p>
+<div class="img-book" style="background-image: url(<%= asset_url "#{@booking.skill.category}.jpg" %>)">
 </div>
 
+<div>
+  <h1 class="show-book-h1"> Mon cours de <%= @booking.skill.name %> avec <%= @booking.skill.user.first_name %></h1>
+  <div class="booking-status rounded-pill px-2 text-light <%= @booking.status == 'pending' ? 'orange' : (@booking.status == 'confirmed' ? 'green' : 'red') %>"">
+    <%= @booking.status.capitalize %>
+  </div>
+  <h3 class="show-book-h3">Le <%= @booking.start_date.strftime("%d/%m/%Y") %> à <%= @booking.start_date.strftime("%I:%M%p") %></h3>
+
+  <div class="show-book-div">
+    <h5 class="show-book-h5 ">Le contenu de votre réservation:</h5>
+    <p class="show-book-p"><%= @booking.content %></p>
+  </div>
+</div>
  <!--REJECT OR ACCEPT PENDING BOOKING-->
 
 <div>
