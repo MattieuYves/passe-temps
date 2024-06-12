@@ -1,7 +1,7 @@
 <div class="inbox-wrapper" id="inbox-wrapper">
   <div class="inbox-links" data-controller="chat">
-    <p>Inbox</p>
-    <% unless @chatrooms.nil? %>
+<i class="fa-solid fa-comments"></i> 
+   <% unless @chatrooms.nil? %>
         <% @chatrooms.each do |chatroom| %>
           <div data-action="click->chat#reveal" class="inbox-link" data-chat-id="<%= chatroom.id %>">
             <div class="inbox-avatar">
