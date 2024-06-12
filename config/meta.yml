@@ -1,0 +1,5 @@
+meta_product_name: "Passe Temps"
+meta_title: "Passe Temps - Découvre une passion !"
+meta_description: "Passe Temps est la nouvelle plateforme mettant en relation enseignants passionnés et apprenants motivés via l'échange de crédits fournis initialement par l'application. Dispense un cours et gagne un crédit ; suis un cours et dépense le !"
+meta_image: "passe-temps-meta.jpg" # should exist in `app/assets/images/`
+twitter_account: "@passe_temps" # required for Twitter Cards
