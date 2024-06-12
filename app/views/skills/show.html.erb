@@ -16,8 +16,8 @@
 
   <div class="d-flex justify-content-between">
     <div class="category-pill-show btn btn-light mb-3 rounded-5"><%= @skill.category.capitalize %></div>
-    <button type="button" class="btn btn-secondary rounded-5 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Réserver maintenant !
+    <button type="button" class="btn btn-secondary rounded-5 px-4 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Réservez maintenant !
     </button>
   </div>
   <div class="card-product mb-5">
@@ -25,31 +25,33 @@
     </div>
     <div class="card-product-infos">
       <p class="fs-2 col-12"><%= @skill.user.first_name %> <%= @skill.user.last_name %>, <%= @skill.user.age %> ans</p>
-      <p class="col-12"><%= @skill.category.capitalize %></p>
       <p class="col-12"><%= @skill.user.bio %></p>
+      <p class="col-12">Niveau localisation, mes cours sont dispensés au <%= @skill.user.address %>. Si vous n'êtes pas en mesure de vous rendre sur place, je suis enclin à dispenser les cours à distance.</p>
     </div>
   </div>
 
-  <div class="d-flex justify-content-between">
-    <div class="box-show d-flex flex-column justify-content-center">
-      <%= image_tag "trophee-de-la-coupe.png", class:"image-box d-flex position-relative top-0 start-50 translate-middle-x" %>
-      <p class="d-flex justify-content-center info-box"><%= @skill.user.bookings.count %> cours dispensés</p>
-    </div>
-    <div class="box-show d-flex flex-column justify-content-center">
-      <%= image_tag "professeur.png", class:"image-box d-flex position-relative top-0 start-50 translate-middle-x" %>
-      <p class="d-flex justify-content-center info-box"><%= @skill.experience_year %> <%= (@skill.experience_year > 1) ? "années" : "année" %> d'expérience</p>
-    </div>
-    <div class="box-show d-flex flex-column justify-content-center">
-      <%= image_tag "cours-en-ligne.png", class:"image-box d-flex position-relative top-0 start-50 translate-middle-x" %>
-      <p class="d-flex justify-content-center info-box">Cours en <%= @skill.user.bookings.last&.session_format %> !</p>
-    </div>
+<div class="d-flex justify-content-evenly">
+  <div class="box-show d-flex flex-column align-items-center justify-content-center">
+    <%= image_tag "trophee-de-la-coupe.png", class:"image-box" %>
+    <p class="info-box px-3 pb-3 text-center"><%= @skill.user.bookings.count %> cours dispensés</p>
   </div>
+  <div class="box-show d-flex flex-column align-items-center justify-content-center">
+    <%= image_tag "professeur.png", class:"image-box" %>
+    <p class="info-box px-3 pb-3 text-center"><%= @skill.experience_year %> <%= (@skill.experience_year > 1) ? "années" : "année" %> d'expérience</p>
+  </div>
+  <div class="box-show d-flex flex-column align-items-center justify-content-center">
+    <%= image_tag "cours-en-ligne.png", class:"image-box" %>
+    <p class="info-box px-3 pb-3 text-center">Cours en <%= @skill.user.bookings.last&.session_format %> !</p>
+  </div>
+</div>
 
-  <div class="d-flex justify-content-center mt-5">
-    <button type="button" class="btn btn-secondary rounded-5 px-5 fs-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Réserver maintenant !
+
+
+<!--  <div class="d-flex justify-content-center mt-3 book-btn">
+    <button type="button" class="btn btn-secondary rounded-5 px-3 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Réservez maintenant !
     </button>
-  </div>
+  </div>-->
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -67,7 +69,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <%= f.submit "Réserver maintenant !", class: "create-booking", data: { bs_dismiss: 'modal' } %>
+            <%= f.submit "Réservez maintenant !", class: "create-booking", data: { bs_dismiss: 'modal' } %>
           <% end %>
         </div>
       </div>
