@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_one_attached :photo
 
   geocoded_by :address
-  after_validation :geocode, if: :will_save_change_to_address?
+  after_validation :geocode, if: :geocoding_needed?
 
   scope :skilled_users, -> { joins(:skills).distinct }
 
@@ -26,4 +26,13 @@ class User < ApplicationRecord
       .order("bookings.start_date DESC")
   end
 
+  private
+
+  def geocoding_needed?
+    if persisted?
+      will_save_change_to_address?
+    else
+      latitude.nil? || longitude.nil?
+    end
+  end
 end
