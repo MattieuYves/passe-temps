@@ -7,7 +7,7 @@
 }
 
 .title-show {
-  font-size: 72px;
+  font-size: 54x;
 }
 
 .card-product {
@@ -44,24 +44,34 @@
 }
 
 .box-show {
-height: 300px;
-width:300px;
+height: 150px;
+width:150px;
 background-color: $light-green;
 border-radius: 8px;
 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+text-align: center;
 }
 
 .image-box {
-  height: 180px;
-  width:180px;
+  height: 100px;
+  width:100px;
   filter: opacity(0.8);
   justify-content: center;
+  position: relative;
+  top: -20px;
+  display: block;
+  margin: 0 auto;
 }
 
 .info-box{
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.4;
   opacity: .7;
   margin-bottom: 0;
   padding-top: 10px;
+  text-align: center;
+}
+
+.book-btn {
+  z-index: 1000;
 }
