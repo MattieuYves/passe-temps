@@ -4,78 +4,79 @@
     <h1>PASSE TEMPS</h1>
     <p class="text-white">Trouvez votre nouvelle passion</p>
     <%= render "shared/searchbar" %>
-  <div>
-    <%= render "shared/search_by_category_carousel" %>
-  </div>
+    <div>
+      <%= render "shared/search_by_category_carousel" %>
+    </div>
   </div>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="chevron-down mb-3">
     <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/>
   </svg>
 </div>
 
-
 <div class="home-bottom-part my-5">
-  <div class="col-12 d-flex align-items-center py-3">
-    <div>
-      <h2 class="pb-2 futura-h2">PROBLÈME</h2>
-      <p>
-        Le E-learning ne vous convient pas, plus ou pas complètement ?
-        Vous en avez marre d'apprendre depuis votre lit/bureau/table à manger ?
-        Payer n'est pas une option ?
-        Passe-Temps c'est LA solution !
-        Vous êtes Étudiant sur les compétences que vous souhaitez acquérir
-        Vous êtes Prof sur les compétences que vous maitrisez
-      </p>
+    <div class="concept-card-title">
+      <h2 class="pb-2 futura-h2">Comment ça marche ?</h2>
     </div>
-  </div>
 
-  <div class="col-12 d-flex align-items-center py-3">
-    <div>
-      <h2 class="pb-2 futura-h2">PRÉSENTATION</h2>
+  <div class="concept-card-container">
+    <div class="concept-card">
+      <%= image_tag 'undraw_learning_sketching_nd4f (1).svg', alt: 'learning sketching' %>
+      <h2 class="pb-2 futura-h2">1. Partagez</h2>
       <p>
         Passe-Temps est une association qui vous permet d'apprendre tout ce que vous souhaitez avec un humain en face, le tout gratuitement !*
-        *Oui l'hébergement, la maintenance et l'animation de la communauté ont un coût incompressible on vous demande donc une cotisation, plus d'info ici
+      </p>
+    </div>
+
+        <div class="concept-card">
+      <%= image_tag 'undraw_bitcoin_p2p_re_1xqa.svg', alt: 'bitcoin' %>
+      <h2 class="pb-2 futura-h2">2. Gagnez</h2>
+      <p>
+        Passe-Temps est une association qui vous permet d'apprendre tout ce que vous souhaitez avec un humain en face, le tout gratuitement !*
+      </p>
+    </div>
+
+        <div class="concept-card">
+      <%= image_tag 'undraw_road_to_knowledge_m8s0 (1).svg', alt: 'road to knowledge' %>
+      <h2 class="pb-2 futura-h2">3. Apprenez</h2>
+      <p>
+        Passe-Temps est une association qui vous permet d'apprendre tout ce que vous souhaitez avec un humain en face, le tout gratuitement !*
       </p>
     </div>
   </div>
 
-  <div class="col-12 d-flex align-items-center py-3 align-left" data-aos="fade-right">
-    <%= image_tag 'undraw_learning_sketching_nd4f.svg', alt: 'Learning Sketching', class: 'img-fluid me-3' %>
-    <div>
-      <h2 class="pb-2 futura-h2">Partagez vos compétences</h2>
+  <div class="review-card-container">
+    <h2 class="pb-2 futura-h2">Testé et approuvé</h2>
+    <div class="review-card">
       <p>
-        Offrez votre expertise et enseignez vos connaissances à d'autres utilisateurs.
+        Passe-Temps est une association qui vous permet d'apprendre tout ce que vous souhaitez avec un humain en face, le tout gratuitement !*
       </p>
     </div>
   </div>
 
-  <div class="col-12 d-flex align-items-center py-3 align-right" data-aos="fade-left">
-    <div>
-      <h2 class="pb-2 futura-h2">Gagnez des crédits</h2>
+  <div class="why-card-title">
+    <h2 class="pb-2 futura-h2">Pourquoi Passe-Temps ?</h2>
+  </div>
+  <div class="why-card-container d-flex justify-content-center">
+    <div class="why-card">
+      <h2 class="pb-2 futura-h2">Raison 1</h2>
       <p>
-        Recevez des crédits pour chaque session d'enseignement que vous effectuez.
+        Passe-Temps est une association qui vous permet d'apprendre tout ce que vous souhaitez avec un humain en face, le tout gratuitement !*
       </p>
     </div>
-    <%= image_tag 'undraw_crypto_flowers_re_dyqo.svg', alt: 'crypto flowers', class: 'img-fluid ms-3' %>
+    <div class="why-card">
+      <h2 class="pb-2 futura-h2">Raison 2</h2>
+      <p>
+        Passe-Temps est une association qui vous permet d'apprendre tout ce que vous souhaitez avec un humain en face, le tout gratuitement !*
+      </p>
+    </div>
+    <div class="why-card">
+      <h2 class="pb-2 futura-h2">Raison 3</h2>
+      <p>
+        Passe-Temps est une association qui vous permet d'apprendre tout ce que vous souhaitez avec un humain en face, le tout gratuitement !*
+      </p>
+    </div>
   </div>
 
-  <div class="col-12 d-flex align-items-center py-3 align-left" data-aos="fade-right">
-    <%= image_tag 'undraw_road_to_knowledge_m8s0.svg', alt: 'Road to Knowledge', class: 'img-fluid me-3' %>
-    <div>
-      <h2 class="pb-2 futura-h2">Apprenez de nouvelles choses</h2>
-      <p>
-        Utilisez vos crédits pour suivre des cours et développer de nouvelles compétences.
-      </p>
-    </div>
-  </div>
 
-  <div class="col-12 d-flex align-items-center py-3 align-right" data-aos="fade-left">
-    <div>
-      <h2 class="pb-2 futura-h2">Échange et croissance continue</h2>
-      <p>
-        Répétez le processus pour un apprentissage et un partage infinis.
-      </p>
-    </div>
-    <%= image_tag 'undraw_blooming_re_2kc4.svg', alt: 'blooming', class: 'img-fluid ms-3' %>
-  </div>
+
 </div>
