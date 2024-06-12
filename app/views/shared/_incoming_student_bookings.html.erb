@@ -31,7 +31,7 @@
             <td class="bg-transparent"><%= booking.skill.name.capitalize %></td>
             <td class="bg-transparent"><%= booking.skill.user.first_name %></td>
             <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
-            <td class="bg-transparent"><%= booking.start_date.strftime("%I:%M%p") %></td>
+            <td class="bg-transparent"><%= booking.start_date.strftime("%R") %></td>
             <td class="bg-transparent"><%= booking.status %></td>
             <td class="bg-transparent"><%= link_to "Afficher les détails", booking_path(booking), class:"text-decoration-none" %></td>
             <td class="bg-transparent"><%= link_to "Supprimer", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Êtes vous sûrs?" }, class:"text-decoration-none" %></td>
