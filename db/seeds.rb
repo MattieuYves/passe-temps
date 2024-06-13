@@ -288,16 +288,16 @@ end
 
 puts "bookings created, with its chatrooms"
 
-chatrooms = Chatroom.all
+# chatrooms = Chatroom.all
 
 # Create 10 Messages
-10.times do
-  Message.create!(
-    content: Faker::Lorem.sentence,
-    user: User.all.sample,
-    chatroom: chatrooms.sample
-  )
-end
+# 10.times do
+#   Message.create!(
+#     content: Faker::Lorem.sentence,
+#     user: User.all.sample,
+#     chatroom: chatrooms.sample
+#   )
+# end
 
 
 # Create 30 Reviews
