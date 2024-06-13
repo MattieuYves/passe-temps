@@ -141,7 +141,7 @@ body{
   .presentation{
     margin-top: 40px;
   }
-  
+
   .concept-card-container{
     display: flex;
   flex-direction: row;
@@ -161,25 +161,29 @@ body{
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
+      display: block;
+      margin: 0 auto;
 
 
       &:hover{
         transform: scale(1.05);
       }
     }
-    h2{
-      text-align: left;
+    h2 {
+      text-align: center;
       margin-left: 20px;
       margin-top: 5px;
+      padding-top: 20px;
+      font-size: 32px;
     }
-    p{
-      text-align: left;
+    p {
+      text-align: center;
       margin-left: 20px;
       margin-top: 5px;
     }
   }
 }
-  
+
 .why-card{
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -190,9 +194,19 @@ body{
   margin: 25px;
   padding: 25px;
 
-  
+
   &:hover{
     transform: scale(1.05);
+  }
+
+  h2 {
+    font-size:30px;
+    padding-bottom:10px;
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
   }
 }
 
@@ -203,8 +217,39 @@ body{
   margin: 25px;
 }
 
+.why-card-title {
+
+  h2 {
+    font-size: 32px;
+    justify-content: center;
+  }
+}
 
 .concept{
 display: flex;
 justify-content: center;
+}
+
+.rotate-text {
+  h2 {
+    font-size: 32px;
+    transform: rotate(1deg);
+  }
+
+  background-color: $green;
+  transform: rotate(-1deg);
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 8px;
+}
+
+.concept-card-title {
+  h2 {
+    font-size: 32px;
+  }
+}
+
+.hp-icon {
+  width: 70px;
+  height: 70px;
 }
