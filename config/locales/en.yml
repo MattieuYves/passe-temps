@@ -32,3 +32,8 @@ en:
   pending: "En attente"
   confirmed: "Confirmé"
   rejected: "Refusé"
+
+fr:
+  pending: "En attente"
+  confirmed: "Confirmé"
+  rejected: "Refusé"
