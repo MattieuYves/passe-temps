@@ -3,7 +3,9 @@
   <div class="research">
     <h1>PASSE TEMPS</h1>
     <p class="text-white">Trouvez votre nouvelle passion</p>
-    <%= render "shared/searchbar" %>
+    <div class="container">
+      <%= render "shared/searchbar" %>
+    </div>
     <div>
       <%= render "shared/search_by_category_carousel" %>
     </div>
@@ -13,32 +15,34 @@
   </svg>
 </div>
 
-<div class="home-bottom-part my-5">
+<div class="home-bottom-part my-5 mx-5">
     <div class="concept-card-title">
-      <h2 class="pb-2 futura-h2">Comment ça marche ?</h2>
+      <h2 class="pb-2 futura-h2">Comment fonctionne <div class="rotate-text text-light">Passe-Temps</div> ?</h2>
     </div>
 
   <div class="concept-card-container">
     <div class="concept-card">
       <%= image_tag 'undraw_learning_sketching_nd4f (1).svg', alt: 'learning sketching' %>
-      <h2 class="pb-2 futura-h2">1. Partagez</h2>
+      <h2 class="pb-2 futura-h2">Partagez</h2>
       <p>
-Donnez de votre temps et partagez vos connaissances avec d'autres. En enseignant des cours sur des sujets que vous maîtrisez, vous aidez la communauté à grandir tout en renforçant vos propres compétences. Que ce soit en ligne ou en personne, chaque cours que vous donnez enrichit le savoir collectif et vous place comme un acteur clé de l'éducation participative.      </p>
+Partagez vos connaissances avec d'autres et enseignez des sujets que vous maîtrisez.</p>
     </div>
 
-        <div class="concept-card">
+    <div class="concept-card">
       <%= image_tag 'undraw_bitcoin_p2p_re_1xqa.svg', alt: 'bitcoin' %>
-      <h2 class="pb-2 futura-h2">2. Gagnez</h2>
+      <h2 class="pb-2 futura-h2">Gagnez</h2>
       <p>
-Pour chaque cours que vous donnez, vous gagnez des crédits. Ces crédits sont une reconnaissance de votre engagement et de votre expertise. Accumulez-les pour débloquer de nouvelles opportunités et augmenter votre impact. Plus vous partagez, plus vous gagnez, c'est aussi simple que ça.      </p>
+1 cours dispensé = 1 crédit gagné<br>1 cours suivi = 1 crédit dépensé</p>
     </div>
 
         <div class="concept-card">
       <%= image_tag 'undraw_road_to_knowledge_m8s0 (1).svg', alt: 'road to knowledge' %>
-      <h2 class="pb-2 futura-h2">3. Apprenez</h2>
+      <h2 class="pb-2 futura-h2">Contribuez</h2>
       <p>
-Utilisez les crédits que vous avez gagnés pour suivre des cours proposés par d'autres membres de la communauté. Développez de nouvelles compétences, explorez de nouveaux domaines et continuez à grandir. Notre application vous offre un cycle continu d'apprentissage et d'enseignement, où chaque utilisateur peut être à la fois enseignant et élève.      </p>
+        Contribuez à l'essor d'un apprentissage de qualité à moindre coût aux côtés d'experts
+      </p>
     </div>
+
   </div>
 
   <%# <div class="review-card-container">
@@ -51,23 +55,33 @@ Utilisez les crédits que vous avez gagnés pour suivre des cours proposés par 
   </div> %>
 
   <div class="why-card-title">
-    <h2 class="pb-2 futura-h2">Pourquoi Passe-Temps ?</h2>
+    <h2 class="pb-2 futura-h2">Pourquoi <div class="rotate-text text-light">Passe-Temps</div> ?</h2>
   </div>
   <div class="why-card-container d-flex justify-content-center">
-    <div class="why-card">
+
+    <div class="why-card d-flex flex-column align-items-center">
       <h2 class="pb-2 futura-h2">Une communauté dynamique</h2>
       <p>
-Rejoignez une communauté où l'échange de connaissances est au cœur des interactions. En enseignant et en apprenant, vous faites partie d'un réseau actif et soutenant, dédié à l'éducation mutuelle et à la croissance personnelle.      </p>
+        Où l'échange de connaissances entre pairs est au cœur des interactions.
+      </p>
+          <%= image_tag "group-icon.png", class:"hp-icon justify-content-center" %>
     </div>
-    <div class="why-card">
+
+    <div class="why-card d-flex flex-column align-items-center">
       <h2 class="pb-2 futura-h2">Des formations variées</h2>
       <p>
-Avec les crédits que vous gagnez, vous avez accès à une multitude de cours couvrant divers domaines. Que vous souhaitiez améliorer vos compétences professionnelles, explorer de nouveaux hobbies ou approfondir vos connaissances, il y a toujours quelque chose à apprendre.      </p>
+        Les cours proposés couvrent un large éventail de sujets, adaptés à tous les niveaux.
+      </p>
+      <%= image_tag "course-icon.png", class:"hp-icon" %>
     </div>
-    <div class="why-card">
+
+    <div class="why-card d-flex flex-column align-items-center">
       <h2 class="pb-2 futura-h2">Votre temps est précieux</h2>
       <p>
-Cette application reconnaît et récompense votre investissement en temps et en savoir. En partageant vos connaissances, vous gagnez des crédits qui vous permettent de continuer à vous former. C'est une opportunité unique de transformer votre expertise en valeur tangible pour votre propre développement.      </p>
+        Nous valorisons et récompensons votre investissement en temps et en savoir.
+      </p>
+      <%= image_tag "clock-icon.png", class:"hp-icon" %>
+
     </div>
   </div>
 
