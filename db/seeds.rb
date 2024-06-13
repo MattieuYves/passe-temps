@@ -51,16 +51,16 @@ jean_user = User.create!(
   longitude: 2.3879974
 )
 
-file = URI.open("https://images.unsplash.com/photo-1610429419519-8cdee5a8e615?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHBpYW5pc3RlfGVufDB8fDB8fHww")
+file = URI.open("https://res.cloudinary.com/dev8n3mm2/image/upload/v1718269883/portrait_mattieu_jxfkdi.jpg")
 mattieu_user.photo.attach(io: file, filename: "#{mattieu_user.first_name}.jpg", content_type: "image/jpeg")
 mattieu_user.save!
 
-file = URI.open("https://images.unsplash.com/photo-1610429419519-8cdee5a8e615?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHBpYW5pc3RlfGVufDB8fDB8fHww")
+file = URI.open("https://res.cloudinary.com/dev8n3mm2/image/upload/v1718269883/portrait_jean_pnjfan.jpg")
 jean_user.photo.attach(io: file, filename: "#{jean_user.first_name}.jpg", content_type: "image/jpeg")
 jean_user.save!
 
 goal = ["découverte", "passion", "reconversion"]
-name = ["poterie", "menuiserie", "dessin", "guitare", "running", "chinois"]
+# name = ["poterie", "menuiserie", "dessin", "guitare", "running", "chinois"]
 
 puts "creating skill for test_user"
 
@@ -75,7 +75,7 @@ activites_avec_icones = {
   },
   "Musique" => {
       "icon" => "🎵",
-      "activities" => ["Guitare", "Piano", "Chant", "Batterie"]
+      "activities" => ["Guitare", "Piano", "Piano", "Piano", "Chant", "Batterie"]
   },
   "Lecture" => {
       "icon" => "📚",
@@ -151,19 +151,34 @@ addresses = [
   { address: '61 Rue Bichat, Paris', latitude: 48.8732908, longitude: 2.3654808 },
   { address: '39 Rue de Babylone, Paris', latitude: 48.8516502, longitude: 2.3193309 },
   { address: '6 Rue Barthélemy, Paris', latitude: 48.8460169, longitude: 2.310151 },
-  { address: '1 Rue Curnonsky, Paris', latitude: 48.8910696, longitude: 2.297456 },
+  { address: '57 Rue Marguerite de Rochechouart, Paris', latitude: 48.880022804275406, longitude: 2.3459845964142336 },
+  { address: '66 Rue La Fayette, Paris', latitude: 48.87567730172532, longitude: 2.3439229201617686 },
+  { address: "35 Rue du Château d'Eau, Paris", latitude: 48.871481286314314, longitude: 2.3579723852199304 },
+  { address: '42 Bd Saint-Marcel, Paris', latitude: 48.83894388173651, longitude: 2.3571411819688897 },
+  { address: '40-50 Rue Lecourbe, Paris', latitude: 48.844266, longitude: 2.307857 },
+  { address: '29-17 Rue Viala, Paris', latitude: 48.850269, longitude: 2.289599 },
+  { address: '80 Rue de la Croix Nivert, Paris', latitude: 48.84426530019471, longitude: 2.2960210387408857 },
+  { address: '84 Rue Saint-Dominique, Paris', latitude: 48.85986005019866, longitude: 2.3066979430601875 },
+  { address: '51-53 Rue Cambon, Paris', latitude: 48.86965304307112, longitude: 2.327831738742462 },
+  { address: '2 Pass. Cardinet, Paris', latitude: 48.88556151761359, longitude: 2.310439512528376 },
+  { address: '30 Rue de Mouzaïa, Paris', latitude: 48.88020420304117, longitude: 2.3938558066809534 },
+  { address: '3 Rue de Romainville, Paris', latitude: 48.875939527756216, longitude: 2.399218132698809 },
+  { address: '1 Rue Raoul Dufy, Paris', latitude: 48.86537586479889, longitude: 2.390859399752756 },
+  { address: '109 Bd des Filles du Calvaire, Paris', latitude: 48.86062694427487, longitude: 2.367076017543853 },
+  { address: '18 Rue de Ménilmontant, Paris', latitude: 48.867515635561524, longitude: 2.3847577234001336 },
+  { address: '110 Av. Ledru Rollin, Paris', latitude: 48.852673498476776, longitude: 2.3770034178277495 },
 ]
 
-  user = 30.times.map do |i|
+  user = 50.times.map do |i|
     address = addresses.sample
 
     user = User.create!(
       email: Faker::Internet.unique.email,
       password: 'password',
-      first_name: Faker::Name.first_name,
+      genre: ['Homme', 'Femme'].sample,
+      first_name: "test",
       last_name: Faker::Name.last_name,
       age: rand(18..65),
-      genre: ['Homme', 'Femme', 'Autre'].sample,
       bio: "test",
       city: Faker::Address.city,
       area: rand(1..10),
@@ -173,13 +188,13 @@ addresses = [
       longitude: address[:longitude],
     )
 
+    user.update(first_name: user.genre == 'Homme' ? Faker::Name.male_first_name : Faker::Name.female_first_name)
+
     # file = URI.open(user_img[i])
     if user.genre == 'Femme'
       file = URI.open("https://xsgames.co/randomusers/avatar.php?g=female")
-    elsif user.genre == 'Homme'
-      file = URI.open("https://xsgames.co/randomusers/avatar.php?g=male")
     else
-      file = URI.open("https://xsgames.co/randomusers/avatar.php?g=female")
+      file = URI.open("https://xsgames.co/randomusers/avatar.php?g=male")
     end
     user.photo.attach(io: file, filename: "#{user.first_name}.jpg", content_type: "image/jpeg")
     user.save!
