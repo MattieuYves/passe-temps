@@ -1,7 +1,8 @@
-<div class="inbox-wrapper" id="inbox-wrapper">
-  <div class="inbox-links" data-controller="chat">
-<i class="fa-solid fa-comments"></i> 
-   <% unless @chatrooms.nil? %>
+<div class="inbox-wrapper" id="inbox-wrapper" data-controller="inbox chat">
+  <div class="d-flex flex-column-reverse align-items-end ">
+    <i class="fa-solid fa-comments bubble" data-action="click->inbox#toggle" data-inbox-target="inboxLinksClose"></i>
+    <div class="wrapper-links inbox-links-close">
+      <% unless @chatrooms.nil? %>
         <% @chatrooms.each do |chatroom| %>
           <div data-action="click->chat#reveal" class="inbox-link" data-chat-id="<%= chatroom.id %>">
             <div class="inbox-avatar">
@@ -20,9 +21,9 @@
             <% end %>
           </div>
         <% end %>
-      </div>
-    <% end %>
-
-    <div class="inbox-chat" id="test" data-controller="chat-container" data-close-icon-target="inboxChat">
+      <% end %>
     </div>
+  </div>
+  <div class="inbox-chat" id="test" data-controller="chat-container" data-close-icon-target="inboxChat">
+  </div>
 </div>
