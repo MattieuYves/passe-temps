@@ -1,57 +1,75 @@
 // To style the wrapping div
 .message-row {
-    margin-bottom: 10px;
-    padding: 8px;
-    display: flex;
-    align-items: flex-end;
-  }
-  
-  // To style the message itself
-  .sender-style, .receiver-style {
-    --r: 1em;  /* the radius */
-    --t: 1.5em; /* the size of the tail */
-    
-    overflow-x: hidden;
-    max-width: 300px;
-    padding: 1em;
-    border-inline: var(--t) solid #0000;
-    border-radius: calc(var(--r) + var(--t))/var(--r);
-    mask: 
-      radial-gradient(100% 100% at var(--_p) 0,#0000 99%,#000 102%) 
-        var(--_p) 100%/var(--t) var(--t) no-repeat,
-      linear-gradient(#000 0 0) padding-box;
-    color: #fff;
-  }
-  
-  .receiver-style {
-    --_p: 0;
-    border-bottom-left-radius: 0 0;
-    place-self: start;
-    background: linear-gradient(135deg,#1384C5,#FE6D00) border-box;
-  }
-  
-  .sender-style {
-    --_p: 100%;
-    border-bottom-right-radius: 0 0;
-    place-self: end;
-    background: linear-gradient(135deg,#FE6D00,#1384C5) border-box;
-  }
+  margin-bottom: 10px;
+  padding: 8px;
+  display: flex;
+  align-items: flex-end;
+}
 
-  .message-avatar {
-    margin: 0 10px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    align-self: flex-end;
-  }
+// To style the message itself
+.sender-style-bubble, .receiver-style-bubble {
+  --r: 1em;  /* the radius */
+  --t: 1.5em; /* the size of the tail */
+  
+  overflow-x: hidden;
+  max-width: 300px;
+  padding: 1em;
+  border-inline: var(--t) solid #0000;
+  border-radius: calc(var(--r) + var(--t))/var(--r);
+  mask: 
+    radial-gradient(100% 100% at var(--_p) 0,#0000 99%,#000 102%) 
+      var(--_p) 100%/var(--t) var(--t) no-repeat,
+    linear-gradient(#000 0 0) padding-box;
+  color: #fff;
+}
 
-  .avatar-image {
-    width: 40px; /* ou la taille que vous préférez */
-    height: 40px;
-    border-radius: 50%; /* pour rendre l'image circulaire */
-  }
+.receiver-style-bubble {
+  --_p: 0;
+  border-bottom-left-radius: 0 0;
+  place-self: start;
+  background: #CB8087; 
+}
 
-  .message-info {
-    overflow-wrap: break-word;
+.sender-style-bubble {
+  --_p: 100%;
+  border-bottom-right-radius: 0 0;
+  place-self: end;
+  background: #80CBC4
+}
+
+.receiver-style {
+  .receiver-avatar {
+    display: block;
   }
+  .sender-avatar {
+    display: none;
+  }
+}
+
+.sender-style {
+  .receiver-avatar {
+    display: none;
+  }
+  .sender-avatar {
+    display: block;
+  }
+}
+
+.message-avatar {
+  margin: 0 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-self: flex-end;
+}
+
+.avatar-image {
+  width: 40px; /* ou la taille que vous préférez */
+  height: 40px;
+  border-radius: 50%; /* pour rendre l'image circulaire */
+}
+
+.message-info {
+  overflow-wrap: break-word;
+}
 

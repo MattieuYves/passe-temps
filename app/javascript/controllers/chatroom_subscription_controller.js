@@ -16,9 +16,10 @@ export default class extends Controller {
   }
 
   markMessagesAsRead() {
-    this.messagesTarget.querySelectorAll('.message-row').forEach((message) => {
-      if (!message.dataset.read) {
-        fetch(`/messages/${message.dataset.id}/read`, {
+    // this.messagesTarget.querySelectorAll('.message-row').forEach((message) => {
+      // console.log(message)
+      // if (!message.dataset.read) {
+        fetch(`/chatrooms/${this.chatroomIdValue}/mark_as_read`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -30,8 +31,8 @@ export default class extends Controller {
             message.classList.remove("unread");
           }
         });
-      }
-    });
+    //   }
+    // });
   }
 
   resetForm(event) {
@@ -51,11 +52,11 @@ export default class extends Controller {
   }
 
   #buildMessageElement(currentUserIsSender, message) {
+    // <div class="${this.#userStyleClass(currentUserIsSender)}">
+    var messageWithTheRightClass = currentUserIsSender ? message : message.replace('sender-style-bubble', 'receiver-style-bubble')
     return `
-      <div class="message-row d-flex ${this.#justifyClass(currentUserIsSender)}" data-id="${message.id}" data-read="${message.read}">
-        <div class="${this.#userStyleClass(currentUserIsSender)}">
-          ${message}
-        </div>
+      <div class="message-row d-flex ${this.#justifyClass(currentUserIsSender)} ${this.#userStyleClass(currentUserIsSender)}" data-id="${message.id}" data-read="${message.read}">
+        ${messageWithTheRightClass}
       </div>
     `;
   }

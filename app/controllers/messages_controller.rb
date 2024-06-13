@@ -11,10 +11,8 @@ class MessagesController < ApplicationController
         sender_id: @message.user.id
       )
       head :ok
-
-    else
+    end
   end
-end
 
   private
 

@@ -6,7 +6,7 @@
         <% @chatrooms.each do |chatroom| %>
           <div data-action="click->chat#reveal" class="inbox-link" data-chat-id="<%= chatroom.id %>">
             <div class="inbox-avatar">
-              <%= image_tag "avatar.png", class: "img_avatar" %>
+                <%= cl_image_tag chatroom.booking.other_user(current_user).photo.key, class: "avatar-image receiver-avatar" %>
             </div>
             <div class="inbox-user-info">
               <% other_user = chatroom.booking.other_user(current_user) %>

@@ -19,8 +19,6 @@
   .messages {
     height: 50vh;
     overflow-y: scroll;
-    padding: 0;
-
 
     /* Style de la barre de défilement pour les navigateurs basés sur WebKit */
     &::-webkit-scrollbar {

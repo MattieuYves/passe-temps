@@ -1,12 +1,19 @@
-<div id="message-<%= message.id %>">
-  <%# <div class="message-avatar">
-    <!-- Add avatar or other elements if needed -->
-  </div>   %>
-  <div class="message-info">
-    <small>
-      <strong><%= message.user.first_name %></strong>
-      <i><%= l(message.created_at, format: "%a %e %b à %H:%M") %></i>
-    </small>
-    <p><%= message.content %></p>
+<%= cl_image_tag message.user.photo.key, class: "avatar-image receiver-avatar" %>
+
+<%#= image_tag 'avatar.png', class: "avatar-image receiver-avatar" %>
+<div class="<%= message.sender?(current_user) ? 'sender-style-bubble' : 'receiver-style-bubble' %>">
+  <div id="message-<%= message.id %>">  
+    <div class="message-info">
+      <small>
+        <strong><%= message.user.first_name %></strong>
+        <i><%= l(message.created_at, format: "%a %e %b à %H:%M") %></i>
+      </small>
+      <p><%= message.content %></p>
+    </div>
   </div>
 </div>
+<%#= image_tag 'avatar.png', class: "avatar-image sender-avatar" %>
+<%= cl_image_tag message.user.photo.key, class: "avatar-image sender-avatar" %>
+
+
+<%# image_tag(cl_image_path(user.photo.key) %>
