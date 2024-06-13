@@ -1,9 +1,10 @@
 <div class="container-wrap">
   <div class="card-display-content scrollbar-custom width-60">
     <div class="d-flex force-overflow justify-content-center">
-        <h1>Professeurs</h1>
+      <div style="width: 80%">
+        <%= render "shared/searchbar" %>
+      </div>
     </div>
-    <%= render "shared/searchbar" %>
     <div class="index-card">
         <% if @users.any? %>
             <% @users.each do |user| %>
@@ -14,7 +15,7 @@
         <% end %>
     </div>
   </div>
-  <div class="maps " style="width: 30%; height: 550px;"
+  <div class="maps " style="width: 30%; height: 90vh;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
