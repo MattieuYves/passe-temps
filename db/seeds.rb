@@ -276,6 +276,26 @@ puts "creating bookings (et par extension les chatrooms)"
     )
 end
 
+booking_test = Booking.create!(
+  duration: rand(1..4),
+  token_cost: 1,
+  session_format: ['Distance', 'Physique'].sample,
+  skill: Skill.all.sample,
+  user: User.where(email: "jean@example.com").first,
+  start_date: Faker::Date.between(from: 1.year.ago, to: 1.year.from_now),
+  end_date: Faker::Date.between(from: 1.year.from_now, to: 2.year.from_now),
+  content: Faker::Lorem.paragraph,
+  status: %w[pending confirmed rejected].sample
+)
+
+Review.create!(
+  rating: 5,
+  comment: comments.sample,
+  title: titles.sample,
+  booking: booking_test,
+  user: User.all.sample
+)
+
 # Create 10 Messages
 User.where.not(id: [mattieu_user.id, jean_user.id]).each do |user|
   bio = "Bonjour moi c'est #{user.first_name} ! Passioné.e de #{user.skills.first.name} depuis mon enfance, j'aime transmettre ma passion."
