@@ -1,16 +1,43 @@
-<% if current_user.skills.count > 0 %>
-  <h3>Mes commentaire en tant que professeur</h3>
+<%# if current_user.skills.count > 0 %>
+<!--  <h3>Mes commentaire en tant que professeur</h3>
   <div class="reviews">
 
-  <% current_user.reviews_as_a_teacher.each do |review| %>
-    <p>
-      <% Review::AUTHORIZED_RATINGS.each do |number| %>
-        <i class="fa<%= (number > review.rating) ? 'r' : 's' %> fa-star"></i>
-      <% end %>
-      <br>
-      <p><strong><%= review.title %></strong></p>
-      <p class="border-bottom border-dark"><%= review.comment %></p>
+  <%# current_user.reviews_as_a_teacher.each do |review| %>-->
+<!--    <p>-->
+      <%# Review::AUTHORIZED_RATINGS.each do |number| %>
+<!--        <i class="fa<%#= (number > review.rating) ? 'r' : 's' %> fa-star"></i>-->
+      <%# end %>
+<!--      <br>
+      <p><strong><%#= review.title %></strong></p>
+      <p class="border-bottom border-dark"><%#= review.comment %></p>
     </p>
 
-  <% end %>
-</div>
+  <%# end %>-->
+<!--</div>-->
+
+  <% if skill.user.reviews.count > 0 %>
+    <div class="px-3 reviews row gap-3 mt-5">
+
+      <% skill.user.reviews_as_a_teacher.each do |review| %>
+      <div class="review my-3 col-3 pt-3">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-start">
+            <% Review::AUTHORIZED_RATINGS.each do |number| %>
+              <i class="fa<%= (number > review.rating) ? 'r' : 's' %> fa-star"></i>
+            <% end %>
+          </div>
+          <%= image_tag(cl_image_path(review.user.photo.key), class:"avatar") %>
+        </div>
+
+        <br>
+        <div class="position-relative", style="top:-25px">
+          <p><strong><%= review.title %></strong></p>
+          <p><%= review.comment %></p>
+        </div>
+      </div>
+        <% end %>
+
+    </div>
+
+    <% else %>
+    <% end %>
