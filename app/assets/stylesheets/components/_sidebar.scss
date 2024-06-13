@@ -12,10 +12,14 @@
   display: flex;
   flex-direction: column;
 
-  .center-avatar{
+  .center-avatar {
 
     margin: 0 auto;
     width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
     padding: 2vh 0;
     min-height: 180px;
     text-align: center;
@@ -24,15 +28,18 @@
   .img_avatar{
     img{
       width: 40px;
+      height: 40px;
+      border-radius: 50%;
       margin-bottom: 15px;
       transition: all ease 0.5s;
     }
 
   }
   .user-infos{
-    // display: none;
-    visibility: hidden;
+    display: none;
+    text-align: center;
     opacity: 0;
+    transition: all linear 1s;
     width: 0;
     // width: 20px;
   }
@@ -67,12 +74,11 @@
     .img_avatar{
       img{
         width: 80px;
+        height: 80px;
       }
     }
     .user-infos{
       display: block;
-      transition: visibility 2s, opacity 0.5s linear;
-      visibility: visible;
       width: auto;
       opacity: 1;
     }
