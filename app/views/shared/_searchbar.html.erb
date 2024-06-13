@@ -1,4 +1,4 @@
-<div class="container">
+
   <div class="custom-searchbar-display">
     <%= form_with url: skills_path, method: :get, class: "d-flex", data: { turbo: false } do %>
       <%= text_field_tag :query,
@@ -9,4 +9,4 @@
       <%= submit_tag "Rechercher", name: "", class: "btn custom-searchbar-button" %>
     <% end %>
   </div>
-</div>
+
