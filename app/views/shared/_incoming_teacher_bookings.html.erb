@@ -31,7 +31,11 @@
               <td class="bg-transparent"><%= booking.skill.user.first_name %></td>
               <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
               <td class="bg-transparent"><%= booking.start_date.strftime("%R") %></td>
-              <td class="bg-transparent"><%= t(booking.status) %></td>
+              <td class="bg-transparent">
+                <div class="booking-status rounded-pill px-2 text-light <%= booking.status == 'pending' ? 'orange' : (booking.status == 'confirmed' ? 'green' : 'red') %>"">
+                <%= t(booking.status) %>
+              </div>
+              </td>
               <td class="bg-transparent"><%= link_to "Détails", booking_path(booking), class:"text-decoration-none" %></td>
               <td class="bg-transparent"><%= link_to "Supprimer", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-decoration-none" %></td>
             </tr>
@@ -70,7 +74,11 @@
               <td class="bg-transparent"><%= booking.user.first_name %></td>
               <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
               <td class="bg-transparent"><%= booking.start_date.strftime("%R") %></td>
-              <td class="bg-transparent"><%= t(booking.status) %></td>
+              <td class="bg-transparent">
+                <div class="booking-status rounded-pill px-2 text-light <%= booking.status == 'pending' ? 'orange' : (booking.status == 'confirmed' ? 'green' : 'red') %>"">
+                <%= t(booking.status) %>
+              </div>
+              </td>
               <td class="bg-transparent"><%= link_to "Détails", booking_path(booking), class:"text-decoration-none" %></td>
               <td class="bg-transparent">
 
@@ -118,7 +126,11 @@
               <td class="bg-transparent"><%= booking.user.first_name %></td>
               <td class="bg-transparent"><%= booking.start_date.strftime("%d/%m/%Y") %></td>
               <td class="bg-transparent"><%= booking.start_date.strftime("%R") %></td>
-              <td class="bg-transparent"><%= t(booking.status) %></td>
+              <td class="bg-transparent">
+                <div class="booking-status rounded-pill px-2 text-light <%= booking.status == 'pending' ? 'orange' : (booking.status == 'confirmed' ? 'green' : 'red') %>"">
+                <%= t(booking.status) %>
+              </div>
+              </td>
               <td class="bg-transparent"><%= link_to "Détails", booking_path(booking), class:"text-decoration-none" %></td>
               <td class="bg-transparent"><%= link_to "Supprimer", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-decoration-none" %></td>
             </tr>
