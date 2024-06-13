@@ -3,6 +3,12 @@
     background-color: white;
 }
 
+.search-index{
+    width: 80%;
+    position: fixed;
+    z-index: 1; 
+    width: 33em;
+}
 
 
 .index-card{
@@ -10,7 +16,7 @@
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
-    margin-top: 0.5rem;
+    margin-top: 6.5rem;
     margin-bottom: 0.5rem;
     justify-content: space-evenly;
     gap: 2em;
