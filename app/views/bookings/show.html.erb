@@ -4,7 +4,7 @@
 <div>
   <h1 class="show-book-h1"> Mon cours de <%= @booking.skill.name %> avec <%= @booking.skill.user.first_name %></h1>
   <div class="booking-status rounded-pill px-2 text-light <%= @booking.status == 'pending' ? 'orange' : (@booking.status == 'confirmed' ? 'green' : 'red') %>"">
-    <%= @booking.status.capitalize %>
+    <%= t(@booking.status) %>
   </div>
   <h3 class="show-book-h3">Le <%= @booking.start_date.strftime("%d/%m/%Y") %> à <%= @booking.start_date.strftime("%R") %></h3>
 

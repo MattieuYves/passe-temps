@@ -29,3 +29,6 @@
 
 en:
   hello: "Hello world"
+  pending: "En attente"
+  confirmed: "Confirmé"
+  rejected: "Refusé"
