@@ -103,15 +103,11 @@ puts "creating skill for test_user"
 activites_avec_icones = {
   "Sport" => {
       "icon" => "⚽️",
-      "activities" => ["Football", "Basketball", "Natation", "Course à pied"]
+      "activities" => ["Football", "Basketball", "Natation", "Piano"]
   },
   "Cuisine" => {
       "icon" => "🍽️",
-      "activities" => ["Pâtisserie", "Cuisine italienne", "Grillades", "Cuisine végétarienne"]
-  },
-  "Musique !" => {
-      "icon" => "🎵",
-      "activities" => ["Guitare", "Piano", "Piano", "Piano", "Chant", "Batterie"]
+      "activities" => ["Pâtisserie", "Cuisine italienne", "Grillades", "Piano"]
   },
   "Musique" => {
       "icon" => "🎵",
@@ -123,7 +119,7 @@ activites_avec_icones = {
   },
   "Voyage" => {
       "icon" => "✈️",
-      "activities" => ["Randonnée", "Visites culturelles", "Camping", "Tourisme gastronomique"]
+      "activities" => ["Randonnée", "Visites culturelles", "Camping", "Piano"]
   },
   "Art" => {
       "icon" => "🎨",
@@ -131,15 +127,15 @@ activites_avec_icones = {
   },
   "Technologie" => {
       "icon" => "💻",
-      "activities" => ["Programmation", "Robotique", "Impression 3D", "Réalité virtuelle"]
+      "activities" => ["Programmation", "Robotique", "Impression 3D", "Piano"]
   },
   "Jardinage" => {
       "icon" => "🌱",
-      "activities" => ["Plantes d'intérieur", "Potager", "Paysagisme", "Jardin biologique"]
+      "activities" => ["Plantes d'intérieur", "Potager", "Paysagisme", "Piano"]
   },
   "Loisirs créatifs" => {
       "icon" => "✂️",
-      "activities" => ["Tricot", "Scrapbooking", "Couture", "Origami"]
+      "activities" => ["Tricot", "Scrapbooking", "Couture", "Piano"]
   },
   "Bien-être" => {
       "icon" => "🧘",
