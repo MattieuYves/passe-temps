@@ -4,7 +4,7 @@
   <% end %>
   <div class="pe-3">
     <%if current_user%>
-      <%= link_to "Mon Espace", dashboard_path, class:"text-black px-2 text-decoration-none"%>
+      <%= link_to "Mon Espace", dashboard_path, class:"text-light px-2 text-decoration-none"%>
     <%else%>
       <%= link_to "Se Connecter", new_user_session_path, class:"text-black px-2 text-decoration-none"%>
       <%= link_to "S'inscrire", new_user_registration_path, class:"text-black px-2 text-decoration-none"%>
