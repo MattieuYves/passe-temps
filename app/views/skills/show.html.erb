@@ -47,11 +47,6 @@
 
 
 
-<!--  <div class="d-flex justify-content-center mt-3 book-btn">
-    <button type="button" class="btn btn-secondary rounded-5 px-3 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Réservez maintenant !
-    </button>
-  </div>-->
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -63,7 +58,7 @@
         </div>
         <div class="modal-body d-flex" data-controller="slot" data-slot-id-value="<%= @skill.id %>">
           <%= simple_form_for [@skill, @booking], html: { class: 'd-flex w-100', data: { controller: 'flatpickr' } } do |f| %>
-            <%= f.input :start_date, as: :string, label: false, input_html: { class: "d-none", data: { flatpickr_target: 'startDateInput', slot_target: 'date', action: 'change->slot#updateList' } } %>
+            <%= f.input :start_date, as: :string, label: false, input_html: { class: "d-none", data: { flatpickr_target: 'startDateInput', slot_target: 'date', action: 'change->slot#updateList', flatpickr_default_date: Date.today.strftime('%Y-%m-%d') } } %>
             <div class="date-input d-none" data-slot-target="list">
               <%= render "skills/slots", locals: { slots: @slots} %>
             </div>
@@ -83,3 +78,4 @@
  <% content_for :meta_title, "#{@skill.name} is on #{DEFAULT_META["meta_product_name"]}" %>
  <% content_for :meta_description, @skill.category %>
  <% content_for :meta_image, cl_image_path(@skill.user.photo.key) %>
+
