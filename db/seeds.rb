@@ -10,6 +10,42 @@
 
 require 'faker'
 
+comments = [
+  "Le cours était très informatif et bien structuré.",
+  "J'ai apprécié la clarté de l'instructeur et la qualité des matériaux fournis.",
+  "Les leçons étaient engageantes et faciles à suivre.",
+  "Ce cours a fourni un excellent aperçu et était très complet.",
+  "J'ai trouvé le rythme parfait et les explications claires.",
+  "Les devoirs étaient stimulants mais gratifiants.",
+  "Dans l'ensemble, une expérience très enrichissante et éducative.",
+  "Le soutien de l'instructeur était excellent tout au long du cours.",
+  "Je recommanderais fortement ce cours à d'autres.",
+  "Le contenu était bien organisé et facile à comprendre.",
+  "Je me sens beaucoup plus confiant dans ce sujet après avoir terminé le cours.",
+  "Les éléments interactifs ont aidé à renforcer l'apprentissage.",
+  "Les exemples utilisés dans les leçons étaient très utiles.",
+  "Ce cours a dépassé mes attentes.",
+  "J'ai apprécié la flexibilité de la structure du cours."
+]
+
+titles = [
+  "Excellente expérience d'apprentissage",
+  "Très bon cours",
+  "Très informatif",
+  "Excellent cours dans l'ensemble",
+  "Leçons bien structurées",
+  "Engageant et perspicace",
+  "Complet et clair",
+  "Enseignement exceptionnel",
+  "Approfondi et détaillé",
+  "Pratique et utile",
+  "Voyage éclairant",
+  "Connaissances précieuses acquises",
+  "Cours de premier ordre",
+  "Programme impressionnant",
+  "Enseignement exceptionnel"
+]
+
 # Clear existing data
 Message.destroy_all
 Chatroom.destroy_all
@@ -73,9 +109,13 @@ activites_avec_icones = {
       "icon" => "🍽️",
       "activities" => ["Pâtisserie", "Cuisine italienne", "Grillades", "Cuisine végétarienne"]
   },
-  "Musique" => {
+  "Musique !" => {
       "icon" => "🎵",
       "activities" => ["Guitare", "Piano", "Piano", "Piano", "Chant", "Batterie"]
+  },
+  "Musique" => {
+      "icon" => "🎵",
+      "activities" => ["Piano"]
   },
   "Lecture" => {
       "icon" => "📚",
@@ -217,7 +257,7 @@ puts "creating users and their skills"
 
 puts "creating bookings (et par extension les chatrooms)"
 
-30.times.map do
+60.times.map do
     skill = Skill.all.sample
     user = User.all.sample
     booking = Booking.create!(
@@ -230,6 +270,13 @@ puts "creating bookings (et par extension les chatrooms)"
       end_date: Faker::Date.between(from: 1.year.from_now, to: 2.year.from_now),
       content: Faker::Lorem.paragraph,
       status: %w[pending confirmed rejected].sample
+    )
+    Review.create!(
+      rating: rand(1..5),
+      comment: comments.sample,
+      title: titles.sample,
+      booking: booking,
+      user: User.all.sample
     )
 end
 
@@ -256,14 +303,5 @@ chatrooms = Chatroom.all
   )
 end
 
+
 # Create 30 Reviews
-bookings = Booking.all
-30.times do
-  Review.create!(
-    rating: rand(1..5),
-    comment: Faker::Lorem.paragraph,
-    title: Faker::Lorem.sentence,
-    booking: bookings.sample,
-    user: User.all.sample
-  )
-end

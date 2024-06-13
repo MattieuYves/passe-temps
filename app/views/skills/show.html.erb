@@ -9,24 +9,24 @@
 
 
 
-  <div class="row">
-    <h1 class="title-show fw-bolder col-12">Cours de <%= @skill.name %></h1>
-    <h2 class="title-show fw-bolder col-12 mb-3"><%= @skill.goal %></h2>
-  </div>
 
   <div class="d-flex justify-content-between">
-    <div class="category-pill-show btn btn-light mb-3 rounded-5"><%= @skill.category.capitalize %></div>
+    <div class="d-flex justify-content-start gap-4">
+      <div class="category-pill-show btn btn-light mb-3 rounded-5"><%= @skill.category.capitalize %></div>
+      <h1 class="title-show fw-bolder">Cours de <%= @skill.name %></h1>
+    </div>
     <button type="button" class="btn btn-secondary rounded-5 px-4 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Réservez maintenant !
     </button>
   </div>
-  <div class="card-product mb-5">
+
+  <div class="card-product mt-3 mb-5">
     <div class="teacher-show col-12" style="margin-left: 8px;height:90%; width: 200px; background-image: url('<%= @skill.user.photo.attached? ? cl_image_path(@skill.user.photo.key) : "https://images.unsplash.com/photo-1610429419519-8cdee5a8e615?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHBpYW5pc3RlfGVufDB8fDB8fHww" %>')">
     </div>
     <div class="card-product-infos">
       <p class="fs-2 col-12"><%= @skill.user.first_name %> <%= @skill.user.last_name %>, <%= @skill.user.age %> ans</p>
-      <p class="col-12"><%= @skill.user.bio %></p>
-      <p class="col-12">Niveau localisation, mes cours sont dispensés au <%= @skill.user.address %>. Si vous n'êtes pas en mesure de vous rendre sur place, je suis enclin à dispenser les cours à distance.</p>
+      <p class="col-12", style="width:96%"><%= @skill.user.bio %></p>
+      <p class="col-12 pt-2", style="width:96%">Niveau localisation, mes cours sont dispensés au <%= @skill.user.address %>. Si vous n'êtes pas en mesure de vous rendre sur place, je suis enclin à dispenser les cours à distance.</p>
     </div>
   </div>
 
@@ -76,6 +76,9 @@
     </div>
   </div>
 <% end %>
+
+<%= render "shared/review_section", skill: @skill %>
+
 
  <% content_for :meta_title, "#{@skill.name} is on #{DEFAULT_META["meta_product_name"]}" %>
  <% content_for :meta_description, @skill.category %>
