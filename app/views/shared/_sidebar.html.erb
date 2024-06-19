@@ -8,8 +8,8 @@
     <div class="center-avatar img_avatar">
       <%= render "shared/avatar_image" %>
       <div class="user-infos" style="white-space: nowrap;">
-        <%= current_user.first_name.capitalize %>
-        <%= current_user.last_name.capitalize %>
+        <%= current_user.first_name&.capitalize %>
+        <%= current_user.last_name&.capitalize %>
       </div>
       <div class="user-infos" style="white-space: nowrap;">
         <i class="fa-solid fa-gem"></i>
