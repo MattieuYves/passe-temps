@@ -2,11 +2,13 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
 
 
 // Define fonts for body and headers
 $body-font: "Varela Round", "Helvetica", "sans-serif";
-$headers-font: "Varela Round","Nunito", "Helvetica", "sans-serif";
+$headers-font: "Rubik";
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
@@ -19,8 +21,8 @@ $headers-font: "Varela Round","Nunito", "Helvetica", "sans-serif";
 // $my-font: "Font Name";
 
 .futura-h2 {
-  font-family: "futura";
+  // font-family: "futura";
   font-weight: 700;
   font-size: 24px;
-  color: black;
+  color: rgb(32, 14, 14);
 }
