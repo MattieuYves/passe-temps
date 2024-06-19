@@ -23,7 +23,7 @@ body{
   border-bottom-right-radius: 150px 50px;
   .research{
     h1 {
-      font-family: "futura";
+      // font-family: "futura";
       font-weight: 700;
       color: white;
     }
@@ -256,4 +256,9 @@ justify-content: center;
 .hp-icon {
   width: 70px;
   height: 70px;
+}
+
+.paragraph {
+  text-align: center;
+  padding-top: 10px;
 }

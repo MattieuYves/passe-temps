@@ -13,7 +13,7 @@
   <div class="d-flex justify-content-between">
     <div class="d-flex justify-content-start gap-4">
       <div class="category-pill-show btn btn-light mb-3 rounded-5"><%= @skill.category.capitalize %></div>
-      <h1 class="title-show fw-bolder">Cours de <%= @skill.name %></h1>
+      <h1 class="title-show fw-bolder text-light">Cours de <%= @skill.name %></h1>
     </div>
     <button type="button" class="btn btn-secondary rounded-5 px-4 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Réservez maintenant !
@@ -78,4 +78,3 @@
  <% content_for :meta_title, "#{@skill.name} is on #{DEFAULT_META["meta_product_name"]}" %>
  <% content_for :meta_description, @skill.category %>
  <% content_for :meta_image, cl_image_path(@skill.user.photo.key) %>
-
