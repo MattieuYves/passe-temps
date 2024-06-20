@@ -26,3 +26,13 @@ $headers-font: "Rubik";
   font-size: 24px;
   color: rgb(32, 14, 14);
 }
+
+.btn{
+  --bs-btn-color: white !important ;
+}
+.btn-secondary{
+  a:link {
+    text-decoration:none;
+    color: white !important;
+}
+}
