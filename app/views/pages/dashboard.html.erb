@@ -15,12 +15,11 @@
   <div data-dashboard-target="teacher" class="d-none">
 
 
-    <% if current_user.skills.count > 0 %>
+
 
       <div data-controller="insert-in-list">
         <%= render "shared/bookings_teacher", skill: @skill %>
       </div>
 
-    <%end%>
   </div>
 </div>

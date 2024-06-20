@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_11_152113) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_20_084031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -116,7 +116,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_11_152113) do
     t.text "bio"
     t.string "city"
     t.integer "area"
-    t.integer "token"
+    t.integer "token", default: 1
     t.float "latitude"
     t.float "longitude"
     t.string "address"

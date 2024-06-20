@@ -11,4 +11,7 @@
     </div>
     <%= render "skills/form", skill: @skill %>
   </div>
-<%= render "shared/incoming_teacher_bookings" %>
+
+<% if current_user.skills.count > 0 %>
+  <%= render "shared/incoming_teacher_bookings" %>
+<% end %>
