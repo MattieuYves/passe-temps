@@ -51,14 +51,9 @@ class SkillsController < ApplicationController
   def create
     @skill = Skill.new(skill_params)
     @skill.user = current_user
-    # if @skill.save
-    #   redirect_to dashboard_path, notice: "Bravo! Votre nouvelle compétence est en ligne et réservable."
-    # else
-    #   redirect_to new_skill_path, alert: "Échoué. Remplissez tous les champs."
-    # end
     respond_to do |format|
       if @skill.save
-        format.html { redirect_to skill_path(@skill), notice: "Bravo! Votre nouvelle compétence est en ligne et réservable." }
+        format.html { redirect_to skill_path(@skill), notice: "Votre nouvelle compétence est en ligne et réservable." }
         format.json # Follows the classic Rails flow and look for a create.json view
 
       else
@@ -74,7 +69,7 @@ class SkillsController < ApplicationController
   def update
     @skill = Skill.find(params[:id])
     if @skill.update(skill_params)
-      redirect_to dashboard_path, notice: "Bravo! Modifié."
+      redirect_to dashboard_path, notice: "Compétence modifiée"
     else
       render 'pages/dashboard', status: :unprocessable_entity
     end
