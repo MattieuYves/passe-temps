@@ -6,7 +6,10 @@
 
   <div class="form-inputs container">
       <div class="justify-content-center">
-        <%= f.input :photo, as: :file %>
+        <%= f.input :photo, as: :file, input_html: { accept: 'image/png, image/jpeg, image/jpg', id: 'photo_input' } %>
+        <div id="image_preview_container">
+          <img id="image_preview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 200px;" />
+        </div>
       </div>
     <div class="row">
       <div class="col-6">
@@ -69,6 +72,7 @@
   <div class="form-actions d-flex justify-content-center">
     <%= f.button :submit, "Créer mon compte", class:'rounded-pill fs-4 text-light px-4', style:'background-color:#0bb7bc' %>
   </div>
+
 <% end %>
 
 

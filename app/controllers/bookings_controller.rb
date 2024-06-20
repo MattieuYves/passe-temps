@@ -20,11 +20,11 @@ class BookingsController < ApplicationController
     @booking.session_format = "video"
     @booking.end_date = @booking.start_date + @booking.duration
     if current_user.token == 0
-      redirect_to dashboard_path, notice: "Vous n'avez pas assez de crédit pour réserver ce cours !"
+      redirect_to dashboard_path, alert: "Vous n'avez pas assez de crédit pour réserver ce cours !"
     else
       if @booking.save
         current_user.update(token: current_user.token - 1)
-        redirect_to dashboard_path, notice: "Bravo! Votre demande de réservation a été envoyée au professeur."
+        redirect_to dashboard_path, notice: "Votre demande de réservation a été envoyée au professeur."
       else
         flash.now[:alert] = "Oups, il y eu un souci."
         render 'skills/show', status: :unprocessable_entity
@@ -55,11 +55,11 @@ class BookingsController < ApplicationController
       if @booking.update(booking_params)
         if @booking.status == "confirmed"
           current_user.update(token: current_user.token + 1)
-          format.html { redirect_to booking_path(@booking), notice: "Bravo ! Vous venez d'accepeter un cours et de gagner un token" }
+          format.html { redirect_to booking_path(@booking), notice: "Vous venez d'accepeter un cours et de gagner un token" }
           format.json # Follows the classic Rails flow and look for a create.json view
         elsif @booking.status == "rejected"
           @booking.user.update(token: @booking.user.token + 1)
-          format.html { redirect_to booking_path(@booking), notice: "Vous venez de refuser une demande de cours" }
+          format.html { redirect_to booking_path(@booking), alert: "Vous venez de refuser une demande de cours" }
           format.json # Follows the classic Rails flow and look for a create.json view
         end
       else
