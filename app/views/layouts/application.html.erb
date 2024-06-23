@@ -43,13 +43,10 @@
         <%= render "shared/sidebar" %>
         <div class="<%= params[:controller] == "skills" && params[:action] == "index" ? "" : "card-display-content"%>" style="width: 100%">
           <%= yield %>
+          
         </div>
       </div>
     <% end %>
     <%= render "shared/inbox" if user_signed_in? %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-      AOS.init();
-    </script>
   </body>
 </html>
