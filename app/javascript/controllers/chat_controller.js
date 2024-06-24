@@ -20,7 +20,7 @@ export default class extends Controller {
 
   reveal(event) {
     const chatId = event.currentTarget.dataset.chatId;
-    console.log(chatId);
+    // console.log(chatId);
     fetch(`/chatrooms/${chatId}`, {
       headers: {
         'Accept': 'application/json'
@@ -63,4 +63,3 @@ export default class extends Controller {
     }
   }
 }
-

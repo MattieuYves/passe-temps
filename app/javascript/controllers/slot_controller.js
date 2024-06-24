@@ -6,7 +6,7 @@ export default class extends Controller {
   static values = { id: Number }
 
   connect() {
-    console.log(this.dateTarget);
+    // console.log(this.dateTarget);
   }
 
   updateList() {
@@ -19,7 +19,7 @@ export default class extends Controller {
       this.listTarget.innerHTML = data.list
     })
   }
-  
+
   fillInput(event) {
     // this.radio = this.radioTargets.find((el) => {
     //   return el === event.currentTarget
@@ -28,7 +28,7 @@ export default class extends Controller {
     this.label = this.labelTargets.find((el) => {
       return el === event.currentTarget
     })
-    
+
     this.label.previousElementSibling.checked = true
     this.dateTarget.value = this.date + ` ${this.label.previousElementSibling.value}`
 

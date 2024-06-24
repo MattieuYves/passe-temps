@@ -6,7 +6,7 @@ export default class extends Controller {
   static targets = ["startDateInput"]
 
   connect() {
-    console.log("Flatpickr controller connected");
+    // console.log("Flatpickr controller connected");
     this.initializeFlatpickr();
     document.getElementById('exampleModal').addEventListener('shown.bs.modal', this.initializeFlatpickr.bind(this));
   }
@@ -23,7 +23,7 @@ export default class extends Controller {
   }
 
   simulateClickOnToday(selectedDates, dateStr, instance) {
-    console.log("simulateClickOnToday called");
+    // console.log("simulateClickOnToday called");
     const todayElement = instance.calendarContainer.querySelector('.flatpickr-day.today');
     if (todayElement) {
       todayElement.click();

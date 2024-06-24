@@ -1,15 +1,21 @@
   <div class="modal fade" id="animationAccept" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true", style="--bs-modal-bg: #00000000 !important;">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0">
+      <div class="modal-header" hidden="true">
+        <!--<h1 class="modal-title fs-5 text-light" id="exampleModalLabel">Vous venez de gagner 1 crédit en acceptant ce cours !</h1>-->
+        <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
       </div>
       <div class="modal-body">
-        <%= image_tag 'ruby-gif.gif', alt: "Credit turning around" %>
+        <div class="d-flex justify-content-center">
+          <div><%= image_tag 'ruby-gif.gif', alt: "Credit turning around" %></div>
+        </div>
+          <div class="d-flex align-items-center flex-column">
+            <h1 class="text-light fs-1">+1</h1>
+            <h3 class="text-light fs-5 mt-2">Vous venez de gagner 1 crédit en acceptant ce cours !</h3>
+            <button id="close-modal"type="button" class="btn-close mt-2 bg-dark-subtle rounded-circle p-2" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
       </div>
-      <div class="modal-footer">
-        You just earned 1 credit!
+      <div class="modal-footer" hidden="true">
       </div>
     </div>
   </div>

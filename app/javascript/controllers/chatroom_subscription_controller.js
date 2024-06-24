@@ -4,13 +4,13 @@ import { createConsumer } from "@rails/actioncable";
 export default class extends Controller {
   static values = { chatroomId: Number, currentUserId: Number };
   static targets = ["messages"];
-  
+
   connect() {
     this.subscription = createConsumer().subscriptions.create(
       { channel: "ChatroomChannel", id: this.chatroomIdValue },
       { received: data => this.#insertMessageAndScrollDown(data) }
     );
-    console.log(`Subscribed to the chatroom with the id ${this.chatroomIdValue}.`);
+    // console.log(`Subscribed to the chatroom with the id ${this.chatroomIdValue}.`);
     this.scrollToBottom();
     this.markMessagesAsRead();
   }
@@ -62,7 +62,7 @@ export default class extends Controller {
   }
 
   disconnect() {
-    console.log("Unsubscribed from the chatroom");
+    // console.log("Unsubscribed from the chatroom");
     this.subscription.unsubscribe();
   }
 

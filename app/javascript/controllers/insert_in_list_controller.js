@@ -25,7 +25,7 @@ export default class extends Controller {
           this.element.innerHTML = data.inserted_item
         }
 
-        console.log(data.form)
+        // console.log(data.form)
         this.modalTarget.outerHTML = data.form
       })
   }
@@ -33,7 +33,7 @@ export default class extends Controller {
   updateBooking(event) {
     event.preventDefault();
 
-    console.log(event.currentTarget)
+    // console.log(event.currentTarget)
 
     fetch(event.currentTarget.action, {
       method: "PATCH", // Could be dynamic with Stimulus values
@@ -48,5 +48,7 @@ export default class extends Controller {
         }
         // this.formTarget.outerHTML = data.form
       })
+      var modal = new bootstrap.Modal(document.getElementById('animationAccept'));
+      modal.show();
   }
 }
