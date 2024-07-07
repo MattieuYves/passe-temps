@@ -24,5 +24,5 @@
 #   # config.content_security_policy_report_only = true
 # end
 Rails.application.config.content_security_policy do |policy|
-  policy.frame_ancestors :self, 'https://www.passe-temps.me'
+  policy.frame_ancestors :self, 'https://www.passe-temps.me', 'http://localhost:3000/portefolio'
 end
